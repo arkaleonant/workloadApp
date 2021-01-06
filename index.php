@@ -48,7 +48,7 @@ if (empty($_SESSION['nip'])) {
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="dashboard.html" class="nav-link">Home</a>
+        <a href="index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -135,7 +135,7 @@ if (empty($_SESSION['nip'])) {
 
                   <?php if ($_SESSION['hak_akses'] != '2') { ?>
                   <li class="nav-item">
-                    <a href="./pages/tabel_task.php" class="nav-link">
+                    <a href="./pages/lihat_task.php" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Lihat Task</p>
                     </a>
@@ -144,7 +144,7 @@ if (empty($_SESSION['nip'])) {
 
                   <?php if ($_SESSION['hak_akses'] != '1') { ?>
                   <li class="nav-item">
-                    <a href="./pages/tabel_task.php" class="nav-link">
+                    <a href="./pages/daftar_task.php" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Daftar Task</p>
                     </a>
