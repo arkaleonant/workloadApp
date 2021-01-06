@@ -38,16 +38,19 @@
   <!-- Main Sidebar Container -->
   
 
+  <!-- Content Wrapper. Contains page content -->
   <div class="content">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-0">
-          <div class="col-sm-6">
-            <h3>Tambah Task </h3>
+        <div class="row mb-2">
+        <div class="col-sm-6">
+            <h3>Tambah Penanggung Jawab </h3>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-              <li class="breadcrumb-item active">Tambah Task</li>
+              <li class="breadcrumb-item active">Tambah Penanggungjawab</li>
             </ol>
           </div>
         </div>
@@ -56,39 +59,48 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-              <form method="post" action=="">
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form">
                 <div class="card-body">
+                <div class="col-md-6">
+                <div class="form-group">
+                  <label>ID Task</label>
+                  <select class="form-control select" style="width: 100%; border: 1px solid #000000">
+                    <option selected="none"></option>
+                    <option>Arka Arifiandi Leonanta</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
+
                   <div class="form-group">
                     <label for="exampleInputEmail1">Task</label>
                     <input type="task" class="form-control" id="exampleInputEmail1" placeholder="Enter task" style="border: 1px solid #000000">
                   </div>
+
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Detail Task</label>
-                    <textarea name="textarea" placeholder="Place some text here"
-                              style="width: 100%; height: 200px; font-size: 14px; 
-                              line-height: 18px; border: 1px solid #000000; padding: 
-                              10px;">
-                    </textarea>
-                  </div>
+                  <label>NIP</label>
+                  <select class="form-control select" style="width: 100%; border: 1px solid #000000">
+                    <option selected="none"></option>
+                    <option>Arka Arifiandi Leonanta</option>
+                    <option>California</option>
+                    <option>Delaware</option>
+                    <option>Tennessee</option>
+                    <option>Texas</option>
+                    <option>Washington</option>
+                  </select>
+                </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label for="exampleInputPassword1">Nama Pegawai</label>
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #000000">
                   </div>
-                  <div class="form-group">
-
-                  <label>Start Date</label>
-                  <div class="form-group">
-                    <input type="date" class="form-control float-right" style="border: 1px solid #000000">
-                  </div><br><br>
-
-                  <label>End Date</label>
-                  <div class="form-group">
-                    <input type="date" class="form-control float-right" style="border: 1px solid #000000">
-                  </div>
-                  <!-- /.input group -->
-                </div><br><br>
-                <div class="right-card-footer">
+                <div class="left-card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
                 </div>
               </form>
             </div>
@@ -97,6 +109,7 @@
     </section>
     <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->
   

@@ -19,17 +19,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
+<script type="text/javascript" src="assets/js/plugins/notifications/sweet_alert.min.js"></script>
+<div class="panel panel-flat">
+<div class="row mb-2">
           <div class="col-sm-6">
-            <h1> </h1>
+            <h2>Daftar Task</h2>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -38,97 +32,61 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-    <div class="container-fluid">
-      <div class="card card-primary">
-    <div class="card-header">
-                <h3 class="card-title">Daftar Task</h3>
-              </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!-- /.card-header -->
-            <div class="card-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th>Nomor</th>
-                  <th>Id Task</th>
-                  <th>Task</th>
-                  <th>Detail Task</th>
-                  <th>Pegawai</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                
-                </tbody>
-              </table>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-
-
-          <!-- /.card -->
+    <div class="panel-heading">
+        <div class="heading-elements">
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.0.0-alpha
     </div>
-    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong> All rights
-    reserved.
-  </footer>
+      <table class="table datatable-pagination">
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+          <thead>
+              <tr>
+                    <th>Nomor</th>
+                    <th>Id Task</th>
+                    <th>Task</th>
+                    <th>Detail Task</th>
+                    <th>Pegawai</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+              </tr>
+          </thead>
+          <tbody>
+              <?php
+              $no = 1;
+              while ($row = mysqli_fetch_array($sql)) {
+                  ?>
+                  <tr>
+                      <td><?php echo $no ?></td>
+                      <td><?php echo $row['id_task'] ?></td>
+                      <td><?php echo $row['task'] ?></td>
+                      <td><?php echo $row['detail_task'] ?></td>
+                      <td><a class="btn btn-warning">lihat</a></td>
+                      <td><?php echo $row['start_date'] ?></td>
+                      <td><?php echo $row['end_date'] * $row['stock'] ?></td>
+                      <td><a class="btn btn-success">kerjakan</a></td>
+                  </tr>
+                  <?php $no++;
+              } ?>
+
+          </tbody>
+      </table>
 </div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables -->
-<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
-<!-- SlimScroll -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!-- page script -->
+<!-- /pagination types -->
 <script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
+    $(document).ready(function() {
+
+        /* ------------------------------------------------------------------------------
+         *
+         *  # Basic datatables
+         *
+         *  Specific JS code additions for datatable_basic.html page
+         *
+         *  Version: 1.0
+         *  Latest update: Aug 1, 2015
+         *
+         * ---------------------------------------------------------------------------- */
+
+
     });
-  });
 </script>
-</body>
 </html>
