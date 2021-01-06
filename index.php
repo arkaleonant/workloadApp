@@ -12,7 +12,7 @@ if (empty($_SESSION['nip'])) {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>WORKLOAD | PT.PAL</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -69,20 +69,6 @@ if (empty($_SESSION['nip'])) {
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="fa fa-gear"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <div class="media">
-              <div class="media-body">
-				  <a  href="./function/logout.php"> Logout</a>
-              </div>
-            </div>
-          </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
             class="fa fa-th-large"></i></a>
@@ -94,7 +80,7 @@ if (empty($_SESSION['nip'])) {
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="index.php" class="brand-link">
 		<?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 		?>
@@ -138,24 +124,40 @@ if (empty($_SESSION['nip'])) {
                   </p>
                 </a>
                 <ul class="nav nav-treeview">
+                <?php if ($_SESSION['hak_akses'] != '2') { ?>
                   <li class="nav-item">
                     <a href="./pages/tambah_task.php" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
                       <p>Add Task</p>
                     </a>
                   </li>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['hak_akses'] != '2') { ?>
                   <li class="nav-item">
                     <a href="./pages/tabel_task.php" class="nav-link">
                       <i class="fa fa-circle-o nav-icon"></i>
-                      <p>Task</p>
+                      <p>Lihat Task</p>
                     </a>
                   </li>
+                  <?php } ?>
+
+                  <?php if ($_SESSION['hak_akses'] != '1') { ?>
+                  <li class="nav-item">
+                    <a href="./pages/tabel_task.php" class="nav-link">
+                      <i class="fa fa-circle-o nav-icon"></i>
+                      <p>Daftar Task</p>
+                    </a>
+                  </li>
+                  <?php } ?>
+
                 </ul>
+
               <li class="nav-item">
-                <a href="./pages/tabel_plan.php" class="nav-link">
-                  <i class="nav-icon fa fa-calendar"></i>
+                <a href="./function/logout.php" class="nav-link">
+                  <i class="nav-icon fa fa-gear"></i>
                   <p>
-                    Plan
+                    Logout
                   </p>
                 </a>
               </li>
