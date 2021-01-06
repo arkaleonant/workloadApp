@@ -38,7 +38,7 @@
       <div class="card-body login-card-body">
         <p class="login-box-msg">Sign in to start your session</p>
   
-        <form action="login.php" method="post">
+        <form action="./function/login.php" method="post">
           <div class="form-group has-feedback" data-validate = "Enter nip">
 						<input class="form-control" type="text" name="nip" placeholder="NIP">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
@@ -90,11 +90,11 @@
   <!-- /.login-box -->
   
   <!-- jQuery -->
-  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <script src="plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- iCheck -->
-  <script src="../../plugins/iCheck/icheck.min.js"></script>
+  <script src="plugins/iCheck/icheck.min.js"></script>
   <script>
     $(function () {
       $('input').iCheck({

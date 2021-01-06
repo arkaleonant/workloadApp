@@ -8,7 +8,7 @@ $password = $_POST['password'];
 $koneksi=mysqli_connect("localhost", "root","","magang_pal");
 //include 'koneksi.php';
 
-// mencari password berdasarkan email
+// mencari password berdasarkan nip
 $query = mysqli_query($koneksi,"SELECT * FROM pegawai
              WHERE nip ='$nip'");
 
@@ -20,12 +20,12 @@ if ($data['nip'] && $password==$data['password']){
         $_SESSION['nip'] = $data['nip'];
         $_SESSION['hak_akses'] = $data['hak_akses'];
         if($data['hak_akses']=="1"){
-            header("location:../workloadApp/dashboard.html");
+            header("location:halaman_atasan.php");
         }else if($data['hak_akses']=="2"){
-            header("location:../workloadApp/dashboard2.html");
+            header("location:halaman_bawahan.php");
         }
 }
 else{  
-    header("location:../index.html");
+    header("location:index.php");
     }
 ?>
