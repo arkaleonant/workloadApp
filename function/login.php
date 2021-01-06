@@ -20,9 +20,9 @@ if ($data['nip'] && $password==$data['password']){
         $_SESSION['nip'] = $data['nip'];
         $_SESSION['hak_akses'] = $data['hak_akses'];
         if($data['hak_akses']=="1"){
-            header("location:halaman_atasan.php");
+            header("location:../halaman/halaman_atasan.php");
         }else if($data['hak_akses']=="2"){
-            header("location:halaman_bawahan.php");
+            header("location:../halaman/halaman_bawahan.php");
         }
 }
 else{  
