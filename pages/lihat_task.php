@@ -1,4 +1,10 @@
-
+<?php
+include '../function/koneksi.php';
+include '../function/fungsi.php';
+if (empty($_SESSION['nip'])) {
+	header("Location:../login_page.php");
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,8 +47,9 @@
 
           <thead>
               <tr>
-                  <th>Nomor</th>
+                  <th>No.</th>
                   <th>Id Task</th>
+                  <th>Divisi</th>
                   <th>Task</th>
                   <th>Detail Task</th>
                   <th>Pegawai</th>
@@ -53,18 +60,22 @@
           </thead>
           <tbody>
               <?php
-              $no = 1;
-              while ($row = mysqli_fetch_array($sql)) {
-                  ?>
+                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
+                  $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
+                  $result = mysqli_query($koneksi,$sel_query);
+                  $no = 1;
+                  while($row = mysqli_fetch_assoc($result)) { 
+              ?>
                   <tr>
                       <td><?php echo $no ?></td>
                       <td><?php echo $row['id_task'] ?></td>
+                      <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
                       <td><a class="btn btn-warning">lihat</a></td>
                       <td><?php echo $row['start_date'] ?></td>
-                      <td><?php echo $row['end_date'] * $row['stock'] ?></td>
-                      <td>45 %</td>
+                      <td><?php echo $row['end_date']?></td>
+                      <td>45%</td>
                   </tr>
                   <?php $no++;
               } ?>

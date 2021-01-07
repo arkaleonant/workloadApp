@@ -1,10 +1,17 @@
+<?php
+  include '../function/koneksi.php';
+  include '../function/fungsi.php';
+  if (empty($_SESSION['nip'])) {
+    header("Location:../login_page.php");
+  }
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Advanced form elements</title>
+  <title></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -56,34 +63,35 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-              <form method="post" action=="">
+              <form method="POST">
+                <?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
+                        $row = mysqli_fetch_array($sql);
+                ?>
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Task</label>
-                    <input type="task" class="form-control" id="exampleInputEmail1" placeholder="Enter task" style="border: 1px solid #000000">
+                    <label>Divisi</label>
+                    <input type="text" name="divisi" class="form-control" style="border: 1px solid #000000" required value="<?php echo $_SESSION['divisi']; ?>" readonly>
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Detail Task</label>
-                    <textarea name="textarea" placeholder="Place some text here"
+                    <label>Task</label>
+                    <input type="text" name="task" class="form-control" placeholder="Enter task" style="border: 1px solid #000000" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Detail Task</label>
+                    <textarea name="detail_task" placeholder="Place some text here"
                               style="width: 100%; height: 200px; font-size: 14px; 
                               line-height: 18px; border: 1px solid #000000; padding: 
-                              10px;">
+                              10px;" required>
                     </textarea>
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #000000">
-                  </div>
-                  <div class="form-group">
-
                   <label>Start Date</label>
                   <div class="form-group">
-                    <input type="date" class="form-control float-right" style="border: 1px solid #000000">
+                    <input type="date" name="start_date" class="form-control float-right" style="border: 1px solid #000000" required>
                   </div><br><br>
 
                   <label>End Date</label>
                   <div class="form-group">
-                    <input type="date" class="form-control float-right" style="border: 1px solid #000000">
+                    <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000" required>
                   </div>
                   <!-- /.input group -->
                 </div><br><br>
@@ -91,6 +99,27 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
+              <?php
+                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
+              
+                  // Check connection
+                  if($koneksi === false){
+                      die("ERROR: Could not connect. " . mysqli_connect_error());
+                  }
+                  $errors = array();
+                      
+                  $divisi = $_POST['divisi'];
+                  $task = $_POST['task'];
+                  $detail_task = $_POST['detail_task'];
+                  $start_date = $_POST['start_date'];
+                  $end_date = $_POST['end_date'];
+                  
+                  $sql = "INSERT INTO tabel_task VALUES divisi='$divisi', task='$task', detail_task='$detail_task', start_date='$start_date', end_date='$end_date'";
+                  mysqli_query($koneksi, $sql);
+
+                  header("location:../index.php?p=tambah_pj");
+
+              ?>
             </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

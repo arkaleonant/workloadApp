@@ -19,25 +19,25 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
+<body class="container-fluid" style="background-image: url('img/bg1.jpg');">
+<div class="login-box" style="background:white"><br>
   <div class="login-logo">
-    <a href="./index.php"><b>PT. PAL </b>INDONESIA</a>
+    <img src="img/logopal.png" alt="" width="250px" height="75px">
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
-      <h4 class="login-box-msg">Aplikasi Work Load</h4>
+    <div class="card-body login-card-body" >
+      <h5 class="login-box-msg"><b>WORKLOAD LOGIN</b></h5>
 
       <form action="./function/login.php" method="post">
         <div class="form-group has-feedback">
-            <span class="fa fa-user form-control-feedback"></span>
+            <span class="fa fa-user form-control-feedback"> NIP</span>
             <input type="numeric" name="nip" class="form-control" placeholder="Nomor Induk Pegawai">
         </div>
         <div class="form-group has-feedback">
-            <span class="fa fa-lock form-control-feedback"></span>
+            <span class="fa fa-lock form-control-feedback"> Password</span>
             <input type="password" name="password" class="form-control" placeholder="Password">
-        </div>
+        </div><br><br>
           <!-- /.col -->
           <div class="col-15">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>

@@ -1,3 +1,11 @@
+<?php
+include '../koneksi.php';
+include '../fungsi.php';
+if (empty($_SESSION['nip'])) {
+	header("Location:../login_page.php");
+}
+?>
+
 <div class="panel panel-flat">
         <!-- Small boxes (Stat box) -->
     <div class="row">

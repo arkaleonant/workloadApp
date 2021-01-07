@@ -84,7 +84,7 @@ if (empty($_SESSION['nip'])) {
 		<?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 		?>
-	  <h1 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h1>
+	  <h2 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h2>
 	  <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
     </a>
 
@@ -235,10 +235,6 @@ if (empty($_SESSION['nip'])) {
     </div>
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->

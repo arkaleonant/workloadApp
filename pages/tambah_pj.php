@@ -1,3 +1,10 @@
+<?php
+include '../function/koneksi.php';
+include '../function/fungsi.php';
+if (empty($_SESSION['nip'])) {
+	header("Location:../login_page.php");
+}
+?>
 
 <!DOCTYPE html>
 <html>
@@ -67,13 +74,14 @@
                 <div class="form-group">
                   <label>ID Task</label>
                   <select class="form-control select" style="width: 100%; border: 1px solid #000000">
-                    <option selected="none"></option>
-                    <option>Arka Arifiandi Leonanta</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option value='' selected>- Pilih -</option>
+                    <?php              
+                      $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
+                      $pj = mysqli_query($conn ,"SELECT * FROM task where $id_task='id_task'");
+                      while ($row = mysqli_fetch_array($pj)) {
+                        echo "<option value='$row[id_task]'>$row[id_task] - $row[task]</option>";
+                      }
+                    ?>
                   </select>
                 </div>
 
