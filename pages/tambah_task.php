@@ -63,7 +63,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-              <form method="POST">
+              <form method="POST" action="./function/create_task.php">
                 <?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
                         $row = mysqli_fetch_array($sql);
                 ?>
@@ -96,30 +96,9 @@
                   <!-- /.input group -->
                 </div><br><br>
                 <div class="right-card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary"  href="index.php?p=tambah_pj?id=<?php echo $row["id_task"]; ?>">Submit</button>
                 </div>
               </form>
-              <?php
-                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-              
-                  // Check connection
-                  if($koneksi === false){
-                      die("ERROR: Could not connect. " . mysqli_connect_error());
-                  }
-                  $errors = array();
-                      
-                  $divisi = $_POST['divisi'];
-                  $task = $_POST['task'];
-                  $detail_task = $_POST['detail_task'];
-                  $start_date = $_POST['start_date'];
-                  $end_date = $_POST['end_date'];
-                  
-                  $sql = "INSERT INTO tabel_task VALUES divisi='$divisi', task='$task', detail_task='$detail_task', start_date='$start_date', end_date='$end_date'";
-                  mysqli_query($koneksi, $sql);
-
-                  header("location:../index.php?p=tambah_pj");
-
-              ?>
             </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

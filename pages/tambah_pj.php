@@ -68,49 +68,59 @@ if (empty($_SESSION['nip'])) {
       <div class="container-fluid">
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              
+              <form role="form" method="post" action="simpan.php">
                 <div class="card-body">
                 <div class="col-md-6">
                 <div class="form-group">
                   <label>ID Task</label>
-                  <select class="form-control select" style="width: 100%; border: 1px solid #000000">
-                    <option value='' selected>- Pilih -</option>
+                </div>
+                  <?php   
+                        $con = mysqli_connect("localhost","root","","magang_pal");  
+                    ?>  
+                    <td>
+                    <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required > 
+                      <option value="none">- Pilih Id Task -</option> 
+                        <?php     
+                        $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
+                        $a          = "var task = new Array();\n;";    
+                        while ($row = mysqli_fetch_array($result)) {  
+                        echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
+                        $a .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
+                        }  
+                        ?>  
+                    </select>
+                    </td>  
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Task</label>
+                    <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                  </div>
+                   
+                  <div class="form-group">
+                  <label>NAMA</label>
+                  <select type="text"  class="form-control" id="nama" name="nama" required="required">
+                  <option value='' selected>- Pilih nama -</option>
                     <?php              
                       $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                      $pj = mysqli_query($conn ,"SELECT * FROM task where $id_task='id_task'");
-                      while ($row = mysqli_fetch_array($pj)) {
-                        echo "<option value='$row[id_task]'>$row[id_task] - $row[task]</option>";
+                      $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                      while ($row = mysqli_fetch_array($anggota)) {
+                        echo "<option value='$row[nama]'>$row[nama]</option>";
                       }
                     ?>
                   </select>
-                </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Task</label>
-                    <input type="task" class="form-control" id="exampleInputEmail1" placeholder="Enter task" style="border: 1px solid #000000">
-                  </div>
-
-                  <div class="form-group">
-                  <label>NIP</label>
-                  <select class="form-control select" style="width: 100%; border: 1px solid #000000">
-                    <option selected="none"></option>
-                    <option>Arka Arifiandi Leonanta</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Nama Pegawai</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="border: 1px solid #000000">
-                  </div>
+                  </div>  
                 <div class="left-card-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-                </div>
-              </form>
+                
+              </form> 
+              <script type="text/javascript">   
+                  <?php   
+                  echo $a;?>  
+                  function changeValue(id){  
+                  document.getElementById('task').value = task[id].task;   
+                };  
+                </script> 
             </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

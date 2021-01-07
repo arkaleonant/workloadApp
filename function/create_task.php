@@ -16,7 +16,7 @@
     $sql = "INSERT INTO tabel_task VALUES divisi='$divisi', task='$task', detail_task='$detail_task', start_date='$start_date', end_date='$end_date'";
     mysqli_query($koneksi, $sql);
 
-    header("location:../index.php?p=tambah_pj");
+    header("location:../index.php?p=home");
 
 ?>
 

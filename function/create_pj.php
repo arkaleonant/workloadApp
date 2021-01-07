@@ -4,16 +4,16 @@ include(koneksi.php);
 $errors = array(); 
  
 // Escape user inputs for security
-$task = $_POST['task'];
-$detail_task = $_POST['detail_task'];
-$start_date = $_POST['start_date'];
-$end_date = $_POST['end_date'];
- 
-    // Attempt insert query execution
-$sql = "INSERT INTO tabel_task SET task='$task', detail_task='$detail_task', start_date='$start_date', end_date='$end_date'";
+$id_task        = $_POST['id_task'];
+$nip            = $_POST['nip'];
+$nama           = $_POST['nama'];
+$task           = $_POST['task'];
+// Attempt insert query execution
+$query="INSERT INTO tabel_pj SET id_task='$id_task',nip='$nip',nama='$nama',task='$task'";
 mysqli_query($conn, $sql);
-    // mengalihkan ke halaman index.php
-header("location:../tambah_pj.php");
+// mengalihkan ke halaman index.php
+header("location:../index.php?p=home");
 
 ?>
+
 
