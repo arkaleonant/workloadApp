@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2021 at 10:06 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Jan 11, 2021 at 10:14 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -58,7 +57,6 @@ INSERT INTO `pegawai` (`nip`, `nama`, `email`, `password`, `divisi`, `jabatan`, 
 
 CREATE TABLE `tabel_pj` (
   `id_task` int(11) NOT NULL,
-  `nip` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `task` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,7 +110,9 @@ CREATE TABLE `tabel_task` (
 
 INSERT INTO `tabel_task` (`id_task`, `divisi`, `task`, `detail_task`, `start_date`, `end_date`) VALUES
 (7, 'TEKNOLOGI', 'membuat aplikasi workload', 'pemebrian tugas melalui sistem', '2021-01-11', '2021-01-31'),
-(8, 'PERENCANAAN', 'membuat perencanaan budget proyek kapal perang', 'melakukan analisa kebutuhan dan memberikan dana yang efiien bagi project', '2021-01-12', '2021-01-30');
+(8, 'PERENCANAAN', 'membuat perencanaan budget proyek kapal perang', 'melakukan analisa kebutuhan dan memberikan dana yang efiien bagi project', '2021-01-12', '2021-01-30'),
+(9, 'TEKNOLOGI', 'membuat startup', 'pemberian task melalui web', '2021-01-11', '2021-01-31'),
+(10, 'TEKNOLOGI', 'membuat flowchart workload', 'pengawas project', '2021-01-11', '2021-01-31');
 
 --
 -- Indexes for dumped tables
@@ -128,8 +128,7 @@ ALTER TABLE `pegawai`
 -- Indexes for table `tabel_pj`
 --
 ALTER TABLE `tabel_pj`
-  ADD KEY `id_task` (`id_task`,`nip`,`nama`),
-  ADD KEY `nip` (`nip`);
+  ADD KEY `id_task` (`id_task`,`nama`);
 
 --
 -- Indexes for table `tabel_plan`
@@ -159,7 +158,7 @@ ALTER TABLE `tabel_plan`
 -- AUTO_INCREMENT for table `tabel_task`
 --
 ALTER TABLE `tabel_task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -169,7 +168,6 @@ ALTER TABLE `tabel_task`
 -- Constraints for table `tabel_pj`
 --
 ALTER TABLE `tabel_pj`
-  ADD CONSTRAINT `tabel_pj_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `pegawai` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tabel_pj_ibfk_2` FOREIGN KEY (`id_task`) REFERENCES `tabel_task` (`id_task`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

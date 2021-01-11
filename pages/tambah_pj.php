@@ -69,7 +69,11 @@ if (empty($_SESSION['nip'])) {
               <!-- /.card-header -->
               <!-- form start -->
               
+<<<<<<< HEAD
               <form role="form" method="post" action="./function/simpan.php">
+=======
+              <form role="form" action="./function/simpan.php" method="post">
+>>>>>>> 0692bde7e2b63b58f94ef44388ef7668e8354150
                 <div class="card-body">
                 <div class="col-md-6">
                 <div class="form-group">
@@ -92,7 +96,7 @@ if (empty($_SESSION['nip'])) {
                     </select>
                     </td>  
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Task</label>
+                    <label >Task</label>
                     <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
                   </div>
                    
