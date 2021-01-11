@@ -35,7 +35,6 @@ if (empty($_SESSION['nip'])) {
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -68,11 +67,7 @@ if (empty($_SESSION['nip'])) {
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-              <!-- /.card-header -->
-              <!-- form start -->
                 <form role="form" method="post" action="./function/create_pj.php">
-                  <div class="card-body">
-                  <div class="col-md-6">
                   <div class="form-group">
                     <label>ID Task</label>
                   </div>
@@ -80,7 +75,7 @@ if (empty($_SESSION['nip'])) {
                           $con = mysqli_connect("localhost","root","","magang_pal");  
                       ?>  
                       <td>
-                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required > 
+                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
                         <option value="none">- Pilih Id Task -</option> 
                           <?php     
                           $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
@@ -91,72 +86,52 @@ if (empty($_SESSION['nip'])) {
                           }  
                           ?>  
                       </select>
-                      </td>  
+                      </td><br>  
                     <div class="form-group">
                       <label >Task</label>
                       <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                    </div>
-                    <div class="form-group">
-                    <label>NAMA</label>
-                    <select type="text"  class="form-control" id="nama" name="nama" required="required">
-                    <option value='' selected>- Pilih nama -</option>
-                      <?php              
-                        $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                        $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
-                        while ($row = mysqli_fetch_array($anggota)) {
-                          echo "<option value='$row[nama]'>$row[nama]</option>";
-                        }
-                      ?>
-                    </select>
-                    </div>  
+                    </div><br>
+                    <div class="form-group control-group after-add-more">
+                      <label>NAMA</label>
+                      <select type="text"  class="form-control" id="nama" name="nama" required="required">
+                      <option value='' selected>- Pilih nama -</option>
+                        <?php              
+                          $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
+                          $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                          while ($row = mysqli_fetch_array($anggota)) {
+                            echo "<option value='$row[nama]'>$row[nama]</option>";
+                          }
+                        ?>
+                      </select>
+                    </div> 
+
+                  <div class="copy hide">
+                    <div class="control-group">
+                      <div class="form-group">
+                      
+                        <label>NAMA</label>
+                        <select type="text"  class="form-control" id="nama" name="nama" required="required">
+                        <option value='' selected>- Pilih nama -</option>
+                          <?php              
+                            $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
+                            $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                            while ($row = mysqli_fetch_array($anggota)) {
+                              echo "<option value='$row[nama]'>$row[nama]</option>";
+                            }
+                          ?>
+                        </select>
+                      </div>
+                      <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>  
+                    </div><br>
+                  </div>
 
                   <div class="left-card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <button class="btn btn-success add-more" type="button"> Add </button>
                   </div>
-                  <br>
-                  <button class="btn btn-success add-more" type="button">
-                  <i class="glyphicon glyphicon-plus"></i> Add
-                  </button>
-                  <hr>
-                  <br>
-                  <div class="copy hide">
-                  <div class="control-group">
-                  <div class="form-group">
-                      <label >Task</label>
-                      <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                    </div>
-                    <div class="form-group">
-                    <select type="text"  class="form-control" id="nama" name="nama" required="required">
-                    <option value='' selected>- Pilih nama -</option>
-                      <?php              
-                        $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                        $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
-                        while ($row = mysqli_fetch_array($anggota)) {
-                          echo "<option value='$row[nama]'>$row[nama]</option>";
-                        }
-                      ?>
-                    </select>
-                    </div>      
+                  <br>      
                 </form>
-                <script type="text/javascript">
-                $(document).ready(function() {
-                  $(".add-more").click(function(){ 
-                      var html = $(".copy").html();
-                      $(".after-add-more").after(html);
-                  });
-
-                  // saat tombol remove dklik control group akan dihapus 
-                  $("body").on("click",".remove",function(){ 
-                      $(this).parents(".control-group").remove();
-                  });
-                });
-                  <?php   
-                  echo $a;?>  
-                  function changeValue(id){  
-                  document.getElementById('task').value = task[id].task;   
-                };  
-                </script> 
-            </div>
+                 
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
@@ -168,101 +143,23 @@ if (empty($_SESSION['nip'])) {
   
   <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
+        <script type="text/javascript">
+                $(document).ready(function() {
+                  $(".add-more").click(function(){ 
+                      var html = $(".copy").html();
+                      $(".after-add-more").after(html);
+                  });
 
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="../plugins/select2/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="../plugins/input-mask/jquery.inputmask.js"></script>
-<script src="../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="../plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- date-range-picker -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-<script src="../plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap color picker -->
-<script src="../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="../plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- SlimScroll 1.3.0 -->
-<script src="../plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="../plugins/iCheck/icheck.min.js"></script>
-<!-- FastClick -->
-<script src="../plugins/fastclick/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker         : true,
-      timePickerIncrement: 30,
-      format             : 'MM/DD/YYYY h:mm A'
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass   : 'iradio_minimal-blue'
-    })
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    })
-    //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-      checkboxClass: 'icheckbox_flat-green',
-      radioClass   : 'iradio_flat-green'
-    })
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    //Timepicker
-    $('.timepicker').timepicker({
-      showInputs: false
-    })
-  })
-</script>
+                  // saat tombol remove dklik control group akan dihapus 
+                  $("section").on("click",".remove",function(){ 
+                      $(this).parents(".control-group").remove();
+                  });
+                });
+                  <?php   
+                  echo $a;?>  
+                  function changeValue(id){  
+                  document.getElementById('task').value = task[id].task;   
+                };  
+          </script>
 </body>
 </html>
