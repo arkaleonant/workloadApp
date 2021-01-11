@@ -1,6 +1,7 @@
 <?php
 include '../function/koneksi.php';
 include '../function/fungsi.php';
+include '../function/session_task.php';
 if (empty($_SESSION['nip'])) {
 	header("Location:../login_page.php");
 }
@@ -62,6 +63,7 @@ if (empty($_SESSION['nip'])) {
               <?php
                   $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
                   $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
+                  // $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' && nama='$_SESSION[nama]' ORDER BY id_task desc ;";
                   $result = mysqli_query($koneksi,$sel_query);
                   $no = 1;
                   while($row = mysqli_fetch_assoc($result)) { 
@@ -75,7 +77,7 @@ if (empty($_SESSION['nip'])) {
                       <td><a class="btn btn-warning">lihat</a></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
-                      <td><a class="btn btn-success" href="index.php?p=tambah_plan">kerjakan</a></td>
+                      <td><a class="btn btn-success" name="kerjakan" href="./pages/tambah_plan.php?id=<?php echo $row["id_task"]; ?>">kerjakan</a></td>
                   </tr>
                   <?php $no++;
               } ?>
