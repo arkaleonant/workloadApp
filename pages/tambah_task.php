@@ -63,7 +63,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-              <form method="POST" action="./function/create_task.php">
+              <form method="post" action="./function/create_task.php">
                 <?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
                         $row = mysqli_fetch_array($sql);
                 ?>
@@ -86,7 +86,7 @@
                   </div>
                   <label>Start Date</label>
                   <div class="form-group">
-                    <input type="date" name="start_date" class="form-control float-right" style="border: 1px solid #000000" required>
+                    <input type="date" name="tanggal_mulai" class="form-control float-right" style="border: 1px solid #000000" required>
                   </div><br><br>
 
                   <label>End Date</label>
@@ -96,7 +96,7 @@
                   <!-- /.input group -->
                 </div><br><br>
                 <div class="right-card-footer">
-                  <button type="submit" class="btn btn-primary"  href="index.php?p=tambah_pj?id=<?php echo $row["id_task"]; ?>">Submit</button>
+                  <button type="submit" name="submit" class="btn btn-primary"  href="index.php?p=tambah_pj?id=<?php echo $row["id_task"]; ?>">Submit</button>
                 </div>
               </form>
             </div>
