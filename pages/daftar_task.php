@@ -75,7 +75,7 @@ if (empty($_SESSION['nip'])) {
                       <td><a class="btn btn-warning">lihat</a></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
-                      <td><a class="btn btn-success">kerjakan</a></td>
+                      <td><a class="btn btn-success" href="index.php?p=tambah_plan">kerjakan</a></td>
                   </tr>
                   <?php $no++;
               } ?>
