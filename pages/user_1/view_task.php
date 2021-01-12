@@ -142,22 +142,7 @@
     <!-- Main content -->
         <div class="content-wrapper">
         <div class="panel panel-flat">
-<div class="row mb-2">
-          <div class="col-sm-6">
-            <h2>Daftar Task</h2>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Task</li>
-            </ol>
-          </div>
-        </div>
-    <div class="panel-heading">
-        <div class="heading-elements">
-        </div>
-    </div>
-    <div align="left">
+        <div align="left">
      <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Tambah Task</button>
     </div>
       <table class="table datatable-pagination">
