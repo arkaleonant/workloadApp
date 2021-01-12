@@ -345,7 +345,11 @@
                   <div class="copy hide">     
                     <div class="control-group">
                       <div class="container-fluid">
+<<<<<<< HEAD
                       <div class="form-group">
+=======
+                        <div class="form-group">
+>>>>>>> 7dbc3cabb4beb1f987b6b7a595c4bb4a9ef360cf
                             <label>NAMA</label>
                             <select type="text"  class="form-control" id="nama" name="nama" required="required">
                             <option value='' selected>- Pilih nama -</option>
