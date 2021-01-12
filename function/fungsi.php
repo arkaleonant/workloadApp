@@ -35,6 +35,6 @@ function shownotif(){
         unset($_SESSION['notif']);
     }
 }
-error_reporting(0);
 
+error_reporting(0);
 ?>
