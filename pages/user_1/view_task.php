@@ -346,15 +346,7 @@
                     <div class="control-group">
                       <div class="form-group">
                       <div class="container-fluid">
-<<<<<<< Updated upstream
                         <div class="form-group">
-=======
-                          <?php   
-                                $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>  
-                            <td>
-                            </td><br>  
->>>>>>> Stashed changes
                             <label>NAMA</label>
                             <select type="text"  class="form-control" id="nama" name="nama" required="required">
                             <option value='' selected>- Pilih nama -</option>
