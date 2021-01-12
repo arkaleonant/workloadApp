@@ -344,7 +344,6 @@
                     </div>
                   <div class="copy hide">     
                     <div class="control-group">
-                      <div class="container-fluid">
 <<<<<<< HEAD
                       <div class="form-group">
 =======
