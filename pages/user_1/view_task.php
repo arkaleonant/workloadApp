@@ -254,7 +254,7 @@
    <div class="modal-body">
     <form method="post" id="insert_form">
      <label>Divisi</label>
-     <input type="text" name="divisi" id="divisi" class="form-control" />
+     <input type="text" name="divisi" id="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
      <br />
      <label>Task</label>
      <input type="text" name="task" id="task" class="form-control" />
