@@ -143,6 +143,7 @@
         <div class="panel panel-flat">
         <div align="left">
      <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success" >Tambah Task</button>
+     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
     </div>
       <table class="table datatable-pagination">
 
@@ -173,7 +174,7 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button></td>
+                      <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-xs view_data" /></td></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
@@ -414,20 +415,20 @@ $('#insert_form').on("submit", function(event){
  });
 //END Aksi Insert
 
-// //Begin Tampil Detail Karyawan
-//  $(document).on('click', '.view_data', function(){
-//   var employee_id = $(this).attr("id");
-//   $.ajax({
-//    url:"select.php",
-//    method:"POST",
-//    data:{employee_id:employee_id},
-//    success:function(data){
-//     $('#detail_karyawan').html(data);
-//     $('#dataModal').modal('show');
-//    }
-//   });
-//  });
-// //End Tampil Detail Karyawan
+//Begin Tampil Detail Karyawan
+ $(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id");
+  $.ajax({
+   url:"../function/detail_karyawan.php",
+   method:"POST",
+   data:id_task:id_task},
+   success:function(data){
+    $('#detail_karyawan').html(data);
+    $('#dataModal').modal('show');
+   }
+  });
+ });
+//End Tampil Detail Karyawan
  
 // //Begin Tampil Form Edit
 //   $(document).on('click', '.edit_data', function(){
