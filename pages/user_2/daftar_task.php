@@ -306,18 +306,18 @@
      <input type="date" name="date" id="date" class="form-control" />
      <br />
      <label>Plan</label>
-     <textarea name="detail_task" id="detail_task" class="form-control"></textarea>
+     <textarea name="plan" id="plan" class="form-control"></textarea>
      <br />
      <button class="btn btn-primary add-more" type="button"> Add </button>
      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
     </form>
-    <div class="copy hide">
+      <div class="copy hide">
         <div class="control-group">
             <label>Date</label>
-              <input type="date" name="start_date" id="start_date" class="form-control" />
+              <input type="date" name="date" id="date" class="form-control" />
               <br />
               <label>Plan</label>
-              <textarea name="detail_task" id="detail_task" class="form-control"></textarea>
+              <textarea name="plan" id="plan" class="form-control"></textarea>
               <br>
               <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
               <hr>
@@ -343,19 +343,18 @@
   </div>
  </div>
 </div>
-
 <Script>
 $(document).ready(function(){
 // Begin Aksi Insert
  $('#insert_form').on("submit", function(event){  
   event.preventDefault();  
-  if($('#nama').val() == "")  
+  if($('#date').val() == "")  
   {  
-   alert("Mohon Isi Nama ");  
+   alert("Mohon Isi tanggal ");  
   }  
-  else if($('#alamat').val() == '')  
+  else if($('#plan').val() == '')  
   {  
-   alert("Mohon Isi Alamat");  
+   alert("Mohon Isi plan anda");  
   }  
  
   else  
