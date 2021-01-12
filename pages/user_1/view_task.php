@@ -70,7 +70,6 @@
           </button>
         </div>
       </div>
-    </form>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -181,7 +180,7 @@
                   </tr>
                   <?php $no++;
               } ?>
-
+          </form>
           </tbody>
       </table>
 </div>
@@ -250,35 +249,50 @@
    <div class="modal-header">
     <h4 class="modal-title">Tambah Task pada Divisi <?php echo $_SESSION['divisi'] ?></h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-   </div>
-   <div class="modal-body">
-    <form method="post" id="insert_form">
+  </div>
+    <div class="modal-body">
+    <section class="content">
+    <div class="container-fluid">
+    <form method="post" action="create_task.php">
+    <div class="form-group">
      <label>Divisi</label>
-     <input type="text" name="divisi" id="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
+     <input type="text" name="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
      <br />
      <label>Task</label>
-     <input type="text" name="task" id="task" class="form-control" />
+     <input type="text" name="task" class="form-control" placeholder="Enter task" style="border: 1px solid #000000" required>
      <br />
      <label>Detail Task</label>
-     <textarea name="detail_task" id="detail_task" class="form-control"></textarea>
+     <textarea name="detail_task" placeholder="Place some text here"
+        style="width: 100%; height: 200px; font-size: 14px; 
+        line-height: 18px; border: 1px solid #000000; padding: 
+        10px;" required>
+      </textarea>
      <br />
      <br />  
      <label>Start Date</label>
-     <input type="date" name="start_date" id="start_date" class="form-control" />
-     <br />
+     <div class="form-group">
+      <input type="date" name="tanggal_mulai" class="form-control float-right" style="border: 1px solid #000000" required>
+      </div><br><br>
      <label>End Date</label>
-     <input type="date" name="end_date" id="end_date" class="form-control" />
+     <div class="form-group">
+      <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000" required>
+      </div>
+      </div><br><br>
      <br />
-     <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
-
-    </form>
-   </div>
-   <div class="modal-footer">
+     <div class="right-card-footer">
+     <button type="post" name="submit" class="btn btn-primary" href="index.php?p=dasboard_1" >Submit</button>
+     </div>
+     <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+   </div>
+    </div>
+   </div>
    </div>
   </div>
  </div>
 </div>
+</form>
 
 <!-- <div id="dataModal" class="modal fade">
  <div class="modal-dialog">
