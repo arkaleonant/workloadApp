@@ -69,7 +69,7 @@ if (empty($_SESSION['nip'])) {
               <!-- /.card-header -->
               <!-- form start -->
               
-              <form role="form" method="post" action="./function/simpan.php">
+              <form role="form" method="post" action="">
            
                 <div class="card-body">
                 <div class="col-md-6">
