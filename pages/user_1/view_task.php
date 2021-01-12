@@ -306,37 +306,92 @@
     <section class="content">
     <div class="container-fluid">
     <form method="POST" action="create_task.php">
-    <div class="form-group">
-     <label>Divisi</label>
-     <input type="text" name="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
-     <br />
-     <label>Task</label>
-     <input type="text" name="task" class="form-control" placeholder="Enter task" style="border: 1px solid #000000" required>
-     <br />
-     <label>Detail Task</label>
-     <textarea name="detail_task" placeholder="Place some text here"
-        style="width: 100%; height: 200px; font-size: 14px; 
-        line-height: 18px; border: 1px solid #000000; padding: 
-        10px;" required>
-      </textarea>
-     <br />
-     <br />  
-     <label>Start Date</label>
-     <div class="form-group">
-      <input type="date" name="tanggal_mulai" class="form-control float-right" style="border: 1px solid #000000" required>
-      </div><br><br>
-     <label>End Date</label>
-     <div class="form-group">
-      <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000" required>
-      </div>
-      </div><br><br>
-     <br />
-     <div class="right-card-footer">
-     <button type="post" name="submit" class="btn btn-primary" >Submit</button>
-     </div>
-     <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    </div>
+    <div class="form-group control-group after-add-more">  
+                  <div class="form-group">
+                    <label>ID Task</label>
+                  </div>
+                      <?php   
+                          $con = mysqli_connect("localhost","root","","magang_pal");  
+                      ?>  
+                      <td>
+                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
+                        <option value="none">- Pilih Id Task -</option> 
+                          <?php     
+                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
+                          $a          = "var task = new Array();\n;";    
+                          while ($row = mysqli_fetch_array($result)) {  
+                          echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
+                          $a .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
+                          }  
+                          ?>  
+                      </select>
+                      </td><br>  
+                    <div class="form-group">
+                      <label >Task</label>
+                      <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                    </div><br>
+                      <label>NAMA</label>
+                      <select type="text"  class="form-control" id="nama" name="nama" required="required">
+                      <option value='' selected>- Pilih nama -</option>
+                        <?php              
+                          $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
+                          $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                          while ($row = mysqli_fetch_array($anggota)) {
+                            echo "<option value='$row[nama]'>$row[nama]</option>";
+                          }
+                        ?>
+                      </select>
+                    </div>
+                  <div class="copy hide">     
+                    <div class="control-group">
+                      <div class="form-group">
+                      <div class="container-fluid">
+                        <div class="form-group">
+                          <label>ID Task</label>
+                        </div>
+                          <?php   
+                                $con = mysqli_connect("localhost","root","","magang_pal");  
+                            ?>  
+                            <td>
+                            <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
+                              <option value="none">- Pilih Id Task -</option> 
+                                <?php     
+                                $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
+                                $b         = "var task2 = new Array();\n;";    
+                                while ($row = mysqli_fetch_array($result)) {  
+                                echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
+                                $b .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
+                                }  
+                                ?>  
+                            </select>
+                            </td><br>  
+                          <div class="form-group">
+                            <label >Task</label>
+                            <input type="text" class="form-control" id="task2" name="task2" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                          </div><br>
+                            <label>NAMA</label>
+                            <select type="text"  class="form-control" id="nama" name="nama" required="required">
+                            <option value='' selected>- Pilih nama -</option>
+                              <?php              
+                                $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
+                                $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                                while ($row = mysqli_fetch_array($anggota)) {
+                                  echo "<option value='$row[nama]'>$row[nama]</option>";
+                                }
+                              ?>
+                            </select>
+                          </div> 
+                      </div>
+                      <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>  
+                    </div><br>
+                  </div>
+                  
+                  
+                  <div class="right-card-footer">
+                    <button type="submit" name="submit" class="btn btn-primary" href="index.php?p=home">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <button class="btn btn-success add-more" type="button"> Add </button>
+                  </div>
+                  <br>      
    </div>
     </div>
    </div>
@@ -425,5 +480,26 @@ $(document).ready(function(){
 // }); 
 //End Aksi Delete Data
  </script>
+
+ <script type="text/javascript">
+                $(document).ready(function() {
+                  $(".add-more").click(function(){ 
+                      var html = $(".copy").html();
+                      $(".after-add-more").after(html);
+                  });
+
+                  // saat tombol remove dklik control group akan dihapus 
+                  $("section").on("click",".remove",function(){ 
+                      $(this).parents(".control-group").remove();
+                  });
+                });
+                  <?php   
+                  echo $b;?>  
+                  function changeValue(id){  
+                  document.getElementById('task').value = task[id].task;
+                  document.getElementById('task2').value = task[id].task;   
+                };  
+          </script>
+</body>
 
 
