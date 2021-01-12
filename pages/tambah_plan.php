@@ -4,6 +4,10 @@ include '../function/fungsi.php';
 if (empty($_SESSION['nip'])) {
 	header("Location:../login_page.php");
 }
+$id_task=$_REQUEST['id_task'];
+$query = "SELECT * FROM tabel_task where id_task='$id_task'"; 
+$result = mysqli_query($conn, $query) or die ( mysqli_error());
+$row = mysqli_fetch_assoc($result);
 ?>
 
 <!DOCTYPE html>
@@ -75,12 +79,12 @@ if (empty($_SESSION['nip'])) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>ID Task</label>
-                    <input type="text" name="id_task" class="form-control" style="border: 1px solid #000000" required value="<?php echo $_SESSION['divisi']; ?>" readonly>
+                    <input type="text" name="id_task" class="form-control" style="border: 1px solid #000000" required value="<?php echo $row['task']; ?>" readonly>
                   </div>
 
                   <div class="form-group">
                     <label>Task</label>
-                    <input type="text" name="task" class="form-control" style="border: 1px solid #000000" required value="<?php echo $_SESSION['divisi']; ?>" readonly>
+                    <input type="text" name="task" class="form-control" style="border: 1px solid #000000" required value="<?php echo $row['divisi']; ?>" readonly>
                   </div>
 
                   <label>Date</label>
@@ -90,7 +94,7 @@ if (empty($_SESSION['nip'])) {
 
                   <div class="form-group">
                     <label >Plan</label>
-                    <input type="task" class="form-control" id="task" name="plan" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                    <input type="task" class="form-control" id="task" name="plan" placeholder="Enter task" style="border: 1px solid #000000" required>
                   </div>
                     
                 <div class="left-card-footer">
