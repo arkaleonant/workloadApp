@@ -16,7 +16,7 @@ if($_POST){
 
     //mysqli_query("INSERT INTO tabel_task values('$id_task','$divisi','$task','$detail_task','$start_date','$end_date')")
 
-    header("location:../user_1/dashboard_1.php");
+    header("location:../user_1/view_task.php");
 }
 
 ?>

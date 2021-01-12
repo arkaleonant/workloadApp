@@ -142,7 +142,7 @@
         <div class="content-wrapper">
         <div class="panel panel-flat">
         <div align="left">
-     <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">Tambah Task</button>
+     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success">Tambah Task</button>
     </div>
       <table class="table datatable-pagination">
 
@@ -173,7 +173,7 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><a class="btn btn-warning">lihat</a></td>
+                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success">Tambah PJ</button></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
@@ -243,7 +243,7 @@
 </body>
 </html>
 
-<div id="add_data_Modal" class="modal fade">
+<div id="create_task_modal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
@@ -294,40 +294,58 @@
 </div>
 </form>
 
-<!-- <div id="dataModal" class="modal fade">
+
+<div id="create_pj_modal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
+    <h4 class="modal-title">Tambah Penanggungjawab <?php echo $_SESSION['divisi'] ?></h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Detail Data Karyawan</h4>
-   </div>
-   <div class="modal-body" id="detail_karyawan">
-    
-   </div>
-   <div class="modal-footer">
+  </div>
+    <div class="modal-body">
+    <section class="content">
+    <div class="container-fluid">
+    <form method="POST" action="create_task.php">
+    <div class="form-group">
+     <label>Divisi</label>
+     <input type="text" name="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
+     <br />
+     <label>Task</label>
+     <input type="text" name="task" class="form-control" placeholder="Enter task" style="border: 1px solid #000000" required>
+     <br />
+     <label>Detail Task</label>
+     <textarea name="detail_task" placeholder="Place some text here"
+        style="width: 100%; height: 200px; font-size: 14px; 
+        line-height: 18px; border: 1px solid #000000; padding: 
+        10px;" required>
+      </textarea>
+     <br />
+     <br />  
+     <label>Start Date</label>
+     <div class="form-group">
+      <input type="date" name="tanggal_mulai" class="form-control float-right" style="border: 1px solid #000000" required>
+      </div><br><br>
+     <label>End Date</label>
+     <div class="form-group">
+      <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000" required>
+      </div>
+      </div><br><br>
+     <br />
+     <div class="right-card-footer">
+     <button type="post" name="submit" class="btn btn-primary" >Submit</button>
+     </div>
+     <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+   </div>
+    </div>
+   </div>
    </div>
   </div>
  </div>
-</div> -->
+</div>
+</form>
 
-
-<!-- <div id="editModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Edit Data Karyawan</h4>
-   </div>
-   <div class="modal-body" id="form_edit">
-    
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
-  </div>
- </div>
-</div> -->
 
 <script>  
 $(document).ready(function(){
