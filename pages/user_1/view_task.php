@@ -142,7 +142,7 @@
         <div class="content-wrapper">
         <div class="panel panel-flat">
         <div align="left">
-     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success">Tambah Task</button>
+     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success" >Tambah Task</button>
     </div>
       <table class="table datatable-pagination">
 
@@ -173,7 +173,7 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success">Tambah PJ</button></td>
+                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
@@ -305,8 +305,7 @@
     <div class="modal-body">
     <section class="content">
     <div class="container-fluid">
-    <form method="POST" action="create_task.php">
-    <div class="form-group control-group after-add-more">  
+    <form method="POST" action="create_pj.php"> 
                   <div class="form-group">
                     <label>ID Task</label>
                   </div>
@@ -317,7 +316,7 @@
                       <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
                         <option value="none">- Pilih Id Task -</option> 
                           <?php     
-                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
+                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC ");  
                           $a          = "var task = new Array();\n;";    
                           while ($row = mysqli_fetch_array($result)) {  
                           echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
@@ -328,6 +327,7 @@
                       </td><br>  
                     <div class="form-group">
                       <label >Task</label>
+                      <div class="form-group control-group after-add-more">
                       <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
                     </div><br>
                       <label>NAMA</label>
@@ -342,33 +342,11 @@
                         ?>
                       </select>
                     </div>
-                  <div class="copy hide">     
+                    <div class="copy hide">     
                     <div class="control-group">
                       <div class="form-group">
                       <div class="container-fluid">
                         <div class="form-group">
-                          <label>ID Task</label>
-                        </div>
-                          <?php   
-                                $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>  
-                            <td>
-                            <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
-                              <option value="none">- Pilih Id Task -</option> 
-                                <?php     
-                                $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
-                                $b         = "var task2 = new Array();\n;";    
-                                while ($row = mysqli_fetch_array($result)) {  
-                                echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
-                                $b .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
-                                }  
-                                ?>  
-                            </select>
-                            </td><br>  
-                          <div class="form-group">
-                            <label >Task</label>
-                            <input type="text" class="form-control" id="task2" name="task2" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                          </div><br>
                             <label>NAMA</label>
                             <select type="text"  class="form-control" id="nama" name="nama" required="required">
                             <option value='' selected>- Pilih nama -</option>
@@ -385,13 +363,15 @@
                       <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>  
                     </div><br>
                   </div>
-                  
-                  
+                  <br>
                   <div class="right-card-footer">
                     <button type="submit" name="submit" class="btn btn-primary" href="index.php?p=home">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <button class="btn btn-success add-more" type="button"> Add </button>
                   </div>
-                  <br>      
+                  <br> 
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>     
    </div>
     </div>
    </div>
@@ -402,8 +382,23 @@
 </form>
 
 
-<script>  
-$(document).ready(function(){
+<script> 
+ $(document).ready(function() {
+  $(".add-more").click(function(){ 
+  var html = $(".copy").html();
+  $(".after-add-more").after(html);
+  });
+
+  // saat tombol remove dklik control group akan dihapus 
+  $("section").on("click",".remove",function(){ 
+  $(this).parents(".control-group").remove();
+  });
+  });
+    <?php   
+      echo $a;?>  
+      function changeValue(id){  
+      document.getElementById('task').value = task[id].task;   
+      };  
 // Begin Aksi Insert
  $('#insert_form').on("submit", function(event){  
   event.preventDefault();  
