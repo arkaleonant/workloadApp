@@ -216,7 +216,7 @@
                       <td><a class="btn btn-warning">lihat</a></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
-                      <td><a class="btn btn-success" name="kerjakan" href="./pages/tambah_plan.php?id=<?php echo $row["id_task"]; ?>">kerjakan</a></td>
+                      <td><button type="button" name="age" id="age" value="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">kerjakan</button></td>
                   </tr>
                   <?php $no++;
               } ?>
@@ -226,7 +226,6 @@
 </div>
 
         </div>
-    <!-- /.content -->
   </div>
 
   
@@ -282,5 +281,100 @@
 <script src="../../dist/js/demo.js"></script>
 </body>
 </html>
+
+<div id="add_data_Modal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h4 class="modal-title">Tambah Plan</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body">
+   <?php $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
+    $id_task=$_REQUEST['id_task'];
+    $query = "SELECT * from tabel_task where id_task='$id_task'"; 
+    $result = mysqli_query($koneksi, $query) or die ( mysqli_error());
+    $row = mysqli_fetch_assoc($result); ?>
+    <form method="post" id="insert_form">
+     <label>ID Task</label>
+     <input type="text" name="divisi" id="divisi" class="form-control" required value ="<?php echo $row['id_task'] ?>" readonly/>
+     <br />
+     <label>Task</label>
+     <input type="text" name="task" id="task" class="form-control" required value ="<?php echo $row['task'] ?>" readonly/>
+     <br />
+     <label>Date</label>
+     <input type="date" name="date" id="date" class="form-control" />
+     <br />
+     <label>Plan</label>
+     <textarea name="detail_task" id="detail_task" class="form-control"></textarea>
+     <br />
+     <button class="btn btn-primary add-more" type="button"> Add </button>
+     <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
+    </form>
+    <div class="copy hide">
+        <div class="control-group">
+            <label>Date</label>
+              <input type="date" name="start_date" id="start_date" class="form-control" />
+              <br />
+              <label>Plan</label>
+              <textarea name="detail_task" id="detail_task" class="form-control"></textarea>
+              <br>
+              <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+              <hr>
+        </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                  $(".add-more").click(function(){ 
+                      var html = $(".copy").html();
+                      $(".after-add-more").after(html);
+                  });
+
+                  // saat tombol remove dklik control group akan dihapus 
+                  $("body").on("click",".remove",function(){ 
+                      $(this).parents(".control-group").remove();
+                  });
+                });
+            </script>
+      </div>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<Script>
+$(document).ready(function(){
+// Begin Aksi Insert
+ $('#insert_form').on("submit", function(event){  
+  event.preventDefault();  
+  if($('#nama').val() == "")  
+  {  
+   alert("Mohon Isi Nama ");  
+  }  
+  else if($('#alamat').val() == '')  
+  {  
+   alert("Mohon Isi Alamat");  
+  }  
+ 
+  else  
+  {  
+   $.ajax({  
+    url:"insert.php",  
+    method:"POST",  
+    data:$('#insert_form').serialize(),  
+    beforeSend:function(){  
+     $('#insert').val("Inserting");  
+    },  
+    success:function(data){  
+     $('#insert_form')[0].reset();  
+     $('#add_data_Modal').modal('hide');  
+     $('#employee_table').html(data);  
+    }  
+   });  
+  }  
+ });
+</script>
 
 
