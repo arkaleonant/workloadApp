@@ -1,6 +1,6 @@
 <?php
 
-include('koneksi.php');
+include('../../function/koneksi.php');
 
 if($_POST){
     

@@ -253,7 +253,7 @@
     <div class="modal-body">
     <section class="content">
     <div class="container-fluid">
-    <form method="post" action="create_task.php">
+    <form method="POST" action="create_task.php">
     <div class="form-group">
      <label>Divisi</label>
      <input type="text" name="divisi" class="form-control" required value ="<?php echo $_SESSION['divisi'] ?>" readonly/>
@@ -280,7 +280,7 @@
       </div><br><br>
      <br />
      <div class="right-card-footer">
-     <button type="post" name="submit" class="btn btn-primary" href="index.php?p=dasboard_1" >Submit</button>
+     <button type="post" name="submit" class="btn btn-primary" >Submit</button>
      </div>
      <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
