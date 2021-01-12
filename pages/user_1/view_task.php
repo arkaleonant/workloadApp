@@ -325,11 +325,27 @@
                           }  
                           ?>  
                       </select>
-                      </td><br>  
+                      </td><br>
                     <div class="form-group">
                       <label >Task</label>
                       <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
                     </div><br>
+                    <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' required> 
+                        <option value="none">- Pilih NIP -</option> 
+                          <?php     
+                          $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' ORDER BY nip DESC");   
+                          $b       = "var nama = new Array();\n;";    
+                          while ($row = mysqli_fetch_array($result)) {  
+                          echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
+                          $b .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
+                          }  
+                          ?>  
+                      </select>
+                      </td><br>
+                      <div class="form-group">
+                      <label >Nama</label>
+                      <input type="nama" class="form-control" id="nama" name="nama" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                    </div><br> 
                       <label>NAMA</label>
                       <select type="text"  class="form-control" id="nama" name="nama" required="required">
                       <option value='' selected>- Pilih nama -</option>
@@ -364,7 +380,7 @@
                   </div>
                   
                   <div class="right-card-footer">
-                    <button type="submit" name="submit" class="btn btn-primary" href="index.php?p=home">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  <button type="post" name="submit" class="btn btn-primary" >Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                     <button class="btn btn-success add-more" type="button"> Add </button>
                   </div>
                   <br>      
@@ -478,6 +494,24 @@ $('#insert_form').on("submit", function(event){
                   document.getElementById('task').value = task[id].task;
                 };  
           </script>
+          <script type="text/javascript">
+          $(document).ready(function() {
+                  $(".add-more").click(function(){ 
+                      var html = $(".copy").html();
+                      $(".after-add-more").after(html);
+                  });
+
+                  // saat tombol remove dklik control group akan dihapus 
+                  $("section").on("click",".remove",function(){ 
+                      $(this).parents(".control-group").remove();
+                  });
+                });
+                  <?php   
+                  echo $b;?>  
+                  function changeValue(id){  
+                  document.getElementById('nama').value = nama[id].nama;
+                };
+                </script>
 </body>
 
 
