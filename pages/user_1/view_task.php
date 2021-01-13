@@ -315,29 +315,25 @@
                       ?>  
                       <td>
                       <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)'  style="border: 1px solid #000000" required> 
-                        <option value="none">- Pilih Id Task -</option> 
                           <?php     
-                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
-                          $a          = "var task = new Array();\n;";    
+                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
                           while ($row = mysqli_fetch_array($result)) {  
-                          echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
-                          $a .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
+                          // echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
+                          echo "<option value='$row[id_task]'>$row[id_task] - $row[task]";
+
                           }  
                           ?>  
                       </select>
                       </td>
                   </div>
-                  <div class="form-group">
-                      <label >Task</label>
-                      <input type="task" class="form-control" id="task" name="task" style="border: 1px solid #000000" readonly><br>
                     <label>NIP</label>
-                    <select name="nip" id="nip" class="form-control" style="border: 1px solid #000000" required> 
+                    <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' style="border: 1px solid #000000" required> 
                         <option value="none">- Pilih NIP -</option> 
                         <?php              
                           $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
                           $anggota = mysqli_query($conn ,"SELECT * FROM pegawai where divisi='$_SESSION[divisi]'AND hak_akses='2' ");
                           while ($row = mysqli_fetch_array($anggota)) {
-                            echo "<option value='$row[nip]'>$row[nip] - $row[nama]</option>";
+                            echo "<option value='$row[nip]'>$row[nip] - $row[nama]";
                           }
                         ?>
                       </select>
@@ -353,77 +349,3 @@
 </div>
 </form>
 
-<script> 
-$(document).ready(function() {
-$('#insert_task').on("submit", function(event){  
-  event.preventDefault();  
-  if($('#nama').val() == "")  
-  {  
-   alert("Mohon Isi Nama ");  
-  }  
-  else if($('#alamat').val() == '')  
-  {  
-   alert("Mohon Isi Alamat");  
-  }  
- 
-  else  
-  {  
-   $.ajax({  
-    url:"",  
-    method:"POST",  
-    data:$('#insert_task').serialize(),  
-    beforeSend:function(){  
-     $('#insert').val("Inserting");  
-    },  
-    success:function(data){  
-     $('#insert_task')[0].reset();  
-     $('#add_data_Modal').modal('hide');  
-     $('#employee_table').html(data);  
-    }  
-   });  
-  }  
- });
-
- $(document).ready(function() {
-$('#insert_pj').on("submit", function(event){  
-  event.preventDefault();  
-  if($('#nama').val() == "")  
-  {  
-   alert("Mohon Isi Nama ");  
-  }  
-  else if($('#alamat').val() == '')  
-  {  
-   alert("Mohon Isi Alamat");  
-  }  
- 
-  else  
-  {  
-   $.ajax({  
-    url:"",  
-    method:"POST",  
-    data:$('#insert_pj').serialize(),  
-    beforeSend:function(){  
-     $('#insert').val("Inserting");  
-    },  
-    success:function(data){  
-     $('#insert_pj')[0].reset();  
-     $('#add_data_Modal').modal('hide');  
-     $('#employee_table').html(data);  
-    }  
-   });  
-  }  
- });
-
- $(document).on('click', '.view_data', function(){
-  var id_task = $(this).attr("id");
-  $.ajax({
-   url:"../function/detail_karyawan.php",
-   method:"POST",
-   data:id_task:id_task},
-   success:function(data){
-    $('#detail_karyawan').html(data);
-    $('#dataModal').modal('show');
-   }
-  });
- });
- </script>

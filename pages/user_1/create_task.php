@@ -13,7 +13,6 @@ if($_POST){
     $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."')");
     
     mysqli_query($conn, $query);
-
     //mysqli_query("INSERT INTO tabel_task values('$id_task','$divisi','$task','$detail_task','$start_date','$end_date')")
 
     header("location:../user_1/view_task.php");

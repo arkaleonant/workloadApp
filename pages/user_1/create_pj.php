@@ -5,10 +5,9 @@ include('../../function/koneksi.php');
 if($_POST){
     
     $id_task = $_POST['id_task'];
-    $nama = $_POST['nama'];
-    $task = $_POST['task'];
+    $nip = $_POST['nip'];
 
-    $query = ("INSERT INTO tabel_pj(id_task,nama,task) VALUES ('','".$id_task."','".$nama."','".$task."')");
+    $query = "INSERT INTO tabel_pj VALUES ($id_task,$nip)";
     
     mysqli_query($conn, $query);
 
