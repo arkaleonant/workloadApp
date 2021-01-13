@@ -4,7 +4,7 @@ if(isset($_POST["id_task"]))
 {
  $output = '';
  $connect = mysqli_connect("localhost", "root", "", "magang_pal");
- $query = "SELECT * FROM tabel_pj WHERE id_task = '".$_POST["id_task"]."'";
+ $query = "SELECT * FROM tabel_pj WHERE id_task ='".$_POST["id_task"]."'";
  $result = mysqli_query($connect, $query);
  $output .= '  
       <div class="table-responsive">  
@@ -17,17 +17,8 @@ if(isset($_POST["id_task"]))
             <td width="70%">'.$row["id_task"].'</td>  
         </tr>
         <tr>  
-            <td width="30%"><label>Alamat</label></td>  
-            <td width="70%">'.$row["task"].'</td>  
-        </tr>
-        <tr>  
             <td width="30%"><label>Gender</label></td>  
             <td width="70%">'.$row["nip"].'</td>  
-        </tr>
-      
-        <tr>  
-            <td width="30%"><label>Umur</label></td>  
-            <td width="70%">'.$row["nama"].'</td>  
         </tr>
      ';
     }

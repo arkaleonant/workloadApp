@@ -155,7 +155,7 @@
    <br />  
    <div class="table-responsive">
     <br />
-    <div id="daftar_task">
+    <div id="view_task">
       <table class="table table-bordered">
               <tr>
                   <th>No.</th>
@@ -177,7 +177,7 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+                      <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
@@ -359,7 +359,10 @@
     <h4 class="modal-title">Lihat Pegawai</h4>
    </div>
    <div class="modal-body" id="detail_pegawai">
-    
+    <form action="">
+    <label for=""></label>
+    <input type="text" name="" id="">
+    </form>
    </div>
    <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -373,7 +376,7 @@
  $(document).on('click', '.view_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"select.php",
+   url:"",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){

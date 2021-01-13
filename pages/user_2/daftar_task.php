@@ -191,22 +191,22 @@
         <th>Action</th>
       </tr>
       <?php
-      while($row = mysqli_fetch_array($result))
-      {
-      ?>
-      <tr>
-        <td><?php echo $no ?></td>
-        <td><?php echo $row['id_task'] ?></td>
-        <td><?php echo $row['divisi'] ?></td>
-        <td><?php echo $row['task'] ?></td>
-        <td><?php echo $row['detail_task'] ?></td>
-        <td><?php echo $row['start_date'] ?></td>
-        <td><?php echo $row['end_date']?></td>
-        <td><input type="button" name="add" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
+        while($row = mysqli_fetch_array($result))
+        {
+        ?>
+        <tr>
+          <td><?php echo $no ?></td>
+          <td><?php echo $row['id_task'] ?></td>
+          <td><?php echo $row['divisi'] ?></td>
+          <td><?php echo $row['task'] ?></td>
+          <td><?php echo $row['detail_task'] ?></td>
+          <td><?php echo $row['start_date'] ?></td>
+          <td><?php echo $row['end_date']?></td>
+          <td><input type="button" name="add" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
 
-      </tr>
-      <?php $no++;
-      }
+        </tr>
+        <?php $no++;
+        }
       ?>
      </table>
     </div>
