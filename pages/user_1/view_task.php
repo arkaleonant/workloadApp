@@ -310,12 +310,11 @@
     <div class="form-group control-group after-add-more">  
                   <div class="form-group">
                     <label>ID Task</label>
-                  </div>
                       <?php   
                           $con = mysqli_connect("localhost","root","","magang_pal");  
                       ?>  
                       <td>
-                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
+                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)'  style="border: 1px solid #000000" required> 
                         <option value="none">- Pilih Id Task -</option> 
                           <?php     
                           $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
@@ -326,82 +325,37 @@
                           }  
                           ?>  
                       </select>
-                      </td><br>
-                    <div class="form-group">
+                      </td>
+                  </div>
+                  <div class="form-group">
                       <label >Task</label>
-                      <input type="task" class="form-control" id="task" name="task" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                    </div><br>
-                    <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' required> 
+                      <input type="task" class="form-control" id="task" name="task" style="border: 1px solid #000000" readonly><br>
+                    <label>NIP</label>
+                    <select name="nip" id="nip" class="form-control" style="border: 1px solid #000000" required> 
                         <option value="none">- Pilih NIP -</option> 
-                          <?php     
-                          $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' ORDER BY nip DESC");   
-                          $b       = "var nama = new Array();\n;";    
-                          while ($row = mysqli_fetch_array($result)) {  
-                          echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
-                          $b .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
-                          }  
-                          ?>  
-                      </select>
-                      </td><br>
-                      <div class="form-group">
-                      <label >Nama</label>
-                      <input type="nama" class="form-control" id="nama" name="nama" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                    </div><br> 
-                      <label>NAMA</label>
-                      <select type="text"  class="form-control" id="nama" name="nama" required="required">
-                      <option value='' selected>- Pilih nama -</option>
                         <?php              
                           $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                          $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
+                          $anggota = mysqli_query($conn ,"SELECT * FROM pegawai where divisi='$_SESSION[divisi]'AND hak_akses='2' ");
                           while ($row = mysqli_fetch_array($anggota)) {
-                            echo "<option value='$row[nama]'>$row[nama]</option>";
+                            echo "<option value='$row[nip]'>$row[nip] - $row[nama]</option>";
                           }
                         ?>
                       </select>
-                    </div>
-                  <div class="copy hide">     
-                    <div class="control-group">
-                      <div class="form-group">
-                        <div class="form-group">
-                            <label>NAMA</label>
-                            <select type="text"  class="form-control" id="nama" name="nama" required="required">
-                            <option value='' selected>- Pilih nama -</option>
-                              <?php              
-                                $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                                $anggota = mysqli_query($conn ,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]' && hak_akses='2'");
-                                while ($row = mysqli_fetch_array($anggota)) {
-                                  echo "<option value='$row[nama]'>$row[nama]</option>";
-                                }
-                              ?>
-                            </select>
-                          </div> 
-                      </div>
-                      <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>  
-                    </div><br>
-                  </div>
-                  
+                      </td><br>
+                    </div>               
                   <div class="right-card-footer">
                   <button type="post" name="submit" class="btn btn-primary" >Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <button class="btn btn-success add-more" type="button"> Add </button>
                   </div>
                   <br>      
-                 
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  
-  <!-- /.control-sidebar -->
 </div>
 </form>
 
 <script> 
 $(document).ready(function() {
-$('#insert_form').on("submit", function(event){  
+$('#insert_task').on("submit", function(event){  
   event.preventDefault();  
   if($('#nama').val() == "")  
   {  
@@ -415,23 +369,51 @@ $('#insert_form').on("submit", function(event){
   else  
   {  
    $.ajax({  
-    url:"insert.php",  
+    url:"",  
     method:"POST",  
-    data:$('#insert_form').serialize(),  
+    data:$('#insert_task').serialize(),  
     beforeSend:function(){  
      $('#insert').val("Inserting");  
     },  
     success:function(data){  
-     $('#insert_form')[0].reset();  
+     $('#insert_task')[0].reset();  
      $('#add_data_Modal').modal('hide');  
      $('#employee_table').html(data);  
     }  
    });  
   }  
  });
-//END Aksi Insert
 
-//Begin Tampil Detail Karyawan
+ $(document).ready(function() {
+$('#insert_pj').on("submit", function(event){  
+  event.preventDefault();  
+  if($('#nama').val() == "")  
+  {  
+   alert("Mohon Isi Nama ");  
+  }  
+  else if($('#alamat').val() == '')  
+  {  
+   alert("Mohon Isi Alamat");  
+  }  
+ 
+  else  
+  {  
+   $.ajax({  
+    url:"",  
+    method:"POST",  
+    data:$('#insert_pj').serialize(),  
+    beforeSend:function(){  
+     $('#insert').val("Inserting");  
+    },  
+    success:function(data){  
+     $('#insert_pj')[0].reset();  
+     $('#add_data_Modal').modal('hide');  
+     $('#employee_table').html(data);  
+    }  
+   });  
+  }  
+ });
+
  $(document).on('click', '.view_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
@@ -444,75 +426,4 @@ $('#insert_form').on("submit", function(event){
    }
   });
  });
-//End Tampil Detail Karyawan
- 
-// //Begin Tampil Form Edit
-//   $(document).on('click', '.edit_data', function(){
-//   var employee_id = $(this).attr("id");
-//   $.ajax({
-//    url:"edit.php",
-//    method:"POST",
-//    data:{employee_id:employee_id},
-//    success:function(data){
-//     $('#form_edit').html(data);
-//     $('#editModal').modal('show');
-//    }
-//   });
-//  });
-// //End Tampil Form Edit
-
-// //Begin Aksi Delete Data
-//  $(document).on('click', '.hapus_data', function(){
-//   var employee_id = $(this).attr("id");
-//   $.ajax({
-//    url:"delete.php",
-//    method:"POST",
-//    data:{employee_id:employee_id},
-//    success:function(data){
-//    $('#employee_table').html(data);  
-//    }
-//   });
-//  });
-// }); 
-//End Aksi Delete Data
  </script>
-
- <script type="text/javascript">
-                $(document).ready(function() {
-                  $(".add-more").click(function(){ 
-                      var html = $(".copy").html();
-                      $(".after-add-more").after(html);
-                  });
-
-                  // saat tombol remove dklik control group akan dihapus 
-                  $("section").on("click",".remove",function(){ 
-                      $(this).parents(".control-group").remove();
-                  });
-                });
-                  <?php   
-                  echo $a;?>  
-                  function changeValue(id){  
-                  document.getElementById('task').value = task[id].task;
-                };  
-          </script>
-          <script type="text/javascript">
-          $(document).ready(function() {
-                  $(".add-more").click(function(){ 
-                      var html = $(".copy").html();
-                      $(".after-add-more").after(html);
-                  });
-
-                  // saat tombol remove dklik control group akan dihapus 
-                  $("section").on("click",".remove",function(){ 
-                      $(this).parents(".control-group").remove();
-                  });
-                });
-                  <?php   
-                  echo $b;?>  
-                  function changeValue(id){  
-                  document.getElementById('nama').value = nama[id].nama;
-                };
-                </script>
-</body>
-
-
