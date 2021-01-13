@@ -1,57 +1,43 @@
-<script>
-$('#update_form').on("submit", function(event){  
-  event.preventDefault();  
-  if($('#date').val() == "")  
-  {  
-   alert("Mohon Isi tanggal ");  
-  }  
-  else if($('#plan').val() == '')  
-  {  
-   alert("Mohon Isi plan anda");  
-  }  
+<?php
  
-  else  
-  {  
-   $.ajax({  
-    url:"update.php",  
-    method:"POST",  
-    data:$('#update_form').serialize(),  
-    beforeSend:function(){  
-     $('#update').val("Updating");  
-    },  
-    success:function(data){  
-     $('#update_form')[0].reset();  
-     $('#editModal').modal('hide');  
-     $('#tabel_plan').html(data);  
-    }  
-   });  
-  }  
- });
-</script>
-<?php 
-if(isset($_POST["id_task"]))
+$connect = mysqli_connect("localhost", "root", "", "magang_pal");
+if(!empty($_POST))
 {
  $output = '';
- $connect = mysqli_connect("localhost", "root", "", "magang_pal");
- $query = "SELECT * FROM tabel_task WHERE id_task = '".$_POST["id_task"]."'";
- $result = mysqli_query($connect, $query);
-	$row = mysqli_fetch_array($result);
+	$id_task = mysqli_real_escape_string($connect, $_POST["id_task"]);  
+    $task = mysqli_real_escape_string($connect, $_POST["task"]);  
+    $date = mysqli_real_escape_string($connect, $_POST["date"]);  
+    $plan = mysqli_real_escape_string($connect, $_POST["plan"]);
+    $query = "INSERT INTO tabel_plan SET id_plan= '', id_task = '$id_task', date ='$date', plan='$plan'";
+	
+    if(mysqli_query($connect, $query))
+    {
+     $output .= '<label class="text-success">Data Berhasil Disimpan</label>';
+     $select_query = "SELECT * FROM tabel_task ORDER BY id_task DESC";
+     $result = mysqli_query($connect, $select_query);
      $output .= '
-         <form method="post" id="update_form">
-     <label>ID Task</label>
-     <input type="text" name="id_task" id="id_task" value="'.$_POST["id_task"].'" class="form-control" />
-     <br />
-     <label>Task</label>
-     <input type="text" name="task" id="task" value="'.$row['task'].'" class="form-control" />
-     <label>Tanggal</label>
-     <input type="date" name="date" id="date" value="'.$row['date'].'" class="form-control" />
-     <label>Plan</label>
-     <textarea name="plan" id="plan" class="form-control">'.$row['plan'].'</textarea>
-     <br />
-     <input type="submit" name="update" id="update" value="Update" class="btn btn-success" />
-
-    </form>
+      <table class="table table-bordered">  
+                    <tr>  
+                         <th width="55%">Task</th>  
+                         <th width="15%">Lihat</th>  
+                         <th width="15%">Edit</th>  
+                    </tr>
      ';
+     while($row = mysqli_fetch_array($result))
+     {
+      $output .= '
+       <tr>  
+                         <td>' . $row["task"] . '</td>  
+                         <td><input type="button" name="view" value="Lihat Detail" id="' . $row["id_task"] . '" class="btn btn-info btn-xs view_data" /></td>  
+						 <td><input type="button" name="edit" value="Kerjakan" id="' . $row["id_task"] . '" class="btn btn-warning btn-xs edit_data" /></td> 	
+
+                    </tr>
+      ';
+     }
+     $output .= '</table>';
+    }else{
+		$output .= mysqli_error($connect);
+	}
     echo $output;
 }
 ?>

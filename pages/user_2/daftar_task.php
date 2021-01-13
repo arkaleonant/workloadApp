@@ -11,6 +11,12 @@
     }
     error_reporting(0);
 ?>
+<?php
+  $no=1;
+  $connect = mysqli_connect("localhost", "root", "", "magang_pal");
+  $query = "SELECT * FROM tabel_task ORDER BY id_task DESC";
+  $result = mysqli_query($connect, $query);
+?>
 
 
 <!DOCTYPE html>
@@ -169,60 +175,41 @@
         <div class="panel panel-flat">
         <div class="panel panel-flat">
 <div class="row mb-2">
-          <div class="col-sm-6">
-            <h2>Daftar Task</h2>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-              <li class="breadcrumb-item active">Daftar Task</li>
-            </ol>
-          </div>
-        </div>
-    <div class="panel-heading">
-        <div class="heading-elements">
-        </div>
+   <br />  
+   <div class="table-responsive">
+    <br />
+    <div id="daftar_task">
+     <table class="table table-bordered">
+      <tr>
+        <th >No.</th>
+        <th width="6%" >Id Task</th>
+        <th >Divisi</th>
+        <th >Task</th>
+        <th >Detail Task</th>
+        <th width="10%">Start Date</th>
+        <th width="10%">End Date</th>
+        <th>Action</th>
+      </tr>
+      <?php
+      while($row = mysqli_fetch_array($result))
+      {
+      ?>
+      <tr>
+        <td><?php echo $no ?></td>
+        <td><?php echo $row['id_task'] ?></td>
+        <td><?php echo $row['divisi'] ?></td>
+        <td><?php echo $row['task'] ?></td>
+        <td><?php echo $row['detail_task'] ?></td>
+        <td><?php echo $row['start_date'] ?></td>
+        <td><?php echo $row['end_date']?></td>
+        <td><input type="button" name="tambah" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
+
+      </tr>
+      <?php $no++;
+      }
+      ?>
+     </table>
     </div>
-      <table class="table datatable-pagination">
-
-          <thead>
-              <tr>
-                    <th>No.</th>
-                    <th>Id Task</th>
-                    <th>Divisi</th>
-                    <th>Task</th>
-                    <th>Detail Task</th>
-                    <th>Pegawai</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Action</th>
-              </tr>
-          </thead>
-          <tbody>
-              <?php
-                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-                  $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
-                  // $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' && nama='$_SESSION[nama]' ORDER BY id_task desc ;";
-                  $result = mysqli_query($koneksi,$sel_query);
-                  $no = 1;
-                  while($row = mysqli_fetch_assoc($result)) { 
-              ?>
-                  <tr>
-                      <td><?php echo $no ?></td>
-                      <td><?php echo $row['id_task'] ?></td>
-                      <td><?php echo $row['divisi'] ?></td>
-                      <td><?php echo $row['task'] ?></td>
-                      <td><?php echo $row['detail_task'] ?></td>
-                      <td><button type="button" data-id="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#view_data_Modal" class="btn btn-primary">Lihat</button></td>
-                      <td><?php echo $row['start_date'] ?></td>
-                      <td><?php echo $row['end_date']?></td>
-                      <td><button type="button" name="age" data-id="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">kerjakan</button></td>
-                  </tr>
-                  <?php $no++;
-              } ?>
-
-          </tbody>
-      </table>
 </div>
 
         </div>
@@ -282,59 +269,16 @@
 </body>
 </html>
 
-<div id="add_data_Modal" class="modal fade">
+<div id="addModal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-    <h4 class="modal-title">Tambah Plan</h4>
+   <h4 class="modal-title">Tambah Plan</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
    </div>
-   <div class="modal-body">
-   <?php $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-    $query = "SELECT * from tabel_task "; 
-    $result = mysqli_query($koneksi, $query) or die ( mysqli_error());
-    $row = mysqli_fetch_assoc($result); ?>
-    <form method="post" id="insert_form">
-     <label>ID Task</label>
-     <input type="text" name="divisi" id="divisi" class="form-control" required value ="<?php echo $row['id_task'] ?>" readonly/>
-     <br />
-     <label>Task</label>
-     <input type="text" name="task" id="task" class="form-control" required value ="<?php echo $row['task'] ?>" readonly/>
-     <br />
-     <label>Date</label>
-     <input type="date" name="date" id="date" class="form-control" />
-     <br />
-     <label>Plan</label>
-     <textarea name="plan" id="plan" class="form-control"></textarea>
-     <br />
-     <button class="btn btn-primary add-more" type="button"> Add </button>
-     <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />
-    </form>
-      <div class="copy hide">
-        <div class="control-group">
-            <label>Date</label>
-              <input type="date" name="date" id="date" class="form-control" />
-              <br />
-              <label>Plan</label>
-              <textarea name="plan" id="plan" class="form-control"></textarea>
-              <br>
-              <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-              <hr>
-        </div>
-            <script type="text/javascript">
-                $(document).ready(function() {
-                  $(".add-more").click(function(){ 
-                      var html = $(".copy").html();
-                      $(".after-add-more").after(html);
-                  });
-
-                  // saat tombol remove dklik control group akan dihapus 
-                  $("body").on("click",".remove",function(){ 
-                      $(this).parents(".control-group").remove();
-                  });
-                });
-            </script>
-      </div>
+   <div class="modal-body" id="form_tambah">
+    
    </div>
    <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -343,38 +287,25 @@
  </div>
 </div>
 
-<div id="view_data_Modal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">Lihat pegawai</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-   </div>
-   <div class="modal-body">
-   <?php $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-    $query = "SELECT * from tabel_pj where id_task='$row[id_task]'"; 
-    $result = mysqli_query($koneksi, $query) or die ( mysqli_error());
-    $row = mysqli_fetch_assoc($result); ?>
-    <form method="post" id="insert_form">
-     <label>ID Task</label>
-     <input type="text" class="form-control" required value ="<?php echo $row['id_task'] ?>" readonly/>
-     <br />
-     <label>Task</label>
-     <input type="text" class="form-control" required value ="<?php echo $row['task'] ?>" readonly/>
-     <br />
-     <label>NIP</label>
-     <input type="text" class="form-control" required value ="<?php echo $row['nip'] ?>" readonly/>
-     <br />
-     <label>Nama Pegawai</label>
-     <input type="text" class="form-control" required value ="<?php echo $row['nama'] ?>" readonly/>
-     <br />
-    </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
-  </div>
- </div>
-</div>
+<script>  
+ 
+//Begin Tampil Form Edit
+  $(document).on('click', '.tambah_data', function(){
+  var id_task = $(this).attr("id");
+  $.ajax({
+   url:"../../function/tambah_plan.php",
+   method:"POST",
+   data:{id_task:id_task},
+   success:function(data){
+    $('#form_tambah').html(data);
+    $('#addModal').modal('show');
+   }
+  });
+ });
+//End Tampil Form Edit
+
+ </script>
+
+
 
 
