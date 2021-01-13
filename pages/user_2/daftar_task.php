@@ -295,7 +295,7 @@
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"../../function/tambah_plan.php",
+   url:"tambah_plan.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){

@@ -13,24 +13,35 @@ if(!empty($_POST))
     if(mysqli_query($connect, $query))
     {
      $output .= '<label class="text-success">Data Berhasil Disimpan</label>';
-     $select_query = "SELECT * FROM tabel_task ORDER BY id_task DESC";
+     $no=1;
+     $select_query = "SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC";
      $result = mysqli_query($connect, $select_query);
      $output .= '
       <table class="table table-bordered">  
                     <tr>  
-                         <th width="55%">Task</th>  
-                         <th width="15%">Lihat</th>  
-                         <th width="15%">Edit</th>  
+                        <th >No.</th>
+                        <th width="6%" >Id Task</th>
+                        <th >Divisi</th>
+                        <th >Task</th>
+                        <th >Detail Task</th>
+                        <th width="10%">Start Date</th>
+                        <th width="10%">End Date</th>
+                        <th>Action</th>  
                     </tr>
      ';
      while($row = mysqli_fetch_array($result))
      {
       $output .= '
        <tr>  
-                         <td>' . $row["task"] . '</td>  
-						 <td><input type="button" name="add" value="Kerjakan" id="' . $row["id_task"] . '" class="btn btn-warning btn-xs edit_data" /></td> 	
-
-                    </tr>
+            <td>' . $no . '</td>
+            <td>' . $row["id_task"] . '</td>
+            <td>' . $row["divisi"] . '</td>
+            <td>' . $row["task"] . '</td>
+            <td>' . $row["detail_task"] . '</td>
+            <td>' . $row["start_date"] . '</td>
+            <td>' . $row["end_date"] . '</td>
+            <td><input type="button" name="add" value="Kerjakan" id="' . $row["id_task"] . '" class="btn btn-warning btn-xs tambah_data" /></td> 
+        </tr> '. $no++ .'
       ';
      }
      $output .= '</table>';
