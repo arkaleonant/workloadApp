@@ -3,9 +3,15 @@
 if(isset($_POST["id_task"]))
 {
  $output = '';
+<<<<<<< Updated upstream
  $connect = mysqli_connect("localhost", "root", "", "magang_pal");
  $query = "SELECT * FROM tabel_pj WHERE id_task ='".$_POST["id_task"]."'";
  $result = mysqli_query($connect, $query);
+=======
+ $conn = mysqli_connect("localhost", "root", "", "magang_pal");
+ $query = "SELECT * FROM tabel_pj WHERE id_task = '".$_POST["id_task"]."'";
+ $result = mysqli_query($conn, $query);
+>>>>>>> Stashed changes
  $output .= '  
       <div class="table-responsive">  
            <table class="table table-bordered">';
