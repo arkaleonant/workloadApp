@@ -307,47 +307,43 @@
     <section class="content">
     <div class="container-fluid">
     <form method="POST" action="create_pj.php"> 
-    <div class="form-group control-group after-add-more">  
-                  <div class="form-group">
-                    <label>ID Task</label>
-                      <?php   
-                          $con = mysqli_connect("localhost","root","","magang_pal");  
-                      ?>  
-                      <td>
-                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)'  style="border: 1px solid #000000" required> 
-                        <option value="none">- Pilih Id Task -</option> 
-                          <?php     
-                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
-                          $a          = "var task = new Array();\n;";    
-                          while ($row = mysqli_fetch_array($result)) {  
-                          echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
-                          $a .= "task['" . $row['id_task'] . "'] = {task:'" . addslashes($row['task'])."'};\n";  
-                          }  
-                          ?>  
-                      </select>
-                      </td>
-                  </div>
-                  <div class="form-group">
-                      <label >Task</label>
-                      <input type="task" class="form-control" id="task" name="task" style="border: 1px solid #000000" readonly><br>
-                    <label>NIP</label>
-                    <select name="nip" id="nip" class="form-control" style="border: 1px solid #000000" required> 
-                        <option value="none">- Pilih NIP -</option> 
-                        <?php              
+    <div class="form-group control-group">
+                      <?php              
                           $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                          $anggota = mysqli_query($conn ,"SELECT * FROM pegawai where divisi='$_SESSION[divisi]'AND hak_akses='2' ");
-                          while ($row = mysqli_fetch_array($anggota)) {
-                            echo "<option value='$row[nip]'>$row[nip] - $row[nama]</option>";
-                          }
-                        ?>
-                      </select>
-                      </td><br>
-                    </div>               
+                          $sql = mysqli_query($conn ,"SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");
+                          $row = mysqli_fetch_array($sql);
+                      ?>  
+
+                      <label >ID Task</label>
+                      <input type="text" class="form-control" id="id_task" name="id_task" style="border: 1px solid #000000" required value="<?php echo $row['id_task'] ?>" readonly>
+
+                      <label >Task</label>
+                      <input type="task" class="form-control" id="task" name="task" style="border: 1px solid #000000" required value="<?php echo $row['task'] ?>" readonly><br>
+                      
+                      <label>NIP</label>
+                      <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' style="border: 1px solid #000000" required> 
+                          <option value="none">- Pilih NIP -</option> 
+                          <?php 
+                            $con = mysqli_connect('localhost', 'root', '', 'magang_pal');    
+                            $result = mysqli_query($con, "SELECT * FROM pegawai where divisi='$_SESSION[divisi]' AND hak_akses='2' ");  
+                            $a          = "var nama = new Array();\n;";    
+                            while ($row = mysqli_fetch_array($result)) {  
+                            echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
+                            $a .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
+                            }  
+                            ?> 
+                        </select>
+
+                      <label>Nama</label>
+                      <input type="text" class="form-control" id="nama" name="nama" style="border: 1px solid #000000" readonly><br>
+                      
+                          <br>
+                      </div>               
                   <div class="right-card-footer">
-                  <button type="post" name="submit" class="btn btn-primary" >Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                  </div>
-                  <br>      
+                  <button name="submit" class="btn btn-primary">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       </div>
+                  <br>      
+    </div>
     </section>
   </div>
 </div>
