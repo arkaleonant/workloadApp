@@ -213,10 +213,10 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><a class="btn btn-warning">lihat</a></td>
+                      <td><button type="button" data-id="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#view_data_Modal" class="btn btn-primary">Lihat</button></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
-                      <td><button type="button" name="age" id="age" value="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">kerjakan</button></td>
+                      <td><button type="button" name="age" data-id="<?php echo $row["id_task"];?>" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-success">kerjakan</button></td>
                   </tr>
                   <?php $no++;
               } ?>
@@ -291,8 +291,7 @@
    </div>
    <div class="modal-body">
    <?php $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-    $id_task=$_REQUEST['id_task'];
-    $query = "SELECT * from tabel_task where id_task='$id_task'"; 
+    $query = "SELECT * from tabel_task "; 
     $result = mysqli_query($koneksi, $query) or die ( mysqli_error());
     $row = mysqli_fetch_assoc($result); ?>
     <form method="post" id="insert_form">
@@ -343,37 +342,39 @@
   </div>
  </div>
 </div>
-<Script>
-$(document).ready(function(){
-// Begin Aksi Insert
- $('#insert_form').on("submit", function(event){  
-  event.preventDefault();  
-  if($('#date').val() == "")  
-  {  
-   alert("Mohon Isi tanggal ");  
-  }  
-  else if($('#plan').val() == '')  
-  {  
-   alert("Mohon Isi plan anda");  
-  }  
- 
-  else  
-  {  
-   $.ajax({  
-    url:"insert.php",  
-    method:"POST",  
-    data:$('#insert_form').serialize(),  
-    beforeSend:function(){  
-     $('#insert').val("Inserting");  
-    },  
-    success:function(data){  
-     $('#insert_form')[0].reset();  
-     $('#add_data_Modal').modal('hide');  
-     $('#employee_table').html(data);  
-    }  
-   });  
-  }  
- });
-</script>
+
+<div id="view_data_Modal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h4 class="modal-title">Lihat pegawai</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body">
+   <?php $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
+    $query = "SELECT * from tabel_pj where id_task='$row[id_task]'"; 
+    $result = mysqli_query($koneksi, $query) or die ( mysqli_error());
+    $row = mysqli_fetch_assoc($result); ?>
+    <form method="post" id="insert_form">
+     <label>ID Task</label>
+     <input type="text" class="form-control" required value ="<?php echo $row['id_task'] ?>" readonly/>
+     <br />
+     <label>Task</label>
+     <input type="text" class="form-control" required value ="<?php echo $row['task'] ?>" readonly/>
+     <br />
+     <label>NIP</label>
+     <input type="text" class="form-control" required value ="<?php echo $row['nip'] ?>" readonly/>
+     <br />
+     <label>Nama Pegawai</label>
+     <input type="text" class="form-control" required value ="<?php echo $row['nama'] ?>" readonly/>
+     <br />
+    </form>
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
 
 
