@@ -174,7 +174,7 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id"]; ?>" class="btn btn-info btn-xs view_data" /></td></td>
+                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#lihat_detail_modal" class="btn btn-success" >Lihat Detail</button>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
@@ -349,3 +349,34 @@
 </div>
 </form>
 
+<div id="lihat_detail_Modal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Lihat Detail</h4>
+   </div>
+   <div class="modal-body" id="detail_pegawai">
+    
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<script>
+$(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id_task");
+  $.ajax({
+   url:"select.php",
+   method:"POST",
+   data:{id_task:id_task},
+   success:function(data){
+    $('#detail_pegawai').html(data);
+    $('#lihat_detail_Modal').modal('show');
+   }
+  });
+ });
+</script>
