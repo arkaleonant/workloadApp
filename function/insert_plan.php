@@ -28,8 +28,7 @@ if(!empty($_POST))
       $output .= '
        <tr>  
                          <td>' . $row["task"] . '</td>  
-                         <td><input type="button" name="view" value="Lihat Detail" id="' . $row["id_task"] . '" class="btn btn-info btn-xs view_data" /></td>  
-						 <td><input type="button" name="edit" value="Kerjakan" id="' . $row["id_task"] . '" class="btn btn-warning btn-xs edit_data" /></td> 	
+						 <td><input type="button" name="add" value="Kerjakan" id="' . $row["id_task"] . '" class="btn btn-warning btn-xs edit_data" /></td> 	
 
                     </tr>
       ';

@@ -11,6 +11,12 @@
     }
     error_reporting(0);
 ?>
+<?php
+  $no = 1;
+  $connect = mysqli_connect("localhost", "root", "", "magang_pal");
+  $query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
+  $result = mysqli_query($connect,$query);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -145,9 +151,12 @@
      <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success" >Tambah Task</button>
      <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
     </div>
-      <table class="table datatable-pagination">
-
-          <thead>
+    <div class="row mb-2">
+   <br />  
+   <div class="table-responsive">
+    <br />
+    <div id="daftar_task">
+      <table class="table table-bordered">
               <tr>
                   <th>No.</th>
                   <th>Id Task</th>
@@ -159,14 +168,8 @@
                   <th>End Date</th>
                   <th>Progress Saat Ini</th>
               </tr>
-          </thead>
-          <tbody>
               <?php
-                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-                  $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
-                  $result = mysqli_query($koneksi,$sel_query);
-                  $no = 1;
-                  while($row = mysqli_fetch_assoc($result)) { 
+                  while($row = mysqli_fetch_array($result)) { 
               ?>
                   <tr>
                       <td><?php echo $no ?></td>
@@ -174,18 +177,17 @@
                       <td><?php echo $row['divisi'] ?></td>
                       <td><?php echo $row['task'] ?></td>
                       <td><?php echo $row['detail_task'] ?></td>
-                      <td><button type="button" name="age" id="age" data-toggle="modal" data-target="#lihat_detail_modal" class="btn btn-success" >Lihat Detail</button>
+                      <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td>
                       <td><?php echo $row['start_date'] ?></td>
                       <td><?php echo $row['end_date']?></td>
                       <td>45%</td>
                   </tr>
                   <?php $no++;
               } ?>
-          </form>
-          </tbody>
       </table>
+      </div>
 </div>
-
+</div>
         </div>
     <!-- /.content -->
   </div>
@@ -349,12 +351,12 @@
 </div>
 </form>
 
-<div id="lihat_detail_Modal" class="modal fade">
+<div id="dataModal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Lihat Detail</h4>
+    <h4 class="modal-title">Lihat Pegawai</h4>
    </div>
    <div class="modal-body" id="detail_pegawai">
     
@@ -366,16 +368,17 @@
  </div>
 </div>
 
+
 <script>
-$(document).on('click', '.view_data', function(){
-  var id_task = $(this).attr("id_task");
+ $(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id");
   $.ajax({
    url:"select.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){
     $('#detail_pegawai').html(data);
-    $('#lihat_detail_Modal').modal('show');
+    $('#dataModal').modal('show');
    }
   });
  });

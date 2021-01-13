@@ -14,7 +14,7 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_task ORDER BY id_task DESC";
+  $query = "SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>
 
@@ -202,7 +202,7 @@
         <td><?php echo $row['detail_task'] ?></td>
         <td><?php echo $row['start_date'] ?></td>
         <td><?php echo $row['end_date']?></td>
-        <td><input type="button" name="tambah" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
+        <td><input type="button" name="add" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
 
       </tr>
       <?php $no++;
@@ -211,7 +211,9 @@
      </table>
     </div>
 </div>
-
+</div>
+</div>
+</div>
         </div>
   </div>
 

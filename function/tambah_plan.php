@@ -53,7 +53,7 @@ if(isset($_POST["id_task"]))
             <textarea name="plan" id="plan" class="form-control"></textarea>
             <br />
 
-            <input type="submit" name="add" id="add" value="tambah plan" class="btn btn-success" />
+            <input type="submit" name="add" id="add" value="Add Plan" class="btn btn-success" />
 
         </form>
      ';
