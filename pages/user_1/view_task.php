@@ -11,6 +11,12 @@
     }
     error_reporting(0);
 ?>
+<?php
+  $no = 1;
+  $connect = mysqli_connect("localhost", "root", "", "magang_pal");
+  $query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
+  $result = mysqli_query($connect,$query);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -41,7 +47,11 @@
   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -144,6 +154,7 @@
     <div class="content-wrapper">
       <div class="panel panel-flat">
         <div align="left">
+<<<<<<< HEAD
           <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
             class="btn btn-success">Tambah Task</button>
           <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal"
@@ -195,6 +206,53 @@
       </div>
 
     </div>
+=======
+     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success" >Tambah Task</button>
+     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
+    </div>
+    <div class="row mb-2">
+   <br />  
+   <div class="table-responsive">
+    <br />
+    <div id="view_task">
+      <table class="table table-bordered">
+              <tr>
+                  <th>No.</th>
+                  <th>Id Task</th>
+                  <th>Divisi</th>
+                  <th>Task</th>
+                  <th>Detail Task</th>
+                  <th>Pegawai</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Progress Saat Ini</th>
+              </tr>
+              <?php
+                  while($row = mysqli_fetch_array($result)) { 
+              ?>
+                  <tr>
+                      <td><?php echo $no ?></td>
+                      <td><?php echo $row['id_task'] ?></td>
+                      <td><?php echo $row['divisi'] ?></td>
+                      <td><?php echo $row['task'] ?></td>
+                      <td><?php echo $row['detail_task'] ?></td>
+<<<<<<< Updated upstream
+                      <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td>
+=======
+                      <td><td><button type="button" name="age" id="age" data-toggle="modal" data-target="#lihat_detail_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["id_task"]; ?>">Lihat detail</button>
+>>>>>>> Stashed changes
+                      <td><?php echo $row['start_date'] ?></td>
+                      <td><?php echo $row['end_date']?></td>
+                      <td>45%</td>
+                  </tr>
+                  <?php $no++;
+              } ?>
+      </table>
+      </div>
+</div>
+</div>
+        </div>
+>>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb
     <!-- /.content -->
   </div>
 
@@ -324,17 +382,26 @@
                   <label>ID Task</label>
                   <?php   
                           $con = mysqli_connect("localhost","root","","magang_pal");  
+<<<<<<< HEAD
                       ?>
                   <td>
                     <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)'
                       style="border: 1px solid #000000" required>
                       <?php     
                           $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
+=======
+                      ?>  
+                      <td>
+                      <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)'  style="border: 1px solid #000000" required> 
+                          <?php     
+                          $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC limit 1");  
+>>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb
                           while ($row = mysqli_fetch_array($result)) {  
                           // echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
-                          echo "<option value='$row[id_task]'>$row[id_task] - $row[task]";
+                          echo "<option value='$row[id_task]'>$row[id_task] - $row[id_task]";
 
                           }  
+<<<<<<< HEAD
                           ?>
                     </select>
                   </td>
@@ -360,8 +427,143 @@
               <br>
           </div>
         </section>
+=======
+                          ?>  
+                      </select>
+                      </td>
+                  </div>
+                  <label>Task</label>
+                      <?php   
+                          $con = mysqli_connect("localhost","root","","magang_pal");  
+                      ?>  
+                      <td>
+                      <select name="task" id="task" class="form-control" onchange='changeValue(this.value)'  style="border: 1px solid #000000" required> 
+                          <?php     
+                          $result = mysqli_query($con, "SELECT * from tabel_task ORDER BY id_task DESC limit 1");  
+                          while ($row = mysqli_fetch_array($result)) {  
+                          // echo '<option name="id_task" value="'.$row['id_task'] . '">' . $row['id_task'] . '</option>';   
+                          echo "<option value='$row[task]'>$row[task]";
+
+                          }  
+                          ?>  
+                      </select>
+                      </td>
+                  </div>
+                  <div class="control-group">
+                      <div class="form-group">
+                      <div class="container-fluid">
+                        <div class="form-group">
+                          <label>NIP</label>
+                        </div>
+                          <?php   
+                                $con = mysqli_connect("localhost","root","","magang_pal");  
+                            ?>  
+                            <td>
+                            <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' required> 
+                              <option value="none">- Pilih NIP-</option> 
+                                <?php     
+                                $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip DESC");  
+                                $a        = "var nama = new Array();\n;";    
+                                while ($row = mysqli_fetch_array($result)) {  
+                                echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
+                                $a .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
+                                }  
+                                ?>  
+                            </select>
+                            </td><br>  
+                          <div class="form-group">
+                            <label >Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Enter task" style="border: 1px solid #000000"readonly>
+                          </div><br>          
+                  <div class="right-card-footer">
+                  <button type="post" name="submit" class="btn btn-primary" >Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                  </div>
+                  <br>      
+>>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb
       </div>
     </div>
     </form>
 
+<<<<<<< HEAD
     
+=======
+<<<<<<< Updated upstream
+<div id="dataModal" class="modal fade">
+=======
+<section class="content">
+<div class="container-fluid">
+<form method="POST" action="select.php">
+<div class="form-group">
+<div id="lihat_detail_Modal" class="modal fade">
+>>>>>>> Stashed changes
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Lihat Pegawai</h4>
+   </div>
+<<<<<<< Updated upstream
+   <div class="modal-body" id="detail_pegawai">
+    <form action="">
+    <label for=""></label>
+    <input type="text" name="" id="">
+    </form>
+=======
+   <div class="modal-body" id_task="detail_pegawai">
+    
+>>>>>>> Stashed changes
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+</div>
+</form>
+
+<div id="lihat_detail_modal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <h4 class="modal-title">Tambah Penanggungjawab </h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+    <div class="modal-body">
+    <section class="content">
+    <div class="container-fluid">
+    <form method="POST" action="create_pj.php"> 
+    <div class="form-group control-group after-add-more">  
+      <div class="form-group">
+      <label>ID Task</label>
+      <div class="modal-body" id="detail_karyawan">   
+      </div>
+    </section>
+  </div>
+</div>
+</form>
+
+
+<script>
+ $(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id");
+  $.ajax({
+   url:"",
+   method:"POST",
+   data:{id_task:id_task},
+   success:function(data){
+    $('#detail_pegawai').html(data);
+    $('#dataModal').modal('show');
+   }
+  });
+ });
+</script>
+<script type="text/javascript">
+<?php   
+  echo $a;?>  
+  function changeValue(id){  
+  document.getElementById('nama').value = nama[id].nama;   
+  };  
+</script>
+>>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb
