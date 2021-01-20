@@ -42,11 +42,14 @@
   <!-- Date Picker -->
   <link rel="stylesheet" href="../../plugins/datepicker/datepicker3.css">
   <!-- Daterange picker -->
+  <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+  <!-- Select 2-->
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker-bs3.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -149,7 +152,7 @@
     <div class="content-wrapper">
       <div class="panel panel-flat">
         <div align="left">
-<!-- <<<<<<< HEAD -->
+          <!-- <<<<<<< HEAD -->
           <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
             class="btn btn-success">Tambah Task</button>
           <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal"
@@ -184,15 +187,16 @@
               <td><?php echo $row['divisi'] ?></td>
               <td><?php echo $row['task'] ?></td>
               <td><?php echo $row['detail_task'] ?></td>
-              <td> 
-              <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal<?php echo $row['id_task']; ?>">Edit</a>
+              <td>
+                <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal"
+                  data-target="#myModal<?php echo $row['id_task']; ?>">Edit</a>
               </td>
               </td>
               <td><?php echo $row['start_date'] ?></td>
               <td><?php echo $row['end_date']?></td>
               <td>45%</td>
             </tr>
-            
+
             <?php $no++;
               } ?>
             </form>
@@ -201,50 +205,53 @@
       </div>
 
     </div>
-=======
-     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal" class="btn btn-success" >Tambah Task</button>
-     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
-    </div>
-    <div class="row mb-2">
-   <br />  
-   <div class="table-responsive">
+    =======
+    <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
+      class="btn btn-success">Tambah Task</button>
+    <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success"
+      href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
+  </div>
+  <div class="row mb-2">
     <br />
-    <div id="view_task">
-      <table class="table table-bordered">
-              <tr>
-                  <th>No.</th>
-                  <th>Id Task</th>
-                  <th>Divisi</th>
-                  <th>Task</th>
-                  <th>Detail Task</th>
-                  <th>Pegawai</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Progress Saat Ini</th>
-              </tr>
-              <?php
+    <div class="table-responsive">
+      <br />
+      <div id="view_task">
+        <table class="table table-bordered">
+          <tr>
+            <th>No.</th>
+            <th>Id Task</th>
+            <th>Divisi</th>
+            <th>Task</th>
+            <th>Detail Task</th>
+            <th>Pegawai</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Progress Saat Ini</th>
+          </tr>
+          <?php
                   while($row = mysqli_fetch_array($result)) { 
               ?>
-                  <tr>
-                      <td><?php echo $no ?></td>
-                      <td><?php echo $row['id_task'] ?></td>
-                      <td><?php echo $row['divisi'] ?></td>
-                      <td><?php echo $row['task'] ?></td>
-                      <td><?php echo $row['detail_task'] ?></td>
-                      <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td>
-                      <td><?php echo $row['start_date'] ?></td>
-                      <td><?php echo $row['end_date']?></td>
-                      <td>45%</td>
-                  </tr>
-                  <?php $no++;
+          <tr>
+            <td><?php echo $no ?></td>
+            <td><?php echo $row['id_task'] ?></td>
+            <td><?php echo $row['divisi'] ?></td>
+            <td><?php echo $row['task'] ?></td>
+            <td><?php echo $row['detail_task'] ?></td>
+            <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>"
+                class="btn btn-info btn-xs view_data" /></td>
+            <td><?php echo $row['start_date'] ?></td>
+            <td><?php echo $row['end_date']?></td>
+            <td>45%</td>
+          </tr>
+          <?php $no++;
               } ?>
-      </table>
+        </table>
       </div>
-</div>
-</div>
-        </div>
-<!-- >>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb -->
-    <!-- /.content -->
+    </div>
+  </div>
+  </div>
+  <!-- >>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb -->
+  <!-- /.content -->
   </div>
 
 
@@ -281,6 +288,8 @@
   <script src="../../plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
   <!-- jQuery Knob Chart -->
   <script src="../../plugins/knob/jquery.knob.js"></script>
+  <!-- select2 -->
+  <script src="../../plugins/select2/select2.full.min.js"></script>
   <!-- daterangepicker -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
   <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
@@ -323,21 +332,34 @@
                   style="border: 1px solid #000000" required>
                 <br />
                 <label>Detail Task</label>
-                <textarea name="detail_task" placeholder="Place some text here" style="width: 100%; height: 200px; font-size: 14px; 
-        line-height: 18px; border: 1px solid #000000; padding: 
-        10px;" required>
-      </textarea>
+                <textarea name="detail_task" style="width: 100%; height: 50px; font-size: 14px; 
+                  line-height: 18px; border: 1px solid #000000; padding: 
+                  10px;" required>
+                </textarea>
                 <br />
                 <br />
                 <label>Start Date</label>
                 <div class="form-group">
                   <input type="date" name="tanggal_mulai" class="form-control float-right"
                     style="border: 1px solid #000000" required>
-                </div><br><br>
+                </div> <br> <br>
                 <label>End Date</label>
                 <div class="form-group">
                   <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000"
                     required>
+                </div> <br><br>
+                <div class="form-group">
+                  <label>Penanggung Jawab</label>
+                  <select  id="pj" name="pj[]" multiple="multiple"
+                          style="width: 100%; height:50px;">
+                          <option value="none">- Pilih Penanggung Jawab -</option>
+                          <?php     
+                                $con = mysqli_connect("localhost","root","","magang_pal");
+                                $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip ASC");  
+                                while ($row = mysqli_fetch_array($result)) {  
+                                  echo "<option value='$row[nama]'>$row[nama]</option>";                                }  
+                          ?>
+                  </select>
                 </div>
               </div><br><br>
               <br />
@@ -354,6 +376,22 @@
 </div>
 </div>
 </div>
+<script
+	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/i18n/id.js" type="text/javascript"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#pj').select2({
+          placeholder: "wokeee",
+				allowClear: true,
+				language: "id"
+		    });
+		});
+	</script>
 </form>
 
 
@@ -369,37 +407,39 @@
           <div class="container-fluid">
             <form method="POST" action="create_pj.php">
               <div class="form-group control-group after-add-more">
-              <div class="control-group">
-                          <div class="form-group">
-                      <div class="container-fluid">
-                        <div class="form-group">
-                          <label>ID Task</label>
-                        </div>
-                          <?php   
+                <div class="control-group">
+                  <div class="form-group">
+                    <div class="container-fluid">
+                      <div class="form-group">
+                        <label>ID Task</label>
+                      </div>
+                      <?php   
                                 $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>  
-                            <td>
-                            <select name="id_task" id="id_task" class="form-control" onchange='changeValue(this.value)' required> 
-                              <option value="none">- Pilih Task-</option> 
-                                <?php     
+                            ?>
+                      <td>
+                        <select name="id_task" id="id_task" multiple="multiple" class="form-control" onchange='changeValue(this.value)'
+                          required>
+                          <option value="none">- Pilih Task-</option>
+                          <?php     
                                 $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
                                 while ($row = mysqli_fetch_array($result)) {  
                                   echo "<option value='$row[id_task]'>$row[id_task] - $row[task]</option>";                                }  
-                                ?>  
-                            </select> 
-                              </td><br>   
-                  <div class="control-group">
-                      <div class="form-group">
-                      <div class="container-fluid">
+                                ?>
+                        </select>
+                      </td><br>
+                      <div class="control-group">
                         <div class="form-group">
-                          <label>NIP</label>
-                        </div>
-                          <?php   
+                          <div class="container-fluid">
+                            <div class="form-group">
+                              <label>NIP</label>
+                            </div>
+                            <?php   
                                 $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>  
+                            ?>
                             <td>
-                            <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)' required> 
-                              <option value="none">- Pilih NIP-</option> 
+                              <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)'
+                                required>
+                                <option value="none">- Pilih NIP-</option>
                                 <?php     
                                 $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip DESC");  
                                 $a        = "var nama = new Array();\n;";    
@@ -407,94 +447,101 @@
                                 echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
                                 $a .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
                                 }  
-                                ?>  
-                            </select>
-                            </td><br>  
+                                ?>
+                              </select>
+                            </td><br>
                             <tr>
-                          <div class="form-group">
-                            <label >Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Enter task" style="border: 1px solid #000000"readonly>
-                          </div></tr>
-                             
-                  <div class="right-card-footer">
-                  <button type="post" name="submit" class="btn btn-primary" >Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                              <div class="form-group">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Enter task"
+                                  style="border: 1px solid #000000" readonly>
+                              </div>
+                            </tr>
+
+                            <div class="right-card-footer">
+                              <button type="post" name="submit"
+                                class="btn btn-primary">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            </div>
+                            <br>
+                          </div>
+                        </div>
+            </form>
+
+
+            <div id="dataModal" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Lihat Pegawai</h4>
                   </div>
-                  <br>      
-</div>
-    </div>
-    </form>
-
-    
-<div id="dataModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    <h4 class="modal-title">Lihat Pegawai</h4>
-   </div>
-   <div class="modal-body" id="detail_pegawai">
-    <form action="">
-    <label for=""></label>
-    <input type="text" name="" id="">
-    </form>
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
-  </div>
- </div>
-</div>
-</div>
-</div>
-</form>
-
-<div id="lihat_detail_modal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-    <h4 class="modal-title">Tambah Penanggungjawab </h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-  </div>
-    <div class="modal-body">
-    <section class="content">
-    <div class="container-fluid">
-    <form method="POST" action="create_pj.php"> 
-    <div class="form-group control-group after-add-more">  
-      <div class="form-group">
-      <label>ID Task</label>
-      <div class="modal-body" id="detail_karyawan">   
+                  <div class="modal-body" id="detail_pegawai">
+                    <form action="">
+                      <label for=""></label>
+                      <input type="text" name="" id="">
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
-    </section>
-  </div>
-</div>
-</form>
+      </form>
+
+      <div id="lihat_detail_modal" class="modal fade">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Tambah Penanggungjawab </h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <section class="content">
+                <div class="container-fluid">
+                  <form method="POST" action="create_pj.php">
+                    <div class="form-group control-group after-add-more">
+                      <div class="form-group">
+                        <label>ID Task</label>
+                        <div class="modal-body" id="detail_karyawan">
+                        </div>
+              </section>
+            </div>
+          </div>
+          </form>
 
 
-<script>
- $(document).on('click', '.view_data', function(){
-  var id_task = $(this).attr("id");
-  $.ajax({
-   url:"",
-   method:"POST",
-   data:{id_task:id_task},
-   success:function(data){
-    $('#detail_pegawai').html(data);
-    $('#dataModal').modal('show');
-   }
-  });
- });
-</script>
+          <script>
+            $(document).on('click', '.view_data', function () {
+              var id_task = $(this).attr("id");
+              $.ajax({
+                url: "",
+                method: "POST",
+                data: {
+                  id_task: id_task
+                },
+                success: function (data) {
+                  $('#detail_pegawai').html(data);
+                  $('#dataModal').modal('show');
+                }
+              });
+            });
+          </script>
 
-<script type="text/javascript">
-<?php   
-  echo $a; ?>  
-  function changeValue(id){  
-  document.getElementById('nama').value = nama[id].nama;   
+          <script type="text/javascript">
+            < ? php
+            echo $a; ? >
+            function
+            changeValue(id) {
+            document.getElementById('nama').value
+            =
+            nama[id].nama;
+            };
+          </script>
 
-};  
-</script>
-
-<!-- <script type="text/javascript">
+          <!-- <script type="text/javascript">
 <?php   
   echo $b; ?>  
   function changeValue(id){  
