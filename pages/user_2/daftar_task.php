@@ -188,7 +188,7 @@
         <th >Detail Task</th>
         <th width="10%">Start Date</th>
         <th width="10%">End Date</th>
-        <th>Action</th>
+        <th>Action Plan</th>
       </tr>
       <?php
         while($row = mysqli_fetch_array($result))
@@ -202,8 +202,12 @@
           <td><?php echo $row['detail_task'] ?></td>
           <td><?php echo $row['start_date'] ?></td>
           <td><?php echo $row['end_date']?></td>
-          <td><input type="button" name="add" value="Kerjakan" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td> 
-
+          <td>
+            <input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" />
+          </td> 
+          <td>
+            <input type="button" name="add" value="Tambah" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" />
+          </td>
         </tr>
         <?php $no++;
         }
@@ -279,7 +283,23 @@
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     
    </div>
-   <div class="modal-body" id="form_tambah">
+      <div class="modal-body" id="form_tambah">
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<div id="dataModal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+   <h4 class="modal-title">Lihat Pegawai</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body" id="detail_pegawai">
     
    </div>
    <div class="modal-footer">
@@ -291,7 +311,7 @@
 
 <script>  
  
-//Begin Tampil Form Edit
+
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
@@ -304,7 +324,19 @@
    }
   });
  });
-//End Tampil Form Edit
+
+$(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id");
+  $.ajax({
+   url:"detail_plan.php",
+   method:"POST",
+   data:{id_task:id_task},
+   success:function(data){
+    $('#detail_pegawai').html(data);
+    $('#dataModal').modal('show');
+   }
+  });
+ });
 
  </script>
 
