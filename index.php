@@ -21,12 +21,12 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="./index.php"><b>PT. PAL </b>INDONESIA</a>
+    <img src="./img/logopal.jpg" alt="" width="300px" height="100px">
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <h4 class="login-box-msg">Aplikasi Work Load</h4>
+      <h4 class="login-box-msg">WORKLOAD WEBSITE</h4>
 
       <form action="./function/login.php" method="post">
         <div class="form-group has-feedback">

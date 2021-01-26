@@ -1,5 +1,4 @@
 <?php  
-//select.php  
 if(isset($_POST["id_task"]))
 {
  $output = '';
@@ -12,7 +11,7 @@ if(isset($_POST["id_task"]))
                 <tr>
                     <th><label>Tanggal</label></th>  
                     <th><label>Plan</label></th>
-                    <th><label>Action</label></th>  
+                    <th><label>Progress</label></th>  
                 </tr>';
     while($row = mysqli_fetch_array($result))
     {
@@ -20,7 +19,12 @@ if(isset($_POST["id_task"]))
         <tr>  
             <td width="30%">'.$row["date"].'</td>
             <td width="50%">'.$row["plan"].'</td>
-            <td width="30%"><button class="btn btn-success value="Selesai">Selesai</button></td>
+            <td width="30%">
+                <select class="select select-success">
+                    <option>Belum Selesai</option>
+                    <option>Sudah Selesai</option>
+                </select>
+            </td>
         </tr>
      ';
     }

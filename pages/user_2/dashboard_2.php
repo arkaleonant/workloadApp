@@ -17,12 +17,13 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>WORKLOAD | Dashboard</title>
+  <title>PT. PAL INDONESIA</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
+  <link rel="shortcut icon" href="../../img/logopal.ico">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
@@ -85,10 +86,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="dashboard_2.php" class="brand-link">
-		<?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
-											$row = mysqli_fetch_array($sql);
-		?>
+    <a href="dashboard_2.php?home" class="brand-link">
 	  <h2 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h2>
 	  <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
     </a>
@@ -101,10 +99,7 @@
           <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-			<?php $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
-										$row = mysqli_fetch_array($sql);
-			?>
-          <a href="#" class="d-block"><?php echo $_SESSION['nama']; ?></a>
+          <a href="" class="d-block"><?php echo $_SESSION['nama']; ?></a>
         </div>
       </div>
 
@@ -115,16 +110,23 @@
                with font-awesome or any other icon font library -->
 
               <li class="nav-item">
-                <a href="dashboard_2.php" class="nav-link active">
+                <a href="dashboard_2.php?home" class="nav-link <?php if(isset($_REQUEST['home'])){ echo"active"; } ?>">
                   <i class="fa fa-dashboard nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item ">
-                <a href="daftar_task.php" class="nav-link">
-                  <i class="nav-icon fa fa-book"></i>
-                  <p>Daftar Task</p>
+                <a href="dashboard_2.php?task" class="nav-link <?php if(isset($_REQUEST['task'])){ echo"active"; } ?>">
+                  <i class="nav-icon fa fa-pencil"></i>
+                  <p>Task</p>
                 </a>
+              </li>
+              <li class="nav-item ">
+                <a href="dashboard_2.php?plan" class="nav-link <?php if(isset($_REQUEST['plan'])){ echo"active"; } ?>">
+                  <i class="nav-icon fa fa-book"></i>
+                  <p>Daftar Plan</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="../../function/logout.php" class="nav-link">
                   <i class="nav-icon fa fa-gear"></i>
@@ -140,83 +142,24 @@
     <!-- /.sidebar -->
   </aside>
     <!-- Main content -->
-        <div class="content-wrapper">
-				<!-- Content area -->
-                <div class="content">
-                <div class="panel panel-flat">
-                <!-- Small boxes (Stat box) -->
-            <div class="row">
-            <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                        <?php 
-                        $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                        $data_task = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
- 
-                        // menghitung data barang
-                        $jumlah_task = mysqli_num_rows($data_task);
-                        ?>
-                            <h3><?php echo $jumlah_task; ?></h3>
-                            <p>Task Added</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="daftar_task.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                        <?php 
-                        $conn = mysqli_connect('localhost', 'root', '', 'magang_pal');
-                        $data_user = mysqli_query($conn,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]'");
- 
-                        // menghitung data barang
-                        $jumlah_user = mysqli_num_rows($data_user);
-                        ?>
-                            <h3><?php echo $jumlah_user; ?></h3>
-                            <p>User Active</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>45 %</h3>
-                            <p>Task Progress</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-            </div>
-        </div>
-
-          </div>
-        </div>
-    <!-- /.content -->
+  <div class="content-wrapper">
+    <div class="content">
+    <?php
+			if(isset($_REQUEST['home'])){
+				include("home.php");
+			}else if(isset($_REQUEST['task'])){
+				include("daftar_task.php");
+			}else if(isset($_REQUEST['plan'])){
+				include("daftar_plan.php");
+			}?>
+    </div>
   </div>
 
   
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2018 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://pal.co.id">PT. PAL Indonesia</a>.</strong>
     All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.0-alpha
-    </div>
   </footer>
 
   <!-- /.control-sidebar -->

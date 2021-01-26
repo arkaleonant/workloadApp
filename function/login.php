@@ -19,15 +19,24 @@ if ($cek>0){
         $_SESSION['divisi'] = $row['divisi'];
         $_SESSION['email']=$row['email'];
 
-        if($row['hak_akses']=="1"){
-            header("location:../pages/user_1/dashboard_1.php");
-        }else if($row['hak_akses']=="2"){
-            header("location:../pages/user_2/dashboard_2.php");
-        }
+        if($row['hak_akses']=="1"){ ?>
+            <script language="JavaScript">
+                alert('Login Berhasil !');
+                document.location='../pages/user_1/dashboard_1.php';
+            </script>
+        <?php }else if($row['hak_akses']=="2"){ ?>
+            <script language="JavaScript">
+                alert('Login Berhasil !');
+                document.location='../pages/user_2/dashboard_2.php?home';
+            </script>
+        <?php }
 }
-else{  
-    header("location:../index.php");
-    }
+else{ ?>  
+        <script language="JavaScript">
+            alert('Username atau Password anda salah');
+            document.location='../index.php';
+        </script>
+    <?php }
 ?>
-
+        
 
