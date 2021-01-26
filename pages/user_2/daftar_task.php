@@ -27,8 +27,8 @@
         <div class="row mb-2"> 
           <div class="table-responsive">
             <div id="daftar_task">
-              <table class="table table-bordered">
-                <tr>
+              <table border="1" cellpadding="10" style="text-align:center;">
+                <tr bgcolor="#343a40"  style="color:#ffffff;">
                   <th >No.</th>
                   <th width="6%" >Id Task</th>
                   <th >Divisi</th>
@@ -37,6 +37,7 @@
                   <th width="10%">Start Date</th>
                   <th width="10%">End Date</th>
                   <th>Action Plan</th>
+                  <th></th>
                 </tr>
                 <?php
                   while($row = mysqli_fetch_array($result))

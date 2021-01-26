@@ -14,19 +14,19 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_plan ORDER BY id_plan DESC";
+  $query = "SELECT * FROM tabel_plan ORDER BY id_plan ASC";
   $result = mysqli_query($connect, $query);
 ?>
 <div class="row mb-2">
   <div class="table-responsive">
     <div id="daftar_plan">
-      <table class="table table-bordered">
-        <tr>
+      <table border="1" cellpadding="10" style="text-align:center;">
+        <tr  bgcolor="#343a40"  style="color:#ffffff;">
             <th>No.</th>
-            <th>Id Task</th>
-            <th>Start Date</th>
-            <th>Plan</th>
-            <th>Kendala</th>
+            <th width=10%>Id Task</th>
+            <th width=15%>Start Date</th>
+            <th width=60%>Plan</th>
+            <th width=15%>Kendala</th>
         </tr>
             <?php
               while($row = mysqli_fetch_array($result))
