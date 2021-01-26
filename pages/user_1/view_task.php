@@ -1,3 +1,8 @@
+
+
+<!DOCTYPE html>
+<html>
+
 <?php 
     session_start();
     $hak_akses = $_SESSION['hak_akses'];
@@ -17,9 +22,6 @@
   $query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
   $result = mysqli_query($connect,$query);
 ?>
-
-<!DOCTYPE html>
-<html>
 
 <head>
   <meta charset="utf-8">
@@ -49,6 +51,13 @@
   <link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <script
+	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/i18n/id.js" type="text/javascript"></script>
   
 </head>
 
@@ -151,65 +160,8 @@
     <!-- Main content -->
     <div class="content-wrapper">
       <div class="panel panel-flat">
-        <div align="left">
-          <!-- <<<<<<< HEAD -->
-          <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
-            class="btn btn-success">Tambah Task</button>
-          <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal"
-            class="btn btn-success" href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
-        </div>
-        <table class="table datatable-pagination">
-
-          <thead>
-            <tr>
-              <th>No.</th>
-              <th>Id Task</th>
-              <th>Divisi</th>
-              <th>Task</th>
-              <th>Detail Task</th>
-              <th>Pegawai</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Progress Saat Ini</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-                  $koneksi = mysqli_connect("localhost", "root", "", "magang_pal");
-                  $sel_query="SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task desc ;";
-                  $result = mysqli_query($koneksi,$sel_query);
-                  $no = 1;
-                  while($row = mysqli_fetch_assoc($result)) { 
-              ?>
-            <tr>
-              <td><?php echo $no ?></td>
-              <td><?php echo $row['id_task'] ?></td>
-              <td><?php echo $row['divisi'] ?></td>
-              <td><?php echo $row['task'] ?></td>
-              <td><?php echo $row['detail_task'] ?></td>
-              <td>
-                <a href="#" type="button" class="btn btn-success btn-md" data-toggle="modal"
-                  data-target="#myModal<?php echo $row['id_task']; ?>">Edit</a>
-              </td>
-              </td>
-              <td><?php echo $row['start_date'] ?></td>
-              <td><?php echo $row['end_date']?></td>
-              <td>45%</td>
-            </tr>
-
-            <?php $no++;
-              } ?>
-            </form>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-    =======
     <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
       class="btn btn-success">Tambah Task</button>
-    <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_pj_modal" class="btn btn-success"
-      href="index.php?p=view_task?id=<?php echo $row["divisi"]; ?>">Tambah PJ</button>
   </div>
   <div class="row mb-2">
     <br />
@@ -250,8 +202,6 @@
     </div>
   </div>
   </div>
-  <!-- >>>>>>> 3f4ecd7c594c5cc41b82072421a6561088abb6bb -->
-  <!-- /.content -->
   </div>
 
 
@@ -350,8 +300,7 @@
                 </div> <br><br>
                 <div class="form-group">
                   <label>Penanggung Jawab</label>
-                  <select  id="pj" name="pj[]" multiple="multiple"
-                          style="width: 100%; height:50px;">
+                  <select  id="pj" name="pj[]" multiple="" class="chosen-select form-control" style="width: 100%; height:60px; border:2px solid #000000">
                           <option value="none">- Pilih Penanggung Jawab -</option>
                           <?php     
                                 $con = mysqli_connect("localhost","root","","magang_pal");
@@ -361,6 +310,7 @@
                           ?>
                   </select>
                 </div>
+
               </div><br><br>
               <br />
               <div class="right-card-footer">
@@ -376,96 +326,17 @@
 </div>
 </div>
 </div>
-<script
-	src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous"></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/i18n/id.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 		$(document).ready(function() {
 		    $('#pj').select2({
-          placeholder: "wokeee",
+          placeholder: " pilih pj",
 				allowClear: true,
 				language: "id"
 		    });
 		});
 	</script>
 </form>
-
-
-<div id="create_pj_modal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Tambah Penanggungjawab <?php echo $_SESSION['divisi'] ?></h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <section class="content">
-          <div class="container-fluid">
-            <form method="POST" action="create_pj.php">
-              <div class="form-group control-group after-add-more">
-                <div class="control-group">
-                  <div class="form-group">
-                    <div class="container-fluid">
-                      <div class="form-group">
-                        <label>ID Task</label>
-                      </div>
-                      <?php   
-                                $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>
-                      <td>
-                        <select name="id_task" id="id_task" multiple="multiple" class="form-control" onchange='changeValue(this.value)'
-                          required>
-                          <option value="none">- Pilih Task-</option>
-                          <?php     
-                                $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
-                                while ($row = mysqli_fetch_array($result)) {  
-                                  echo "<option value='$row[id_task]'>$row[id_task] - $row[task]</option>";                                }  
-                                ?>
-                        </select>
-                      </td><br>
-                      <div class="control-group">
-                        <div class="form-group">
-                          <div class="container-fluid">
-                            <div class="form-group">
-                              <label>NIP</label>
-                            </div>
-                            <?php   
-                                $con = mysqli_connect("localhost","root","","magang_pal");  
-                            ?>
-                            <td>
-                              <select name="nip" id="nip" class="form-control" onchange='changeValue(this.value)'
-                                required>
-                                <option value="none">- Pilih NIP-</option>
-                                <?php     
-                                $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip DESC");  
-                                $a        = "var nama = new Array();\n;";    
-                                while ($row = mysqli_fetch_array($result)) {  
-                                echo '<option name="nip" value="'.$row['nip'] . '">' . $row['nip'] . '</option>';   
-                                $a .= "nama['" . $row['nip'] . "'] = {nama:'" . addslashes($row['nama'])."'};\n";  
-                                }  
-                                ?>
-                              </select>
-                            </td><br>
-                            <tr>
-                              <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Enter task"
-                                  style="border: 1px solid #000000" readonly>
-                              </div>
-                            </tr>
-
-                            <div class="right-card-footer">
-                              <button type="post" name="submit"
-                                class="btn btn-primary">Submit</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                            </div>
-                            <br>
-                          </div>
-                        </div>
-            </form>
 
 
             <div id="dataModal" class="modal fade">
@@ -495,7 +366,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Tambah Penanggungjawab </h4>
+              <h4 class="modal-title">Lihat karyawan </h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
