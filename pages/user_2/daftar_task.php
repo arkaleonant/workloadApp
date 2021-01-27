@@ -23,7 +23,8 @@
   $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 ?>
-
+<h2>Daftar Task</h2>
+      <div class="panel panel-flat">
         <div class="row mb-2"> 
           <div class="table-responsive">
             <div id="daftar_task">
@@ -65,6 +66,7 @@
             </div>
           </div>
         </div>
+      </div>
 
   
 

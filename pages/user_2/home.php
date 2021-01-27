@@ -19,7 +19,7 @@
     $data_user = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
     $jumlah_user = mysqli_num_rows($data_user);
 ?>
-
+<br>
 <div class="panel panel-flat">
                 <!-- Small boxes (Stat box) -->
             <div class="row">
@@ -65,25 +65,23 @@
                     </div>
                 </div>
             </div>
+            <br><br>
+    <h2>Cek Plan yang belum selesai</h2><br>
+    <form class="form-group">
+        <select name="users" onchange="showUser(this.value)" class="form-control" style="border:1px solid #000000">
+            <option value="none">- pilih task -</option>
+            <?php     
+                $con = mysqli_connect("localhost","root","","magang_pal");
+                $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
+                while ($row = mysqli_fetch_array($result)) {  
+                    echo "<option value='$row[id_task]'>$row[task]</option>";                                
+                }  
+            ?>
+        </select>
+    </form>
+    <br>
+    <div id="txtHint"><b>Data Akan Ditampilkan Disini..</b></div>
 </div>
-
-<br><br>
-
-<h2>Cek Plan yang belum selesai</h2><br>
-<form class="form-group">
-    <select name="users" onchange="showUser(this.value)" class="form-control" style="border:1px solid #000000">
-        <option value="none">- pilih task -</option>
-        <?php     
-            $con = mysqli_connect("localhost","root","","magang_pal");
-            $result = mysqli_query($con, "SELECT * from tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC");  
-            while ($row = mysqli_fetch_array($result)) {  
-                echo "<option value='$row[id_task]'>$row[task]</option>";                                
-            }  
-        ?>
-    </select>
-</form>
-<br>
-<div id="txtHint"><b>Data Akan Ditampilkan Disini..</b></div>
 
 
 <script>

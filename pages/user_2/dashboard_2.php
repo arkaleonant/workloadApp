@@ -48,12 +48,9 @@
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+  <nav class="main-header navbar navbar-expand bg-dark-gradient navbar-dark border-bottom">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
-      </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="dashboard_2.php" class="nav-link">Home</a>
       </li>
@@ -77,31 +74,28 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="dashboard_2.php?home" class="brand-link">
-	  <h2 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h2>
-	  <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
-    </a>
-
-    <!-- Sidebar -->
+  <aside class="main-sidebar bg-dark-gradient sidebar-dark-primary elevation-4">
+    <!-- Brand Logo --> <br>
+    <img src="../../img/logpal.jpg" width="245px" height="50px">
+        <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-4 pb-2 mb-2 d-flex">
         <div class="image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-3" alt="User Image">
         </div>
         <div class="info">
           <a href="" class="d-block"><?php echo $_SESSION['nama']; ?></a>
         </div>
       </div>
+      <a href="dashboard_2.php?home" class="brand-link">
+      <h3 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h3>
+      <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
+      </a>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-
               <li class="nav-item">
                 <a href="dashboard_2.php?home" class="nav-link <?php if(isset($_REQUEST['home'])){ echo"active"; } ?>">
                   <i class="fa fa-dashboard nav-icon"></i>
@@ -150,7 +144,7 @@
 
   
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
+  <footer class="main-footer bg-dark-gradient">
     <strong>Copyright &copy; 2020 <a href="https://pal.co.id">PT. PAL Indonesia</a>.</strong>
     All rights reserved.
   </footer>

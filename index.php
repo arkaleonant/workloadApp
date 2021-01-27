@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html>  
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,20 +18,17 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('img/842287.jpg'); background-size:cover">
 <div class="login-box">
-  <div class="login-logo">
-    <img src="./img/logopal.jpg" alt="" width="300px" height="100px">
-  </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+      <img src="./img/logopal.jpg" alt="" width="315px" height="100px">
       <h4 class="login-box-msg">WORKLOAD WEBSITE</h4>
-
       <form action="./function/login.php" method="post">
         <div class="form-group has-feedback">
             <span class="fa fa-user form-control-feedback"></span>
-            <input type="numeric" name="nip" class="form-control" placeholder="Nomor Induk Pegawai">
+            <input type="number" name="nip" class="form-control" placeholder="Nomor Induk Pegawai">
         </div>
         <div class="form-group has-feedback">
             <span class="fa fa-lock form-control-feedback"></span>

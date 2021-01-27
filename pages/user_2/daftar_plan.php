@@ -17,6 +17,8 @@
   $query = "SELECT * FROM tabel_plan ORDER BY id_plan ASC";
   $result = mysqli_query($connect, $query);
 ?>
+
+<h2>Daftar Plan</h2>
 <div class="row mb-2">
   <div class="table-responsive">
     <div id="daftar_plan">
@@ -25,7 +27,8 @@
             <th>No.</th>
             <th width=10%>Id Task</th>
             <th width=15%>Start Date</th>
-            <th width=60%>Plan</th>
+            <th width=50%>Plan</th>
+            <th width=10%>Status</th>
             <th width=15%>Kendala</th>
         </tr>
             <?php
@@ -37,7 +40,27 @@
               <td><?php echo $row['id_task'] ?></td>
               <td><?php echo $row['date'] ?></td>
               <td><?php echo $row['plan'] ?></td>
-              <td><input type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td>
+              <td>
+                  <?php if($row['status']=='1') 
+                      {
+                    ?>
+                        <a>Sudah Selesai</a>
+                    <?php } else { ?>
+                      <a>Belum Selesai</a>  
+                    <?php }  
+                    ?>  
+                  </td>
+              </td>
+              <td>
+                <?php if($row['status']=='1') 
+                  {
+                ?>
+                    <input disabled type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>
+                <?php } else { ?>
+                    <input type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>  
+                <?php }  
+                 ?>  
+              </td>
         </tr>
               <?php $no++;
                 }
