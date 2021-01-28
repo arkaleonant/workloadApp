@@ -26,7 +26,7 @@
 <br>
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">Form Tambah Data Dinamis</div>
+    <div class="panel-heading">Tambahkan Penanggung Jawab</div>
     <div class="panel-body">
       <!-- membuat form  -->
       <!-- gunakan tanda [] untuk menampung array  -->
@@ -46,10 +46,8 @@
                           
                   </select>
             <br>
-            <button class="btn btn-success add-more" type="button">
-              <i class="glyphicon glyphicon-plus"></i> Add
-            </button>
-            <hr>
+            
+            
           </div>
           <button class="btn btn-success" type="submit">Submit</button>
         </form>
@@ -61,6 +59,7 @@
         $query="SELECT * FROM tabel_task ORDER BY id_task DESC LIMIT 1";
         $sql=mysqli_query($connect, $query);
         $row=mysqli_fetch_array($sql);?>
+        <hr>
             <div class="control-group">
             <label>Id Task</label>
             <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>">
@@ -76,6 +75,9 @@
                           
                   </select>
               <br>
+              <button class="btn btn-success add-more" type="button">
+              <i class="glyphicon glyphicon-plus"></i> Add
+            </button>
               <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
               <hr>
             </div>

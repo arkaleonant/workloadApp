@@ -39,6 +39,7 @@
                   <th >Detail Task</th>
                   <th width="10%">Start Date</th>
                   <th width="10%">End Date</th>
+                  <th>Status</th>
                   <th>Detail PJ</th>
                   <th>Action</th>
                 </tr>
@@ -54,8 +55,17 @@
                     <td><?php echo $row['detail_task'] ?></td>
                     <td><?php echo $row['start_date'] ?></td>
                     <td><?php echo $row['end_date']?></td>
+                    <td> <?php if($row['status']=='0') 
+                      { ?>
+                        <a>Proses</a>
+                    <?php } else if ($row['status']=='1'){ ?>
+                      <a>Sudah Selesai</a>
+                    <?php } else { ?>
+                      <a>Tidak Selesai</a>  
+                    <?php }  ?>  
+                  </td>
                     <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
-                    <td><a href="tambah_pj.php" type="button" value="Tambah PJ">Tambah PJ</a></td>  
+                    <td><a href='update_status.php?id=<?php echo $row[id_task] ?>'>Tidak Selesai</td>
                   </tr>
                   <?php $no++;
                   }
@@ -162,7 +172,7 @@
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-   <h4 class="modal-title">Detal Penanggung Jawab</h4>
+   <h4 class="modal-title">Detail Penanggung Jawab</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
    </div>
    <div class="modal-body" id="detail_pj">

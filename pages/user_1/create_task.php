@@ -9,7 +9,6 @@ if($_POST){
     $detail_task = $_POST['detail_task'];
     $start_date = $_POST['tanggal_mulai'];
     $end_date = $_POST['end_date'];
-    $pj = $_POST['pj'];
 
     $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."')");
     
