@@ -11,64 +11,65 @@
     }
     error_reporting(0);
 ?>
-
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC";
+  $query = "SELECT * FROM tabel_plan ORDER BY id_plan ASC";
   $result = mysqli_query($connect, $query);
 ?>
 
-<?php 
-  $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
-											$row = mysqli_fetch_array($sql);
-?>
-<h2>Daftar Task</h2>
-      <div class="panel panel-flat">
-        <div class="row mb-2"> 
-          <div class="table-responsive">
-            <div id="daftar_task">
-              <table border="1" cellpadding="10" style="text-align:center;">
-                <tr bgcolor="#343a40"  style="color:#ffffff;">
-                  <th >No.</th>
-                  <th width="6%" >Id Task</th>
-                  <th >Divisi</th>
-                  <th >Task</th>
-                  <th >Detail Task</th>
-                  <th width="10%">Start Date</th>
-                  <th width="10%">End Date</th>
-                  <th>Action Plan</th>
-                  <th></th>
-                </tr>
-                <?php
-                  while($row = mysqli_fetch_array($result))
+<h2>Daftar Plan</h2>
+<div class="row mb-2">
+  <div class="table-responsive">
+    <div id="daftar_plan">
+      <table border="1" cellpadding="10" style="text-align:center;">
+        <tr  bgcolor="#343a40"  style="color:#ffffff;">
+            <th>No.</th>
+            <th width=10%>Id Task</th>
+            <th width=15%>Start Date</th>
+            <th width=50%>Plan</th>
+            <th width=10%>Status</th>
+            <th width=15%>Kendala</th>
+        </tr>
+            <?php
+              while($row = mysqli_fetch_array($result))
+              {
+            ?>
+        <tr>
+              <td><?php echo $no ?></td>
+              <td><?php echo $row['id_task'] ?></td>
+              <td><?php echo $row['date'] ?></td>
+              <td><?php echo $row['plan'] ?></td>
+              <td>
+                  <?php if($row['status']=='1') 
+                      {
+                    ?>
+                        <a>Sudah Selesai</a>
+                    <?php } else { ?>
+                      <a>Belum Selesai</a>  
+                    <?php }  
+                    ?>  
+                  </td>
+              </td>
+              <td>
+                <?php if($row['status']=='1') 
                   {
-                  ?>
-                  <tr>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $row['id_task'] ?></td>
-                    <td><?php echo $row['divisi'] ?></td>
-                    <td><?php echo $row['task'] ?></td>
-                    <td><?php echo $row['detail_task'] ?></td>
-                    <td><?php echo $row['start_date'] ?></td>
-                    <td><?php echo $row['end_date']?></td>
-                    <td>
-                      <input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" />
-                    </td> 
-                    <td>
-                      <input type="button" name="add" value="Tambah" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" />
-                    </td>
-                  </tr>
-                  <?php $no++;
-                  }
                 ?>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  
+                    <input disabled type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>
+                <?php } else { ?>
+                    <input type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>  
+                <?php }  
+                 ?>  
+              </td>
+        </tr>
+              <?php $no++;
+                }
+              ?>
+      </table>
+    </div>
+  </div>
+</div>
+                
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -110,46 +111,40 @@
 
 
 <div id="addModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-   <h4 class="modal-title">Tambah Plan</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    
-   </div>
-      <div class="modal-body" id="form_tambah">
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Tambah Kendala</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="form_tambah"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
- </div>
 </div>
 
 <div id="dataModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-   <h4 class="modal-title">Lihat Pegawai</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-   </div>
-   <div class="modal-body" id="detail_pegawai">
-    
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Lihat Pegawai</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="detail_pegawai"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
- </div>
 </div>
 
 <script>  
- 
-
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"tambah_plan.php",
+   url:"tambah_kendala.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){
@@ -171,7 +166,6 @@ $(document).on('click', '.view_data', function(){
    }
   });
  });
-
  </script>
 
 
