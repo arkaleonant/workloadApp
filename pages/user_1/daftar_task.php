@@ -144,19 +144,6 @@
                   <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000"
                     required>
                 </div> <br><br>
-                <!-- <div class="form-group">
-                  <label>Penanggung Jawab</label>
-                  <select  id="pj" name="pj[]" multiple="" class="selec2" style="width: 100%; height:60px; border:2px; color:black">
-                          <option value="none">- Pilih Penanggung Jawab -</option>
-                          <?php     
-                                $con = mysqli_connect("localhost","root","","magang_pal");
-                                $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip ASC");  
-                                while ($row = mysqli_fetch_array($result)) {  
-                                  echo "<option value='$row[nama]'>$row[nama]</option>";                                }  
-                          ?>
-                  </select>
-                </div> -->
-
               </div><br><br>
               <br />
               <div class="right-card-footer">
@@ -171,6 +158,38 @@
 </div>
 </div>
 
+<div id="dataModal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+   <h4 class="modal-title">Detal Penanggung Jawab</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+   </div>
+   <div class="modal-body" id="detail_pj">
+    
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
+
+<script>
+  $(document).on('click', '.view_data', function(){
+  var id_task = $(this).attr("id");
+  $.ajax({
+   url:"detail_pj.php",
+   method:"POST",
+   data:{id_task:id_task},
+   success:function(data){
+    $('#detail_pj').html(data);
+    $('#dataModal').modal('show');
+   }
+  });
+ });
+</script>
+
 <script type="text/javascript">
 		$(document).ready(function() {
 		    $('#pj').select2({
@@ -182,34 +201,5 @@
 	</script>
 </form>
 
-<div id="addModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-   <h4 class="modal-title">Tambah Plan</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    
-   </div>
-      <div class="modal-body" id="form_tambah">
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
-  </div>
- </div>
-</div>
 
-<script>
-    $(document).on('click', '.tambah_data', function(){
-  var id_task = $(this).attr("id");
-  $.ajax({
-   url:"tambah_plan.php",
-   method:"POST",
-   data:{id_task:id_task},
-   success:function(data){
-    $('#form_tambah').html(data);
-    $('#addModal').modal('show');
-   }
-  });
- });
-</script>
+
