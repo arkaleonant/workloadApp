@@ -11,12 +11,13 @@ if($_POST){
     $end_date = $_POST['end_date'];
     $pj = $_POST['pj'];
 
-    $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date,pj) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."','".$pj."')");
+    $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."')");
     
     mysqli_query($conn, $query);
     //mysqli_query("INSERT INTO tabel_task values('$id_task','$divisi','$task','$detail_task','$start_date','$end_date')")
 
-    header("location:../user_1/view_task.php");
+    header("location:../user_1/dashboard_1?tambah_pj");
+    <?php echo"<script>document.location='index.php?jenis'</script>";?>
 }
 
 ?>

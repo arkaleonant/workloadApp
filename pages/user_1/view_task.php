@@ -2,7 +2,9 @@
 
 <!DOCTYPE html>
 <html>
-
+<?php
+  include('create_task_ui.php');
+?>
 <?php 
     session_start();
     $hak_akses = $_SESSION['hak_akses'];
@@ -175,11 +177,10 @@
             <th>Divisi</th>
             <th>Task</th>
             <th>Detail Task</th>
-            <!-- <th>Pegawai</th> -->
+            <th>Pegawai</th>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Progress Saat Ini</th>
-            <th>Penanggung jawab</th>
           </tr>
           <?php
                   while($row = mysqli_fetch_array($result)) { 
@@ -190,12 +191,11 @@
             <td><?php echo $row['divisi'] ?></td>
             <td><?php echo $row['task'] ?></td>
             <td><?php echo $row['detail_task'] ?></td>
-            <!-- <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>"
-            class="btn btn-info btn-xs view_data" /></td> -->
+            <td><input type="button" name="view" value="Lihat" id="<?php echo $row["id_task"]; ?>"
+                class="btn btn-info btn-xs view_data" /></td>
             <td><?php echo $row['start_date'] ?></td>
             <td><?php echo $row['end_date']?></td>
             <td>45%</td>
-            <td><?php echo $row['pj']?></td>
           </tr>
           <?php $no++;
               } ?>
@@ -308,8 +308,7 @@
                                 $con = mysqli_connect("localhost","root","","magang_pal");
                                 $result = mysqli_query($con, "SELECT * from pegawai WHERE divisi='$_SESSION[divisi]' AND hak_akses='2' ORDER BY nip ASC");  
                                 while ($row = mysqli_fetch_array($result)) {  
-                                  echo "<option value='$row[nama]'>$row[nama]</option>";                                
-                                }  
+                                  echo "<option value='$row[nama]'>$row[nama]</option>";                                }  
                           ?>
                   </select>
                 </div>

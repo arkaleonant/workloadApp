@@ -49,7 +49,7 @@ if(isset($_POST["id_task"]))
             <input type="date" name="date" id="date" class="form-control" required/>
             <br />
 
-            <label>Plan</label>
+            <label>Plan</label> 
             <textarea name="plan" id="plan" class="form-control"></textarea>
             <br />
 

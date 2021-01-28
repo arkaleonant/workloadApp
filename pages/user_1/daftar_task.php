@@ -144,7 +144,7 @@
                   <input type="date" name="end_date" class="form-control float-right" style="border: 1px solid #000000"
                     required>
                 </div> <br><br>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label>Penanggung Jawab</label>
                   <select  id="pj" name="pj[]" multiple="" class="selec2" style="width: 100%; height:60px; border:2px; color:black">
                           <option value="none">- Pilih Penanggung Jawab -</option>
@@ -155,7 +155,7 @@
                                   echo "<option value='$row[nama]'>$row[nama]</option>";                                }  
                           ?>
                   </select>
-                </div>
+                </div> -->
 
               </div><br><br>
               <br />
