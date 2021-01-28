@@ -138,6 +138,8 @@
 				include("daftar_task.php");
 			}else if(isset($_REQUEST['plan'])){
 				include("daftar_plan.php");
+			}else if(isset($_REQUEST['tambah_plan'])){
+				include("add_plan.php");
 			}?>
     </div>
   </div>
