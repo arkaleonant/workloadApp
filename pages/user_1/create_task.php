@@ -13,11 +13,15 @@ if($_POST){
 
     $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."')");
     
-    mysqli_query($conn, $query);
     //mysqli_query("INSERT INTO tabel_task values('$id_task','$divisi','$task','$detail_task','$start_date','$end_date')")
-
-    header("location:../user_1/dashboard_1?tambah_pj");
-    <?php echo"<script>document.location='index.php?jenis'</script>";?>
+    if (mysqli_query($conn, $query)){ ?>
+        <script type="text/javascript"> alert("Task berhasil ditambahkan !"); </script>
+        <?php echo"<script>document.location='dashboard_1.php?tambah_pj'</script>";
+    }
+    else{?>		
+       <script type="text/javascript"> alert("Gagal menambahkan task !"); </script>
+        <?php echo"<script>document.location='dashboard_1.php?task'</script>"; 
+    }
 }
 
 ?>

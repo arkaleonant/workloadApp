@@ -1,20 +1,23 @@
 <?php
+    //membuat koneksi
+    $con = mysqli_connect("localhost", "root", "", "magang_pal");
 
-include('../../function/koneksi.php');
-
-if($_POST){
     
-    $id_task = $_POST['id_task'];
-    $nip = $_POST['nip'];
-    $nama = $_POST['nama'];
+    //memasukkan data ke array
+        $id_task       = $_POST['id_task'];
+        $nip        = $_POST['nip'];
 
-    $query = "INSERT INTO `tabel_pj`(`id_task`, `nip`, `nama`) VALUES ('$id_task','$nip','$nama')";
-    
-    
-    mysqli_query($conn, $query);
+        $total = count($id_task);
 
-    header("location:../user_1/view_task.php");
-}
 
-?>
+    //melakukan perulangan input
+    for($i=0; $i<$total; $i++){
 
+        mysqli_query($con, "insert into tabel_pj set
+            id_task    = '$id_task[$i]',
+            nip      = '$nip[$i]'
+        ");
+    }
+
+    //kembali ke halaman sebelumnya
+    header("location: daftar_task.php");
