@@ -22,7 +22,7 @@ if ($cek>0){
         if($row['hak_akses']=="1"){ ?>
             <script language="JavaScript">
                 alert('Login Berhasil !');
-                document.location='../pages/user_1/dashboard_1.php';
+                document.location='../pages/user_1/dashboard_1.php?home';
             </script>
         <?php }else if($row['hak_akses']=="2"){ ?>
             <script language="JavaScript">
