@@ -15,7 +15,14 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC";
+  $query = "SELECT * FROM tabel_task 
+            INNER JOIN tabel_pj 
+            ON tabel_task.id_task = tabel_pj.id_task 
+            WHERE tabel_pj.nip='$_SESSION[nip]' 
+            ORDER BY tabel_task.id_task DESC";
+  // $query="SELECT tt.id_task, tt.divisi, tt.task, tt.detail_task, tt.start_date, tt.end_date 
+  //         FROM tabel_task tt, tabel_pj pj 
+  //         ON pj.id_task = tt.id_task WHERE nip'$_SESSION[nip]'";
   $result = mysqli_query($connect, $query);
 ?>
 
