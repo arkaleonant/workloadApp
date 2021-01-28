@@ -300,7 +300,7 @@
                 </div> <br><br>
                 <div class="form-group">
                   <label>Penanggung Jawab</label>
-                  <select  id="pj" name="pj[]" multiple="" class="chosen-select form-control" style="width: 100%; height:60px; border:2px solid #000000">
+                  <select  id="pj" name="pj[]" multiple="" class="selec2" style="width: 100%; height:60px; border:2px; color:black">
                           <option value="none">- Pilih Penanggung Jawab -</option>
                           <?php     
                                 $con = mysqli_connect("localhost","root","","magang_pal");
@@ -315,8 +315,6 @@
               <br />
               <div class="right-card-footer">
                 <button type="post" name="submit" class="btn btn-primary">Submit</button>
-              </div>
-              <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
           </div>
