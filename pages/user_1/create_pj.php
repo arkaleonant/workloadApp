@@ -17,7 +17,7 @@
             id_task    = '$id_task[$i]',
             nip      = '$nip[$i]'
         ");
-    }
+    } ?>
 
-    //kembali ke halaman sebelumnya
-    header("location: daftar_task.php");
+    <script type="text/javascript"> alert("Sukses Menambahkan PJ"); </script>
+    <?php echo"<script>document.location='dashboard_1.php?task'</script>"; ?>

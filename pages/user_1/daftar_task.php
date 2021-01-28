@@ -55,7 +55,7 @@
                     <td><?php echo $row['start_date'] ?></td>
                     <td><?php echo $row['end_date']?></td>
                     <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
-                    <td><input type="button" name="add" value="Tambah PJ" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" /></td>  
+                    <td><a href="tambah_pj.php" type="button" value="Tambah PJ">Tambah PJ</a></td>  
                   </tr>
                   <?php $no++;
                   }
