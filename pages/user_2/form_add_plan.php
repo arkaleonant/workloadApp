@@ -13,7 +13,7 @@ $('#add_form').on("submit", function(event){
   else  
   {  
    $.ajax({  
-    url:"insert_plan.php",  
+    url:"f_add_plan.php",  
     method:"POST",  
     data:$('#add_form').serialize(),  
     beforeSend:function(){  

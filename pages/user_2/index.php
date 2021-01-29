@@ -52,7 +52,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="dashboard_2.php" class="nav-link">Home</a>
+        <a href="index.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -88,7 +88,7 @@
           <a href="" class="d-block"><?php echo $_SESSION['nama']; ?></a>
         </div>
       </div>
-      <a href="dashboard_2.php?home" class="brand-link">
+      <a href="index.php?home" class="brand-link">
       <h3 class="brand-text font-weight-light"><b><?php echo $_SESSION['divisi']; ?></b></h3>
       <span class="brand-text font-weight-light"><?php echo $_SESSION['jabatan']; ?></span>
       </a>
@@ -97,21 +97,27 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li class="nav-item">
-                <a href="dashboard_2.php?home" class="nav-link <?php if(isset($_REQUEST['home'])){ echo"active"; } ?>">
+                <a href="index.php?home" class="nav-link <?php if(isset($_REQUEST['home'])){ echo"active"; } ?>">
                   <i class="fa fa-dashboard nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
               <li class="nav-item ">
-                <a href="dashboard_2.php?task" class="nav-link <?php if(isset($_REQUEST['task'])){ echo"active"; } ?>">
+                <a href="index.php?task" class="nav-link <?php if(isset($_REQUEST['task'])){ echo"active"; } ?>">
                   <i class="nav-icon fa fa-pencil"></i>
                   <p>Task</p>
                 </a>
               </li>
               <li class="nav-item ">
-                <a href="dashboard_2.php?plan" class="nav-link <?php if(isset($_REQUEST['plan'])){ echo"active"; } ?>">
+                <a href="index.php?plan" class="nav-link <?php if(isset($_REQUEST['plan'])){ echo"active"; } ?>">
                   <i class="nav-icon fa fa-book"></i>
-                  <p>Daftar Plan</p>
+                  <p>Plan</p>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a href="index.php?realisasi" class="nav-link <?php if(isset($_REQUEST['realisasi'])){ echo"active"; } ?>">
+                  <i class="nav-icon fa fa-address-book"></i>
+                  <p>Realisasi</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -135,12 +141,9 @@
 			if(isset($_REQUEST['home'])){
 				include("home.php");
 			}else if(isset($_REQUEST['task'])){
-				include("daftar_task.php");
+				include("tabel_task.php");
 			}else if(isset($_REQUEST['plan'])){
-				include("daftar_plan.php");
-			}else if(isset($_REQUEST['tambah_plan'])){
-				include("add_plan.php");
-			}?>
+				include("tabel_plan.php");}?>
     </div>
   </div>
 

@@ -14,7 +14,6 @@ if(isset($_POST["id_task"]))
                     <th><label>Tanggal</label></th>  
                     <th><label>Plan</label></th>
                     <th><label>Status</label></th>  
-                    <th><label>Action</label></th>
                 </tr>';
     while($row = mysqli_fetch_array($result))
     {
@@ -24,7 +23,6 @@ if(isset($_POST["id_task"]))
             <td width="30%">'.$row["date"].'</td>
             <td width="50%">'.$row["plan"].'</td>
             <td width="30%" style="text-align:center;">'.$row["status"].'</td>
-            <td width="20%"><button type="btn btn-success" value="selesai">selesai</button>
         </tr>
      ';$no++;
     } 

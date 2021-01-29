@@ -23,7 +23,7 @@
 
     $jumlah_task = mysqli_num_rows($data_task);    
     $jumlah_user = mysqli_num_rows($data_user);
-    $persentase = ($jml_0/$jml_semua)*100;
+    $persentase = number_format(($jml_0/$jml_semua)*100);
 ?>
 <br>
 <div class="panel panel-flat">

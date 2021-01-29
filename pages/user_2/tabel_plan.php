@@ -14,7 +14,13 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_plan ORDER BY id_plan ASC";
+  $query = "SELECT * FROM tabel_task 
+            INNER JOIN tabel_plan 
+            ON tabel_task.id_task = tabel_plan.id_task 
+            INNER JOIN tabel_pj
+            ON tabel_plan.id_task = tabel_pj.id_task 
+            WHERE tabel_pj.nip='$_SESSION[nip]' 
+            ORDER BY tabel_task.id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>
 
@@ -25,11 +31,12 @@
       <table border="1" cellpadding="10" style="text-align:center;">
         <tr  bgcolor="#343a40"  style="color:#ffffff;">
             <th>No.</th>
+            <th width=5%>ID Plan</th>
             <th width=10%>Id Task</th>
             <th width=15%>Start Date</th>
             <th width=50%>Plan</th>
             <th width=10%>Status</th>
-            <th width=15%>Kendala</th>
+            <th width=15%>Realisasi</th>
         </tr>
             <?php
               while($row = mysqli_fetch_array($result))
@@ -37,6 +44,7 @@
             ?>
         <tr>
               <td><?php echo $no ?></td>
+              <td><?php echo $row['id_plan'] ?></td>
               <td><?php echo $row['id_task'] ?></td>
               <td><?php echo $row['date'] ?></td>
               <td><?php echo $row['plan'] ?></td>
@@ -52,14 +60,7 @@
                   </td>
               </td>
               <td>
-                <?php if($row['status']=='1') 
-                  {
-                ?>
-                    <input disabled type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>
-                <?php } else { ?>
-                    <input type="button" name="add" value="Tambah" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data"/>  
-                <?php }  
-                 ?>  
+              <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />
               </td>
         </tr>
               <?php $no++;
@@ -109,22 +110,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 
-
-<div id="addModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Tambah Kendala</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body" id="form_tambah"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div id="dataModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -139,12 +124,29 @@
     </div>
   </div>
 </div>
+ 
+<div id="addModal" class="modal fade">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+   <h4 class="modal-title">Realisasi</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+   </div>
+      <div class="modal-body" id="form_tambah">
+   </div>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   </div>
+  </div>
+ </div>
+</div>
 
-<script>  
+<script>
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"tambah_kendala.php",
+   url:"form_update.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){
@@ -167,6 +169,7 @@ $(document).on('click', '.view_data', function(){
   });
  });
  </script>
+
 
 
 
