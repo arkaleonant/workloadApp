@@ -1,19 +1,8 @@
 <script>
 $('#add_form').on("submit", function(event){  
-  event.preventDefault();  
-  if($('#date').val() == "")  
-  {  
-   alert("Mohon Isi tanggal ");  
-  }  
-  else if($('#kendala').val() == '')  
-  {  
-   alert("Mohon Isi kendala anda");  
-  }  
- 
-  else  
-  {  
+  event.preventDefault();   
    $.ajax({  
-    url:"insert_kendala.php",  
+    url:"update.php",  
     method:"POST",  
     data:$('#add_form').serialize(),  
     beforeSend:function(){  
@@ -22,7 +11,7 @@ $('#add_form').on("submit", function(event){
     success:function(data){  
      $('#add_form')[0].reset();  
      $('#addModal').modal('hide');  
-     $('#tabel_task').html(data);  
+     $('#daftar_plan').html(data);  
     }  
    });  
   }  
@@ -38,20 +27,19 @@ if(isset($_POST["id_plan"]))
 	$row = mysqli_fetch_array($result);
      $output .= '
         <form method="post" id="add_form">
-            <label>ID Plan</label>
-            <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/>
-            <br />
+            <label>ID Task</label>
+            <input type="text" name="id_task" id="id_task" value="'.$_POST["id_task"].'" class="form-control"  readonly/>
 
-            <label>Plan</label>
-            <input type="text" name="plan" id="plan" value="'.$row['plan'].'" class="form-control" readonly/>
+            <label>Task</label>
+            <input type="text" name="task" id="task" value="'.$row['task'].'" class="form-control" readonly/>
             <br />
 
             <label>Tanggal</label>
-            <input type="date" name="date" id="date" value="'.$row['date'].'" class="form-control"readonly/>
+            <input type="date" name="date" id="date" class="form-control"  value="'. date("Y-m-d") .'" required/>
             <br />
 
-            <label>Kendala</label>
-            <textarea name="kendala" id="kendala" class="form-control"></textarea>
+            <label>Plan</label>
+            <textarea name="plan" id="plan" class="form-control"></textarea>
             <br />
 
             <input type="submit" name="add" id="add" value="Add Plan" class="btn btn-success" />

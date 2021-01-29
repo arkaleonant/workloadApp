@@ -13,7 +13,7 @@ $('#add_form').on("submit", function(event){
   else  
   {  
    $.ajax({  
-    url:"insert_plan.php",  
+    url:"f_add_plan.php",  
     method:"POST",  
     data:$('#add_form').serialize(),  
     beforeSend:function(){  
@@ -46,7 +46,7 @@ if(isset($_POST["id_task"]))
             <br />
 
             <label>Tanggal</label>
-            <input type="date" name="date" id="date" class="form-control" required/>
+            <input type="date" name="date" id="date" class="form-control"  value="'. date("Y-m-d") .'" required/>
             <br />
 
             <label>Plan</label>

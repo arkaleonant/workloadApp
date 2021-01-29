@@ -156,7 +156,7 @@
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"tambah_plan.php",
+   url:"form_add_plan.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){
@@ -169,7 +169,7 @@
 $(document).on('click', '.view_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"detail_plan.php",
+   url:"f_detail_plan.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){

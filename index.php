@@ -38,6 +38,9 @@
           <div class="col-15">
             <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
           </div>
+          <div>
+            <a href="hint.php">hint login</a>
+          </div>
           <!-- /.col -->
         </div>
       </form>

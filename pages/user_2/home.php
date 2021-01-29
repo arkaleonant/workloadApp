@@ -14,10 +14,16 @@
     error_reporting(0);
 
     $data_task = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
-    $jumlah_task = mysqli_num_rows($data_task);
-
     $data_user = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
+    
+    $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='0'"))[0];
+    $jml_1 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='1'"))[0];
+    $jml_semua = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan"))[0];
+    
+
+    $jumlah_task = mysqli_num_rows($data_task);    
     $jumlah_user = mysqli_num_rows($data_user);
+    $persentase = number_format(($jml_0/$jml_semua)*100);
 ?>
 <br>
 <div class="panel panel-flat">
@@ -54,8 +60,8 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>50 %</h3>
-                                <p>Task Progress</p>
+                                <h3><?php echo $persentase ?> %</h3>
+                                <p>Plan belum selesai</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
