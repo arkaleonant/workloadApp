@@ -2,7 +2,7 @@
 $('#add_form').on("submit", function(event){  
   event.preventDefault();   
    $.ajax({  
-    url:"update.php",  
+    url:"f_add_realisasi.php",  
     method:"POST",  
     data:$('#add_form').serialize(),  
     beforeSend:function(){  

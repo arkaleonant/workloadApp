@@ -13,8 +13,8 @@
     }
     error_reporting(0);
 
-    $data_task = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
-    $data_user = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]'");
+    $data_task = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' limit 1");
+    $data_user = mysqli_query($conn,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]'");
     
     $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='0'"))[0];
     $jml_1 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='1'"))[0];
@@ -23,7 +23,7 @@
 
     $jumlah_task = mysqli_num_rows($data_task);    
     $jumlah_user = mysqli_num_rows($data_user);
-    $persentase = number_format(($jml_0/$jml_semua)*100);
+    $persentase = number_format(($jml_1/$jml_semua)*100);
 ?>
 <br>
 <div class="panel panel-flat">
@@ -39,20 +39,20 @@
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
                             </div>
-                            <a href="dashboard_2.php?task" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="index.php?task" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 <div class="col-lg-3 col-6">
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3><?php echo $jumlah_user; ?></h3>
-                                <p>User Active</p>
+                                <h3><?php echo $jml_0 ?> / <?php echo $jml_semua ?> Plan</h3>
+                                <p>Belum Dikerjakan</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-person"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="index.php?plan" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -60,13 +60,13 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3><?php echo $persentase ?> %</h3>
-                                <p>Plan belum selesai</p>
+                                <h3><?php echo $jml_1 ?> / <?php echo $jml_semua ?> Plan</h3>
+                                <p>Sudah Dikerjakan</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="index.php?realisasi" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>

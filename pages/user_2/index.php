@@ -143,7 +143,10 @@
 			}else if(isset($_REQUEST['task'])){
 				include("tabel_task.php");
 			}else if(isset($_REQUEST['plan'])){
-				include("tabel_plan.php");}?>
+        include("tabel_plan.php");
+      }else if(isset($_REQUEST['realisasi'])){
+        include("tabel_realisasi.php");
+      }?>
     </div>
   </div>
 

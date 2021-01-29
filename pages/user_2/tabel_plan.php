@@ -19,7 +19,7 @@
             ON tabel_task.id_task = tabel_plan.id_task 
             INNER JOIN tabel_pj
             ON tabel_plan.id_task = tabel_pj.id_task 
-            WHERE tabel_pj.nip='$_SESSION[nip]' 
+            WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_plan.status='0'
             ORDER BY tabel_task.id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>
@@ -52,21 +52,29 @@
                   <?php if($row['status']=='1') 
                       {
                     ?>
-                        <a>Sudah Selesai</a>
+                        <a>Sudah Dikerjakan</a>
                     <?php } else { ?>
-                      <a>Belum Selesai</a>  
+                      <a>Belum Dikerjakan</a>  
                     <?php }  
                     ?>  
                   </td>
               </td>
               <td>
-              <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />
+              <?php if($row['status']=='1') 
+                      {
+                    ?>
+                        <a>none</a>
+                    <?php } else { ?>
+                      <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />  
+                    <?php }  
+                    ?>  
               </td>
         </tr>
               <?php $no++;
                 }
               ?>
-      </table>
+      </table><br>
+      <p>Nb : jika Status Plan "<b>belum dikerjakan</b>" maka lakukan realisasi untuk merubah Status Plan "<b>Sudah Dikerjakan</b>"</p>
     </div>
   </div>
 </div>
@@ -146,7 +154,7 @@
   $(document).on('click', '.tambah_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
-   url:"form_update.php",
+   url:"form_add_realisasi.php",
    method:"POST",
    data:{id_task:id_task},
    success:function(data){

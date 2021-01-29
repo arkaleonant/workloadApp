@@ -57,7 +57,7 @@
             }
     echo "</table></br></br>";
     echo "Nb : <br>";
-    echo "Kolom Status 0 = Belum selesai <br>";
+    echo "Kolom Status 0 = Belum Dikerjakan <br>";
     echo "<table>
                 <tr>
                     <th>id_plan</th>

@@ -27,7 +27,8 @@ if(isset($_POST["id_task"]))
      ';$no++;
     } 
     $output .= '</table>
-    </div>';
+    </div> Nb : <br>
+    Kolom Status 0 = Belum Dikerjakan <br>';
     echo $output;
 }
 ?>
