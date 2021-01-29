@@ -46,7 +46,7 @@ if(isset($_POST["id_task"]))
             <br />
 
             <label>Tanggal</label>
-            <input type="date" name="date" id="date" class="form-control" required/>
+            <input type="date" name="date" id="date" class="form-control"  value="'. date("Y-m-d") .'" required/>
             <br />
 
             <label>Plan</label>
