@@ -33,9 +33,10 @@
         <form action="create_pj.php" method="POST">
           <div class="control-group after-add-more">
             <label>Id Task</label>
-            <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>">
+            <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>" style="width: 30%; height: 40px">
+            <br>
             <label>NIP</label>
-            <select  id="nip" name="nip[]" class="form-control" style="width: 100%; height:50px; border:2px; color:black">
+            <select  id="nip" name="nip[]" class="form-control" style="width: 30%; height:40px; border:2px; color:black">
                           <option value="none">- Pilih Penanggung Jawab -</option>
                           <?php     
                                 $con = mysqli_connect("localhost","root","","magang_pal");
@@ -46,25 +47,31 @@
                           
                   </select>
             <br>
-            
-            
           </div>
-          <button class="btn btn-success" type="submit">Submit</button>
+          <div>
+          <button class="btn btn-success" type="submit">Submit</button>&nbsp&nbsp
+
+          <button class="btn btn-info add-more" type="button">
+              <i class="glyphicon glyphicon-plus"></i> Add
+            </button>
+          </div>
         </form>
 
         <!-- class hide membuat form disembunyikan  -->
         <!-- hide adalah fungsi bootstrap 3, klo bootstrap 4 pake invisible  -->
+        <hr>
         <div class="copy hide"><?php
         $connect = mysqli_connect("localhost", "root", "", "magang_pal");
         $query="SELECT * FROM tabel_task ORDER BY id_task DESC LIMIT 1";
         $sql=mysqli_query($connect, $query);
         $row=mysqli_fetch_array($sql);?>
-        <hr>
+        <hr style="height:1px;border:none;color:#333;background-color:#333;">
             <div class="control-group">
             <label>Id Task</label>
-            <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>">
+            <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>" style="width: 30%; height: 40px">
+            <br>
             <label>NIP</label>
-            <select  id="nip" name="nip[]" class="form-control" style="width: 100%; height:50px; border:2px; color:black">
+            <select  id="nip" name="nip[]" class="form-control" style="width: 30%; height:40px; border:2px; color:black">
                           <option value="none">- Pilih Penanggung Jawab -</option>
                           <?php     
                                 $con = mysqli_connect("localhost","root","","magang_pal");
@@ -75,9 +82,6 @@
                           
                   </select>
               <br>
-              <button class="btn btn-success add-more" type="button">
-              <i class="glyphicon glyphicon-plus"></i> Add
-            </button>
               <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
               <hr>
             </div>
