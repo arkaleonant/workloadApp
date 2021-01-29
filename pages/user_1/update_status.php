@@ -1,5 +1,6 @@
 <?php  
-$id_task=$_GET['id'];
+
+    $id_task=$_GET['id'];
  $conn = mysqli_connect("localhost", "root", "", "magang_pal");
  $query = "UPDATE tabel_task SET status = '2' WHERE id_task = '".$id_task."'";
  

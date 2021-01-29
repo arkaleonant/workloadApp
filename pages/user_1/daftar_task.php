@@ -19,12 +19,32 @@
   $result = mysqli_query($connect, $query);
 ?>
 
+<?php  
+if (isset($_POST["id_task"])) {
+    $id_task=$_GET['id'];
+ $conn = mysqli_connect("localhost", "root", "", "magang_pal");
+ $query = "UPDATE tabel_task SET status = '0' WHERE id_task = '".$id_task."'";
+ 
+ if (mysqli_query($conn, $query)){ ?>
+    <?php echo"<script>document.location='dashboard_1.php?task'</script>";
+}
+else{?>		
+   <script type="text/javascript"> alert("Gagal menambahkan task !"); </script>
+    <?php echo"<script>document.location='dashboard_1.php?task'</script>"; 
+}
+}
+?>
+
+ 
+
 <?php 
   $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 ?>
+<br>
 <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
       class="btn btn-success">Tambah Task</button>
+      <br><br>
 <h2>Daftar Task</h2>
       <div class="panel panel-flat">
         <div class="row mb-2"> 
@@ -65,7 +85,14 @@
                     <?php }  ?>  
                   </td>
                     <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
-                    <td><a href='update_status.php?id=<?php echo $row[id_task] ?>'>Tidak Selesai</td>
+                    <td> 
+                    <?php
+                    $sekarang = date('Y-m-d');
+                    if($sekarang > $row['end_date']){?>
+                    <?php }else{ ?>                      
+                    <a href='update_status.php?id=<?php echo $row[id_task] ?>' class="btn btn-danger btn-xs">Tidak Selesai</td>
+                    <?php }?>
+                    </td>
                   </tr>
                   <?php $no++;
                   }
