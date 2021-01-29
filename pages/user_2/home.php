@@ -78,11 +78,9 @@
                     <option value="none">- pilih task -</option>
                     <?php     
                         $con = mysqli_connect("localhost","root","","magang_pal");
-                        $result = mysqli_query($con, "SELECT * FROM tabel_task 
-                                                        INNER JOIN tabel_plan 
-                                                        ON tabel_task.id_task = tabel_plan.id_task 
+                        $result = mysqli_query($con, "  SELECT * FROM tabel_task 
                                                         INNER JOIN tabel_pj
-                                                        ON tabel_plan.id_task = tabel_pj.id_task 
+                                                        ON tabel_task.id_task = tabel_pj.id_task 
                                                         WHERE tabel_pj.nip='$_SESSION[nip]'
                                                         ORDER BY tabel_task.id_task DESC");  
                         while ($row = mysqli_fetch_array($result)) {  
