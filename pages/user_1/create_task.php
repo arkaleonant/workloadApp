@@ -11,9 +11,7 @@ if($_POST){
     $end_date = $_POST['end_date'];
 
     $query = ("INSERT INTO tabel_task(id_task,divisi,task,detail_task,start_date,end_date) VALUES ('','".$divisi."','".$task."','".$detail_task."','".$start_date."','".$end_date."')");
-    
-    //mysqli_query("INSERT INTO tabel_task values('$id_task','$divisi','$task','$detail_task','$start_date','$end_date')")
-    
+        
     $sekarang = date('Y-m-d');
     if($sekarang > $start_date){?>
         <script type="text/javascript"> alert("Tanggal mulai <?php echo $start_date ?> tidak valid !"); </script>
