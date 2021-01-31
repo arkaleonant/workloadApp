@@ -1,92 +1,38 @@
 <?php
- 
-$connect = mysqli_connect("localhost", "root", "", "magang_pal");
-if(!empty($_POST))
-{
- $output = '';
-    $id_plan = mysqli_real_escape_string($connect, $_POST["id_plan"]);
-	$id_task = mysqli_real_escape_string($connect, $_POST["id_task"]);  
-    $task = mysqli_real_escape_string($connect, $_POST["task"]);  
-    $date = mysqli_real_escape_string($connect, $_POST["date"]);  
-    $plan = mysqli_real_escape_string($connect, $_POST["plan"]);
-    $status = mysqli_real_escape_string($connect, $_POST["status"]);
-    $kendala = mysqli_real_escape_string($connect, $_POST["kendala"]);
 
-    $tempdir = "bukti/"; 
-            if (!file_exists($tempdir))
-            mkdir($tempdir,0755); 
+    include('../../function/koneksi.php');
 
-            $target_path = $tempdir . basename($_FILES['bukti']['name']);
+    if(!empty($_POST)){
+        $output = '';
+        $id_plan = $_POST["id_plan"];
+        $id_task = $_POST["id_task"];  
+        $task = $_POST["task"];  
+        $date = $_POST["date"];  
+        $plan = $_POST["plan"];
+        $status = $_POST["status"];
+        $kendala = $_POST["kendala"];
 
-            //nama gambar
-            $nama_gambar=$_FILES['bukti']['name'];
-            //ukuran gambar
-            $ukuran_gambar = $_FILES['bukti']['size']; 
+        $ekstensi_diperbolehkan	= array('png','jpg', 'jpeg');
+        $nama = $_FILES['bukti']['name'];
+        $x = explode('.', $nama);
+        $ekstensi = strtolower(end($x));
+        $ukuran	= $_FILES['bukti']['size'];
+        $file_tmp = $_FILES['bukti']['tmp_name'];	
+        
 
-            $fileinfo = @getimagesize($_FILES["bukti"]["tmp_name"]);
-            //lebar gambar
-            $width = $fileinfo[0];
-            //tinggi gambar
-            $height = $fileinfo[1]; 
+        $query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
+                    VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
+                            '1','','$kendala')");
 
-            if($ukuran_gambar > 8192000){ 
-                echo 'Ukuran gambar melebihi 8000kb';
-            }else if ($width > "1280" || $height > "1280") {
-                 echo 'Ukuran gambar harus tidak lebih dari 1280 x 1280';
-            }else{
-                if (move_uploaded_file($_FILES['bukti']['tmp_name'], $target_path)) {
-                    $query = " INSERT INTO tabel_realisasi 
-                                            SET id_plan= '$id_plan', id_task = '$id_task', 
-                                                date ='$date', plan='$plan', status='$status',
-                                                bukti ='$nama_gambar', kendala='$kendala'";
-                    header("Location:index.php?realisasi");
-                } else {
-                    header("Location:index.php?realisasi");
-                }
-            } 
-	
-    if(mysqli_query($connect, $query))
-    {
-     $output .= '<label class="text-success">Data Berhasil Disimpan</label>';
-     $no=1;
-     $select_query = "SELECT * FROM  tabel_realisasi 
-                        INNER JOIN tabel_pj
-                        ON tabel_realisasi.id_task = tabel_pj.id_task
-                        WHERE tabel_pj.nip='$_SESSION[nip]'
-                        ORDER BY tabel_realisasi.id_task DESC";
-     $result = mysqli_query($connect, $select_query);
-     $output .= '
-      <table class="table table-bordered">  
-                    <tr>
-                        <th width=5%    >  No.        </th>  
-                        <th width=5%    >  ID Plan    </th>
-                        <th width=5%    >  Id Task    </th>
-                        <th width=15%   >  Tanggal    </th>
-                        <th width=30%   >  Plan       </th>
-                        <th width=5%    >  Status     </th>
-                        <th width=20%   >  Bukti      </th>
-                        <th width=15%   >  Kendala    </th>
-                    </tr>
-     ';
-     while($row = mysqli_fetch_array($result))
-     {
-      $output .= '
-       <tr>  
-            <td>' . $no .             '</td>
-            <td>' . $row["id_plan"] . '</td>
-            <td>' . $row["id_task"] . '</td>
-            <td>' . $row["date"] .    '</td>
-            <td>' . $row["plan"] .    '</td>
-            <td>' . $row["status"] .  '</td>
-            <td>' . $row["bukti"] .   '</td>
-            <td>' . $row["kendala"] . '</td>
-        </tr> '. $no++ .'
-      ';
-     }
-     $output .= '</table>';
-    }else{
-		$output .= mysqli_error($connect);
-	}
-    echo $output;
-}
+        $query2=("UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'");
+
+        if(mysqli_query($conn, $query)){ 
+            if(mysqli_query($conn, $query2)){
+                $url1=$_SERVER['REQUEST_URI'];
+                header("refresh: 1; URL=$url1"); ?>
+                <meta http-equiv="refresh" content="1">
+                <body onload=”javascript:setTimeout(“location.reload(true);”,1);”>
+            <?php }
+        }
+    }
 ?>

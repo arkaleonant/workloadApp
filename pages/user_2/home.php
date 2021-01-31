@@ -13,7 +13,12 @@
     }
     error_reporting(0);
 
-    $data_task = mysqli_query($conn,"SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' limit 1");
+    $data_task = mysqli_query($conn,"SELECT * FROM tabel_task 
+                                        INNER JOIN tabel_pj
+                                        ON tabel_task.id_task = tabel_pj.id_task 
+                                        WHERE tabel_pj.nip='$_SESSION[nip]' limit 1
+                                        -- AND tabel_task.status = '0' ");
+    
     $data_user = mysqli_query($conn,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]'");
     
     $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='0'"))[0];
@@ -81,6 +86,7 @@
                                                         INNER JOIN tabel_pj
                                                         ON tabel_task.id_task = tabel_pj.id_task 
                                                         WHERE tabel_pj.nip='$_SESSION[nip]'
+                                                        -- AND tabel_task.status = '0'
                                                         ORDER BY tabel_task.id_task DESC");  
                         while ($row = mysqli_fetch_array($result)) {  
                             echo "<option value='$row[id_task]'>$row[task]</option>";                                

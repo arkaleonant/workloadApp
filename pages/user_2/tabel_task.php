@@ -19,6 +19,7 @@
             INNER JOIN tabel_pj 
             ON tabel_task.id_task = tabel_pj.id_task 
             WHERE tabel_pj.nip='$_SESSION[nip]' 
+            --  AND tabel.task.status='0' 
             ORDER BY tabel_task.id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>

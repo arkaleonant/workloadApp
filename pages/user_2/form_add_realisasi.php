@@ -37,7 +37,7 @@ if(isset($_POST["id_plan"]))
  $result = mysqli_query($connect, $query);
 	$row = mysqli_fetch_array($result);
      $output .= '
-        <form method="post" id="add_form">
+        <form method="post" id="add_form" enctype="multipart/form-data">
             <div>
             <label>ID Plan</label>
             <input type="text" name="id_plan" id="id_plan   " value="'.$_POST["id_plan"].'" class="form-control"  readonly/>
@@ -60,10 +60,7 @@ if(isset($_POST["id_plan"]))
 
             <div>
             <label>Status *</label>
-            <select type="text" name="status" id="status" class="form-control">
-                <option value="'.$row['status'].'" selected>Belum Dikerjakan</option>
-                <option value="1" selected>Sudah Dikerjakan</option>
-            </select>
+            <input type="text" name="status" id="status" class="form-control"  value="Sudah Dikerjakan" readonly/>
             </div><br/>
 
             <div>

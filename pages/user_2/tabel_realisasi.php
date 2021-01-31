@@ -28,7 +28,6 @@
     <div id="daftar_plan">
     <table border="1" cellpadding="10" style="text-align:center;">
         <tr  bgcolor="#343a40"  style="color:#ffffff;">
-            <th>No.</th>
             <th width=5%    >  No.        </th>  
             <th width=5%    >  ID Plan    </th>
             <th width=5%    >  Id Task    </th>
@@ -52,10 +51,10 @@
                   <?php if($row['status']=='1') 
                       {
                     ?>
-                        <a>Belum Dikerjakan</a>
+                        <a>Sudah Dikerjakan</a>
                     <?php }?>
               </td>
-              <td><?php echo $row['bukti'] ?></td>
+              <td><img src="<?php echo "file/".$row['bukti']; ?>"></td>
               <td><?php echo $row['kendala'] ?></td>
         </tr>
               <?php $no++;
