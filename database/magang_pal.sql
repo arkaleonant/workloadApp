@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2021 at 02:13 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.5
+-- Generation Time: Jan 31, 2021 at 06:24 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -64,8 +65,8 @@ CREATE TABLE `tabel_pj` (
 --
 
 INSERT INTO `tabel_pj` (`id_task`, `nip`) VALUES
-(26, 1111),
-(26, 2222);
+(13, 1111),
+(13, 2222);
 
 -- --------------------------------------------------------
 
@@ -86,8 +87,11 @@ CREATE TABLE `tabel_plan` (
 --
 
 INSERT INTO `tabel_plan` (`id_plan`, `id_task`, `date`, `plan`, `status`) VALUES
-(13, 26, '2021-01-29', 'asdwdwa', 0),
-(14, 26, '2021-01-29', 'wwwwwwwww', 0);
+(12, 13, '2021-12-12', 'membuat flowchart aplikasi', 0),
+(13, 13, '2021-01-28', 'membuat design database', 0),
+(14, 13, '2021-01-29', 'Design UI with HTML', 0),
+(15, 13, '2021-01-30', 'Membuat fungsi login', 0),
+(16, 13, '2021-02-03', 'membuat fungsi insert', 0);
 
 -- --------------------------------------------------------
 
@@ -96,10 +100,12 @@ INSERT INTO `tabel_plan` (`id_plan`, `id_task`, `date`, `plan`, `status`) VALUES
 --
 
 CREATE TABLE `tabel_realisasi` (
+  `id_plan` int(11) NOT NULL,
   `id_task` int(11) NOT NULL,
   `date` date NOT NULL,
-  `presentase` int(2) NOT NULL,
   `plan` varchar(255) NOT NULL,
+  `status` int(1) NOT NULL,
+  `bukti` varchar(255) NOT NULL,
   `kendala` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -115,16 +121,15 @@ CREATE TABLE `tabel_task` (
   `task` varchar(255) NOT NULL,
   `detail_task` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `status` int(1) NOT NULL
+  `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tabel_task`
 --
 
-INSERT INTO `tabel_task` (`id_task`, `divisi`, `task`, `detail_task`, `start_date`, `end_date`, `status`) VALUES
-(26, 'TEKNOLOGI', 'membuat aplikasi workload', '                asdasd', '2021-01-30', '2021-01-31', 0);
+INSERT INTO `tabel_task` (`id_task`, `divisi`, `task`, `detail_task`, `start_date`, `end_date`) VALUES
+(13, 'TEKNOLOGI', 'Membuat Aplikasi Tabungan Pensiunan Karyawan PT.PAL', 'Aplikasi ini berguna untuk para pensiunan PT PAL agar dapat melihat tabungan pensiun dan dapat mengajukan penambahan uang pensiun', '2021-02-12', '2021-04-12');
 
 --
 -- Indexes for dumped tables
@@ -165,13 +170,13 @@ ALTER TABLE `tabel_task`
 -- AUTO_INCREMENT for table `tabel_plan`
 --
 ALTER TABLE `tabel_plan`
-  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tabel_task`
 --
 ALTER TABLE `tabel_task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
