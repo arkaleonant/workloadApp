@@ -14,7 +14,11 @@ if(!empty($_POST))
     {
      $output .= '<label class="text-success">Data Berhasil Disimpan</label>';
      $no=1;
-     $select_query = "SELECT * FROM tabel_task WHERE divisi='$_SESSION[divisi]' ORDER BY id_task DESC";
+     $select_query = "SELECT * FROM  tabel_plan 
+                        INNER JOIN tabel_pj
+                        ON tabel_plan.id_task = tabel_pj.id_task 
+                        WHERE tabel_plan.status='0' AND tabel_pj.nip='$_SESSION[nip]'
+                        ORDER BY tabel_plan.id_task DESC";
      $result = mysqli_query($connect, $select_query);
      $output .= '
       <table class="table table-bordered">  

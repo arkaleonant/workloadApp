@@ -14,13 +14,11 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_task 
-            INNER JOIN tabel_plan 
-            ON tabel_task.id_task = tabel_plan.id_task 
+  $query = "SELECT * FROM  tabel_realisasi 
             INNER JOIN tabel_pj
-            ON tabel_plan.id_task = tabel_pj.id_task 
-            WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_plan.status='1'
-            ORDER BY tabel_task.id_task DESC";
+            ON tabel_realisasi.id_task = tabel_pj.id_task
+            WHERE tabel_pj.nip='$_SESSION[nip]'
+            ORDER BY tabel_realisasi.id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>
 
@@ -28,15 +26,17 @@
 <div class="row mb-2">
   <div class="table-responsive">
     <div id="daftar_plan">
-      <table border="1" cellpadding="10" style="text-align:center;">
+    <table border="1" cellpadding="10" style="text-align:center;">
         <tr  bgcolor="#343a40"  style="color:#ffffff;">
             <th>No.</th>
-            <th width=5%>ID Plan</th>
-            <th width=10%>Id Task</th>
-            <th width=15%>Start Date</th>
-            <th width=50%>Plan</th>
-            <th width=10%>Status</th>
-            <th width=15%>Realisasi</th>
+            <th width=5%    >  No.        </th>  
+            <th width=5%    >  ID Plan    </th>
+            <th width=5%    >  Id Task    </th>
+            <th width=15%   >  Tanggal    </th>
+            <th width=30%   >  Plan       </th>
+            <th width=5%    >  Status     </th>
+            <th width=20%   >  Bukti      </th>
+            <th width=15%   >  Kendala    </th>
         </tr>
             <?php
               while($row = mysqli_fetch_array($result))
@@ -52,23 +52,11 @@
                   <?php if($row['status']=='1') 
                       {
                     ?>
-                        <a>Sudah Dikerjakan</a>
-                    <?php } else { ?>
-                      <a>Belum Dikerjakan</a>  
-                    <?php }  
-                    ?>  
-                  </td>
+                        <a>Belum Dikerjakan</a>
+                    <?php }?>
               </td>
-              <td>
-              <?php if($row['status']=='1') 
-                      {
-                    ?>
-                        <a>none</a>
-                    <?php } else { ?>
-                      <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />  
-                    <?php }  
-                    ?>  
-              </td>
+              <td><?php echo $row['bukti'] ?></td>
+              <td><?php echo $row['kendala'] ?></td>
         </tr>
               <?php $no++;
                 }

@@ -14,14 +14,17 @@
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
-  $query = "SELECT * FROM tabel_task 
-            INNER JOIN tabel_plan 
-            ON tabel_task.id_task = tabel_plan.id_task 
+  $query = "SELECT * FROM  tabel_plan 
             INNER JOIN tabel_pj
             ON tabel_plan.id_task = tabel_pj.id_task 
-            WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_plan.status='0'
-            ORDER BY tabel_task.id_task DESC";
+            WHERE tabel_plan.status='0' AND tabel_pj.nip='$_SESSION[nip]'
+            ORDER BY tabel_plan.id_task DESC";
   $result = mysqli_query($connect, $query);
+?>
+
+<?php 
+  $sql = mysqli_query($conn, "SELECT * FROM tabel_plan");
+											$get = mysqli_fetch_array($sql);
 ?>
 
 <h2>Daftar Plan</h2>
@@ -49,25 +52,15 @@
               <td><?php echo $row['date'] ?></td>
               <td><?php echo $row['plan'] ?></td>
               <td>
-                  <?php if($row['status']=='1') 
+                  <?php if($row['status']=='0') 
                       {
                     ?>
-                        <a>Sudah Dikerjakan</a>
-                    <?php } else { ?>
-                      <a>Belum Dikerjakan</a>  
-                    <?php }  
-                    ?>  
+                        <a>Belum Dikerjakan</a>
+                    <?php }?>
                   </td>
               </td>
               <td>
-              <?php if($row['status']=='1') 
-                      {
-                    ?>
-                        <a>none</a>
-                    <?php } else { ?>
-                      <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />  
-                    <?php }  
-                    ?>  
+              <input type="button" name="add" value="Realisasi" id="<?php echo $row["id_plan"]; ?>" class="btn btn-warning btn-xs tambah_data" />
               </td>
         </tr>
               <?php $no++;
@@ -137,7 +130,7 @@
  <div class="modal-dialog">
   <div class="modal-content">
    <div class="modal-header">
-   <h4 class="modal-title">Realisasi</h4>
+   <h4 class="modal-title">Realisasi Plan</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     
    </div>
@@ -152,11 +145,11 @@
 
 <script>
   $(document).on('click', '.tambah_data', function(){
-  var id_task = $(this).attr("id");
+  var id_plan = $(this).attr("id");
   $.ajax({
    url:"form_add_realisasi.php",
    method:"POST",
-   data:{id_task:id_task},
+   data:{id_plan:id_plan},
    success:function(data){
     $('#form_tambah').html(data);
     $('#addModal').modal('show');
