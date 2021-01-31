@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2021 at 05:50 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Generation Time: Jan 29, 2021 at 02:13 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -60,6 +59,14 @@ CREATE TABLE `tabel_pj` (
   `nip` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tabel_pj`
+--
+
+INSERT INTO `tabel_pj` (`id_task`, `nip`) VALUES
+(26, 1111),
+(26, 2222);
+
 -- --------------------------------------------------------
 
 --
@@ -73,6 +80,14 @@ CREATE TABLE `tabel_plan` (
   `plan` varchar(255) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_plan`
+--
+
+INSERT INTO `tabel_plan` (`id_plan`, `id_task`, `date`, `plan`, `status`) VALUES
+(13, 26, '2021-01-29', 'asdwdwa', 0),
+(14, 26, '2021-01-29', 'wwwwwwwww', 0);
 
 -- --------------------------------------------------------
 
@@ -100,8 +115,16 @@ CREATE TABLE `tabel_task` (
   `task` varchar(255) NOT NULL,
   `detail_task` varchar(255) NOT NULL,
   `start_date` date NOT NULL,
-  `end_date` date NOT NULL
+  `end_date` date NOT NULL,
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_task`
+--
+
+INSERT INTO `tabel_task` (`id_task`, `divisi`, `task`, `detail_task`, `start_date`, `end_date`, `status`) VALUES
+(26, 'TEKNOLOGI', 'membuat aplikasi workload', '                asdasd', '2021-01-30', '2021-01-31', 0);
 
 --
 -- Indexes for dumped tables
@@ -142,13 +165,13 @@ ALTER TABLE `tabel_task`
 -- AUTO_INCREMENT for table `tabel_plan`
 --
 ALTER TABLE `tabel_plan`
-  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tabel_task`
 --
 ALTER TABLE `tabel_task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
