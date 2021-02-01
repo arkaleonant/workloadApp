@@ -38,7 +38,11 @@
     $jml_1 = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(id_task) FROM tabel_plan WHERE status='1' AND id_task = '".$q."'"))[0];
     $jml_semua = mysqli_fetch_array(mysqli_query($con, "SELECT COUNT(id_task) FROM tabel_plan WHERE id_task = '".$q."'"))[0];
 
-    $persentase = number_format(($jml_1/$jml_semua)*100);
+    $persentase = 0;
+    if($jml_semua > 1){
+        $persentase = number_format(($jml_1/$jml_semua)*100);
+    }
+
     
     $result = mysqli_query($con,$sql);
     $hasil = mysqli_query($con,$lqs);

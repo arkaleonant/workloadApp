@@ -11,7 +11,7 @@
     }
     error_reporting(0);
 ?>
-                      
+                  
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
@@ -68,15 +68,22 @@
                   </td>
                     <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
                     <td> 
+                    <?php 
+$jml_1 = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE status='1' AND id_task = '".$row['id_task']."'"))[0];
+$jml_semua = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE id_task = '".$row['id_task']."'"))[0];
+mysqli_query($connect, "SELECT * FROM tabel_plan WHERE id_task = '".$row['id_task']."'")
+?>  
                     <?php
                     $sekarang = date('Y-m-d');
-                    if($row['status'] > 0){?>
+                    if($row['status'] > 0 ){?>
                       <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
                     <?php } else {
-                     if($sekarang < $row['end_date']){?>
-                      <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>' class="btn btn-info btn-xs">Sudah Selesai</td>
-                      <?php }else{ ?>                      
+                     if($sekarang < $row['end_date'] && $jml_1 == $jml_semua && $jml_semua > 1){?>
+                      <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>' class="btn btn-primary btn-xs">Sudah Selesai</td>
+                      <?php }else if($sekarang > $row['end_date']){ ?>                      
                       <a href='update_status_tidak_selesai.php?id=<?php echo $row[id_task] ?>' class="btn btn-danger btn-xs">Tidak Selesai</td>
+                      <?php }else{ ?>
+                      <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
                       <?php }
                     }?> 
                     
