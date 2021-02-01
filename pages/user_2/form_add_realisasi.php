@@ -1,15 +1,10 @@
 <script>
 $('#add_form').on("submit", function(event){  
   event.preventDefault();  
-  if($('#date').val() == "")  
+  if($('#id-input-file-2').val() == "")  
   {  
-   alert("Mohon Isi tanggal ");  
+   alert("Mohon Input Bukti ");  
   }  
-  else if($('#plan').val() == '')  
-  {  
-   alert("Mohon Isi plan anda");  
-  }  
- 
   else  
   {  
    $.ajax({  
@@ -40,7 +35,7 @@ if(isset($_POST["id_plan"]))
         <form method="post" id="add_form" enctype="multipart/form-data">
             <div>
             <label>ID Plan</label>
-            <input type="text" name="id_plan" id="id_plan   " value="'.$_POST["id_plan"].'" class="form-control"  readonly/>
+            <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/>
             </div>
 
             <div>
@@ -65,7 +60,7 @@ if(isset($_POST["id_plan"]))
 
             <div>
             <label>Bukti Penyelesaian *</label>
-            <td><input type="file" name="bukti" id="bukti" class="form-control"></td>
+            <td><input type="file" id="id-input-file-2" name="upload_image" class="form-control"></td>
             </div><br/>
 
             <div>
