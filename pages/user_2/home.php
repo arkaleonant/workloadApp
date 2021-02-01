@@ -16,10 +16,7 @@
     $data_task = mysqli_query($conn,"SELECT * FROM tabel_task 
                                         INNER JOIN tabel_pj
                                         ON tabel_task.id_task = tabel_pj.id_task 
-                                        WHERE tabel_pj.nip='$_SESSION[nip]' limit 1
-                                        -- AND tabel_task.status = '0' ");
-    
-    $data_user = mysqli_query($conn,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]'");
+                                        WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_task.status = '0' limit 1");
     
     $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan 
                                                         INNER JOIN tabel_pj
@@ -38,6 +35,7 @@
     $jumlah_user = mysqli_num_rows($data_user);
     $persentase = number_format(($jml_1/$jml_semua)*100);
 ?>
+
 <br>
 <div class="panel panel-flat">
                 <!-- Small boxes (Stat box) -->
