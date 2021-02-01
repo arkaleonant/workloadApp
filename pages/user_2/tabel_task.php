@@ -28,6 +28,8 @@
   $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
 											$row = mysqli_fetch_array($sql);
 ?>
+
+
 <h2>Daftar Task</h2>
       <div class="panel panel-flat">
         <div class="row mb-2"> 
@@ -35,14 +37,14 @@
             <div id="daftar_task">
               <table border="1" cellpadding="10" style="text-align:center;">
                 <tr bgcolor="#343a40"  style="color:#ffffff;">
-                  <th >No.</th>
-                  <th width="6%" >Id Task</th>
-                  <th >Divisi</th>
-                  <th >Task</th>
-                  <th >Detail Task</th>
+                  <th width="5%">No.</th>
+                  <th width="5%" >Id Task</th>
+                  <th width="10%">Divisi</th>
+                  <th width="20%">Task</th>
+                  <th width="25%">Detail Task</th>
                   <th width="10%">Start Date</th>
                   <th width="10%">End Date</th>
-                  <th>Action Plan</th>
+                  <th width="15%">Action Plan</th>
                   <th></th>
                 </tr>
                 <?php
@@ -62,6 +64,9 @@
                     </td> 
                     <td>
                       <input type="button" name="add" value="Tambah" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" />
+                    </td>
+                    <td>
+                      
                     </td>
                   </tr>
                   <?php $no++;
