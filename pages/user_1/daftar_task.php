@@ -77,7 +77,7 @@
                   <?php
                     $sekarang = date('Y-m-d');
                     if($row['status'] > 0 ){?>
-                  <a class="btn btn-secondary btn-xs disabled"></td>
+                  <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
                 <?php } else {
                      if($sekarang < $row['end_date'] && $jml_1 == $jml_semua && $jml_semua > 1){?>
                 <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>'
