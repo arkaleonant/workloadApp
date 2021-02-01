@@ -21,9 +21,18 @@
     
     $data_user = mysqli_query($conn,"SELECT * FROM pegawai WHERE divisi='$_SESSION[divisi]'");
     
-    $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='0'"))[0];
-    $jml_1 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan WHERE status='1'"))[0];
-    $jml_semua = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan"))[0];
+    $jml_0 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan 
+                                                        INNER JOIN tabel_pj
+                                                        ON tabel_plan.id_task = tabel_pj.id_task 
+                                                        WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_plan.status='0'"))[0];
+    $jml_1 = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan 
+                                                        INNER JOIN tabel_pj
+                                                        ON tabel_plan.id_task = tabel_pj.id_task 
+                                                        WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_plan.status='1'"))[0];
+    $jml_semua = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(1) FROM tabel_plan 
+                                                        INNER JOIN tabel_pj
+                                                        ON tabel_plan.id_task = tabel_pj.id_task 
+                                                        WHERE tabel_pj.nip='$_SESSION[nip]'"))[0];
 
     $jumlah_task = mysqli_num_rows($data_task);    
     $jumlah_user = mysqli_num_rows($data_user);
