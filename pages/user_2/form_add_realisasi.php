@@ -50,7 +50,7 @@ if(isset($_POST["id_plan"]))
 
             <div>
             <label>Plan</label>
-            <textarea name="plan" id="plan" class="form-control">'.$row['plan'].'</textarea>
+            <textarea name="plan" id="plan" class="form-control" readonly>'.$row['plan'].'</textarea>
             </div><br/>
 
             <div>

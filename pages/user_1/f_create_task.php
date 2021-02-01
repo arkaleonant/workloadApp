@@ -20,7 +20,7 @@ if($_POST){
         <?php if ($start_date < $end_date){ ?>
             <?php if (mysqli_query($conn, $query)){ ?>
             <script type="text/javascript"> alert("Task berhasil ditambahkan !"); </script>
-            <?php echo"<script>document.location='dashboard_1.php?tambah_pj'</script>"; ?>
+            <?php echo"<script>document.location='dashboard_1.php?form_add_pj'</script>"; ?>
             <?php } else{?>		
             <script type="text/javascript"> alert("Gagal menambahkan task !"); </script>
             <?php echo"<script>document.location='dashboard_1.php?task'</script>"; ?>

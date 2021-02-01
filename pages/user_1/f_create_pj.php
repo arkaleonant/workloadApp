@@ -19,5 +19,7 @@
         ");
     } ?>
 
-    <script type="text/javascript"> alert("Sukses Menambahkan PJ"); </script>
-    <?php echo"<script>document.location='dashboard_1.php?task'</script>"; ?>
+<script type="text/javascript">
+    alert("Sukses Menambahkan PJ");
+</script>
+<?php echo"<script>document.location='dashboard_1.php?task'</script>"; ?>

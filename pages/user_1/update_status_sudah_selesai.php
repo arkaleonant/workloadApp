@@ -15,14 +15,3 @@ else {
 }
 
 ?>
-<?php
-// 
-// $jml_1=mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(id_task) FROM tabel_plan WHERE status='1' AND id_task =  '".$id_task."'"))[0];
-// $jml_semua=mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(id_task) FROM tabel_plan WHERE id_task = '".$id_task."'"))[0];
-
-// if($jml_1=$jml_semua) {
-    // $update="UPDATE tabel_task SET status = '1' WHERE id_task = '".$id_task."'";
-    // mysqli_query($conn, $update);
-// }
-// 
-// ?>

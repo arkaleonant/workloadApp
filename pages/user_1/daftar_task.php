@@ -3,15 +3,15 @@
     $hak_akses = $_SESSION['hak_akses'];
     if(!isset($_SESSION['nip']) && $hak_akses!="password"){
 		?>
-			<script language="JavaScript">
-				alert('Anda Bukan Hak Akses 1. Silahkan Login kembali!');
-				document.location='../../index.php';
-			</script>
-		<?php
+<script language="JavaScript">
+  alert('Anda Bukan Hak Akses 1. Silahkan Login kembali!');
+  document.location = '../../index.php';
+</script>
+<?php
     }
     error_reporting(0);
 ?>
-                  
+
 <?php
   $no=1;
   $connect = mysqli_connect("localhost", "root", "", "magang_pal");
@@ -23,82 +23,85 @@
 
 <br>
 <button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
-      class="btn btn-success">Tambah Task</button>
-      <br><br>
+  class="btn btn-success">Tambah Task</button>
+<br><br>
 <h2>Daftar Task</h2>
-      <div class="panel panel-flat">
-        <div class="row mb-2"> 
-          <div class="table-responsive">
-            <div id="daftar_task">
-              <table border="1" cellpadding="10" style="text-align:center;">
-                <tr bgcolor="#343a40"  style="color:#ffffff;">
-                  <th >No.</th>
-                  <th width="6%" >Id Task</th>
-                  <th >Divisi</th>
-                  <th >Task</th>
-                  <th >Detail Task</th>
-                  <th width="10%">Start Date</th>
-                  <th width="10%">End Date</th>
-                  <th>Status</th>
-                  <th>Detail PJ</th>
-                  <th>Action</th>
-                </tr>
-                <?php
+<div class="panel panel-flat">
+  <div class="row mb-2">
+    <div class="table-responsive">
+      <div id="daftar_task">
+        <table border="1" cellpadding="10" style="text-align:center;">
+          <tr bgcolor="#343a40" style="color:#ffffff;">
+            <th>No.</th>
+            <th width="6%">Id Task</th>
+            <th>Divisi</th>
+            <th>Task</th>
+            <th>Detail Task</th>
+            <th width="10%">Start Date</th>
+            <th width="10%">End Date</th>
+            <th>Status</th>
+            <th>Detail PJ</th>
+            <th>Action</th>
+          </tr>
+          <?php
                   while($row = mysqli_fetch_array($result))
                   {
                   ?>
-                  <tr>
-                    <td><?php echo $no ?></td>
-                    <td><?php echo $row['id_task'] ?></td>
-                    <td><?php echo $row['divisi'] ?></td>
-                    <td><?php echo $row['task'] ?></td>
-                    <td><?php echo $row['detail_task'] ?></td>
-                    <td><?php echo $row['start_date'] ?></td>
-                    <td><?php echo $row['end_date']?></td>
-                    <td> 
-                      
-                      <?php if($row['status']=='0') 
+          <tr>
+            <td><?php echo $no ?></td>
+            <td><?php echo $row['id_task'] ?></td>
+            <td><?php echo $row['divisi'] ?></td>
+            <td><?php echo $row['task'] ?></td>
+            <td><?php echo $row['detail_task'] ?></td>
+            <td><?php echo $row['start_date'] ?></td>
+            <td><?php echo $row['end_date']?></td>
+            <td>
+
+              <?php if($row['status']=='0') 
                       { ?>
-                      <a class="btn btn-secondary btn-xs disabled">PROSES</td>
-                    <?php } else if ($row['status']=='1'){ ?>
-                      <a class="btn btn-info btn-xs disabled">SUDAH SELESAI</td>
-                    <?php } else { ?>
-                      <a class="btn btn-danger btn-xs disabled">TIDAK SELESAI</td>
-                    <?php }  ?>  
-                  </td>
-                    <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>" class="btn btn-info btn-xs view_data" /></td> 
-                    <td> 
-                    <?php 
-$jml_1 = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE status='1' AND id_task = '".$row['id_task']."'"))[0];
-$jml_semua = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE id_task = '".$row['id_task']."'"))[0];
-mysqli_query($connect, "SELECT * FROM tabel_plan WHERE id_task = '".$row['id_task']."'")
-?>  
-                    <?php
+              <a>PROSES</td>
+            <?php } else if ($row['status']=='1'){ ?>
+            <a>SUDAH SELESAI</td>
+              <?php } else { ?>
+              <a>TIDAK SELESAI</td>
+                <?php }  ?>
+                </td>
+                <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>"
+                    class="btn btn-info btn-xs view_data" /></td>
+                <td>
+                  <?php 
+                    $jml_1 = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE status='1' AND id_task = '".$row['id_task']."'"))[0];
+                    $jml_semua = mysqli_fetch_array(mysqli_query($connect, "SELECT COUNT(id_plan) FROM tabel_plan WHERE id_task = '".$row['id_task']."'"))[0];
+                    mysqli_query($connect, "SELECT * FROM tabel_plan WHERE id_task = '".$row['id_task']."'")
+                  ?>
+                  <?php
                     $sekarang = date('Y-m-d');
                     if($row['status'] > 0 ){?>
-                      <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
-                    <?php } else {
+                  <a class="btn btn-secondary btn-xs disabled"></td>
+                <?php } else {
                      if($sekarang < $row['end_date'] && $jml_1 == $jml_semua && $jml_semua > 1){?>
-                      <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>' class="btn btn-primary btn-xs">Sudah Selesai</td>
-                      <?php }else if($sekarang > $row['end_date']){ ?>                      
-                      <a href='update_status_tidak_selesai.php?id=<?php echo $row[id_task] ?>' class="btn btn-danger btn-xs">Tidak Selesai</td>
-                      <?php }else{ ?>
-                      <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
+                <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>'
+                  class="btn btn-primary btn-xs">Sudah Selesai</td>
+                  <?php }else if($sekarang > $row['end_date']){ ?>
+                  <a href='update_status_tidak_selesai.php?id=<?php echo $row[id_task] ?>'
+                    class="btn btn-danger btn-xs">Tidak Selesai</td>
+                    <?php }else{ ?>
+                    <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
                       <?php }
-                    }?> 
-                    
-                    </td>
-                  </tr>
-                  <?php $no++;
+                    }?>
+
+                      </td>
+          </tr>
+          <?php $no++;
                   }
                 ?>
-              </table>
-            </div>
-          </div>
-        </div>
+        </table>
       </div>
+    </div>
+  </div>
+</div>
 
-  
+
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -149,7 +152,7 @@ mysqli_query($connect, "SELECT * FROM tabel_plan WHERE id_task = '".$row['id_tas
       <div class="modal-body">
         <section class="content">
           <div class="container-fluid">
-            <form method="POST" action="create_task.php">
+            <form method="POST" action="f_create_task.php">
               <div class="form-group">
                 <label>Divisi</label>
                 <input type="text" name="divisi" class="form-control" required value="<?php echo $_SESSION['divisi'] ?>"
@@ -191,47 +194,37 @@ mysqli_query($connect, "SELECT * FROM tabel_plan WHERE id_task = '".$row['id_tas
 </div>
 
 <div id="dataModal" class="modal fade">
- <div class="modal-dialog">
-  <div class="modal-content">
-   <div class="modal-header">
-   <h4 class="modal-title">Detail Penanggung Jawab</h4>
-    <button type="button" class="close" data-dismiss="modal">&times;</button>
-   </div>
-   <div class="modal-body" id="detail_pj">
-    
-   </div>
-   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-   </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Detail Penanggung Jawab</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" id="detail_pj">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
- </div>
 </div>
 
 <script>
-  $(document).on('click', '.view_data', function(){
-  var id_task = $(this).attr("id");
-  $.ajax({
-   url:"detail_pj.php",
-   method:"POST",
-   data:{id_task:id_task},
-   success:function(data){
-    $('#detail_pj').html(data);
-    $('#dataModal').modal('show');
-   }
+  $(document).on('click', '.view_data', function () {
+    var id_task = $(this).attr("id");
+    $.ajax({
+      url: "detail_pj.php",
+      method: "POST",
+      data: {
+        id_task: id_task
+      },
+      success: function (data) {
+        $('#detail_pj').html(data);
+        $('#dataModal').modal('show');
+      }
+    });
   });
- });
 </script>
 
-<script type="text/javascript">
-		$(document).ready(function() {
-		    $('#pj').select2({
-          placeholder: " pilih pj",
-				allowClear: true,
-				language: "id"
-		    });
-		});
-	</script>
 </form>
-
-
-

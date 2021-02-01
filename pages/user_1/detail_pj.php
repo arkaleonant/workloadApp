@@ -29,5 +29,3 @@ if(isset($_POST["id_task"]))
     echo $output;
 }
 ?>
-
- 
