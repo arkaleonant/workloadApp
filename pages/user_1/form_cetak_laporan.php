@@ -4,7 +4,7 @@
 	<title>CETAK PRINT DATA DARI DATABASE DENGAN PHP - WWW.MALASNGODING.COM</title>
 </head>
 <body>
-
+<br>
 	<center>
     <?php $sekarang = date('d M Y')?>
 		<h2>DATA LAPORAN TASK</h2>
@@ -20,8 +20,10 @@
   $result = mysqli_query($connect, $query);
 
 ?>
+<br><br>
 	 <table border="1" cellpadding="10" style="text-align:center;">
-          <tr bgcolor="#343a40" style="color:#ffffff;">
+          <tr bgcolor="white" style="color:black;">
+          
             <th>No.</th>
             <th width="6%">Id Task</th>
             <th>Task</th>

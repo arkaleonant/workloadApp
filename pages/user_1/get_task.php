@@ -81,13 +81,15 @@
                     echo "<td>" . $row['id_plan'] . "</td>";
                     echo "<td>" . $row['date'] . "</td>";
                     echo "<td>" . $row['plan'] . "</td>";
-                    echo "<td>" . $row['status'] . "</td>";
+                    if($row['status']=='0'){
+                        echo "<td><a>On Progress</a></td>";
+                    }else{
+                        echo "<td><a>Selesai</a></td>";
+                    }
+
                 echo "</tr>";
             }
     echo "</table><br>";
-    echo "Nb : <br>";
-    echo "Kolom Status 0 = Belum Dikerjakan <br>";
-    echo "Kolom Status 1 = Sudah Dikerjakan <br><br>";
 
     mysqli_close($con);
 ?>

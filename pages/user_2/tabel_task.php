@@ -43,7 +43,7 @@
         <h3 class="card-title">Daftar Task</h3>
     </div>
       <div class="card-body">
-          <table id="tabel_task" class="table table-striped table-bordered" style="width:100%"">
+          <table id="tabel_task" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                   <tr>
                       <th >No.</th>

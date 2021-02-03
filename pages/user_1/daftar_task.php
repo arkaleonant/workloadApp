@@ -22,32 +22,57 @@
 ?>
 
 <br>
-<button type="button" name="addtask" id="addtask" data-toggle="modal" data-target="#create_task_modal"
-  class="btn btn-success">Tambah Task</button>
-  <a class="btn btn-info btn-xs" href="dashboard_1.php?laporan" target="_blank">Cetak Laporan</a>  
-<br><br>
-<h2>Daftar Task</h2>
-<div class="panel panel-flat">
-  <div class="row mb-2">
-    <div class="table-responsive">
-      <div id="daftar_task">
-        <table border="1" cellpadding="10" style="text-align:center;">
-          <tr bgcolor="#343a40" style="color:#ffffff;">
+
+<head>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+</head>
+
+<body>
+
+  <button type="button" name="addtask" id="addtask" data-toggle="modal" data-target="#create_task_modal"
+    class="btn btn-success">Tambah Task</button>
+  <a class="btn btn-info btn-xs" href="dashboard_1.php?laporan" target="_blank">Cetak Laporan</a>
+  <br><br>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Daftar Task</h3>
+    </div>
+    <div class="card-body">
+      <table id="tabel_task" class="table table-stripped table-hover" style="width:100%">
+
+        <thead>
+          <tr>
             <th>No.</th>
-            <th width="6%">Id Task</th>
+            <th >Id Task</th>
             <th>Divisi</th>
             <th>Task</th>
             <th>Detail Task</th>
-            <th width="10%">Start Date</th>
-            <th width="10%">End Date</th>
+            <th >Start Date</th>
+            <th >End Date</th>
             <th>Status</th>
             <th>Detail PJ</th>
             <th>Action</th>
           </tr>
-          <?php
+        </thead>
+
+        
+
+        <tbody>
+        <?php
                   while($row = mysqli_fetch_array($result))
                   {
-                  ?>
+          ?>
           <tr>
             <td><?php echo $no ?></td>
             <td><?php echo $row['id_task'] ?></td>
@@ -60,11 +85,11 @@
 
               <?php if($row['status']=='0') 
                       { ?>
-              <a>PROSES</td>
+              <a>PROSES</a>
             <?php } else if ($row['status']=='1'){ ?>
-            <a>SUDAH SELESAI</td>
+            <a>SUDAH SELESAI</a>
               <?php } else { ?>
-              <a>TIDAK SELESAI</td>
+              <a>TIDAK SELESAI</a>
                 <?php }  ?>
                 </td>
                 <td><input type="button" name="view" value="Lihat Detail" id="<?php echo $row["id_task"]; ?>"
@@ -78,31 +103,54 @@
                   <?php
                     $sekarang = date('Y-m-d');
                     if($row['status'] > 0 ){?>
-                  <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
+                  <a class="btn btn-secondary btn-xs disabled">NO ACTION</a>
                 <?php } else {
                      if($sekarang < $row['end_date'] && $jml_1 == $jml_semua && $jml_semua > 1){?>
                 <a href='update_status_sudah_selesai.php?id=<?php echo $row[id_task] ?>'
-                  class="btn btn-primary btn-xs">Sudah Selesai</td>
+                  class="btn btn-primary btn-xs">Sudah Selesai</a>
                   <?php }else if($sekarang > $row['end_date']){ ?>
                   <a href='update_status_tidak_selesai.php?id=<?php echo $row[id_task] ?>'
-                    class="btn btn-danger btn-xs">Tidak Selesai</td>
+                    class="btn btn-danger btn-xs">Tidak Selesai</a>
                     <?php }else{ ?>
-                    <a class="btn btn-secondary btn-xs disabled">NO ACTION</td>
+                    <a class="btn btn-secondary btn-xs disabled">NO ACTION</a>
                       <?php }
                     }?>
 
                       </td>
-          </tr>
-          <?php $no++;
+                      <?php $no++;
                   }
-                ?>
-        </table>
-      </div>
-    </div>
+          ?>
+          </tr>
+
+        </tbody>
+      </table>
   </div>
-</div>
+  </div>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<script href="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script href="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script href="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
-
+<script>
+$(document).ready(function() {
+    $('#tabel_task').DataTable();
+} );
+</script>
+</body>
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -160,15 +208,12 @@
                   readonly />
                 <br />
                 <label>Task</label>
-                <input type="text" name="task" class="form-control" placeholder="Enter task"
+                <input type="text" name="task" class="form-control" placeholder="Enter Task"
                   style="border: 1px solid #000000" required>
                 <br />
                 <label>Detail Task</label>
-                <textarea name="detail_task" style="width: 100%; height: 50px; font-size: 14px; 
-                  line-height: 18px; border: 1px solid #000000; padding: 
-                  10px;" required>
-                </textarea>
-                <br />
+                <input type="text" name="detail_task" class="form-control" placeholder="Enter Detail Task"
+                  style="border: 1px solid #000000" required>
                 <br />
                 <label>Start Date</label>
                 <div class="form-group">
@@ -226,7 +271,6 @@
       }
     });
   });
-
 </script>
 
 </form>
