@@ -25,6 +25,8 @@
   <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="shortcut icon" href="../../img/logopal.ico">
+  <!-- datatabels -->
+  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -188,6 +190,11 @@
   <script src="../../dist/js/pages/dashboard.js"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="../../dist/js/demo.js"></script>
+
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+
 </body>
 
 </html>
