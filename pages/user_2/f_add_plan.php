@@ -15,8 +15,8 @@ if(!empty($_POST))
 	
     if(mysqli_query($connect, $query))
     { ?>
-        <script type="text/javascript"> alert("Task berhasil ditambahkan !"); </script>
-        <?php echo"<script>document.location='index.php?plan'</script>"; ?>
+        <script type="text/javascript"> alert("Plan berhasil ditambahkan !"); </script>
+        <?php echo"<script>document.location='index.php?task'</script>"; ?>
     <?php }
     echo $output;
 }
