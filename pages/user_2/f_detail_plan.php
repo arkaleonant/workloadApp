@@ -16,15 +16,18 @@ if(isset($_POST["id_task"]))
                     <th><label>Status</label></th>  
                 </tr>';
     while($row = mysqli_fetch_array($result))
-    {
-     $output .= '
-        <tr style="text-align:center;"> 
-            <td width="30%">'.$no.'</td> 
-            <td width="30%">'.$row["date"].'</td>
-            <td width="50%">'.$row["plan"].'</td>
-            <td width="30%" style="text-align:center;">'.$row["status"].'</td>
-        </tr>
-     ';$no++;
+    { 
+    $output .= '  <tr style="text-align:center;"> 
+                        <td width="30%">'.$no.'</td> 
+                        <td width="30%">'.$row["date"].'</td>
+                        <td width="30%">'.$row["plan"].'</td>';
+                        if($row["status"]=='1'){
+                            $output .= '<td>Sudah</td>';
+                        } else {
+                            $output .= '<td>Belum</td>';
+                        }
+    $output .= '    </tr>';
+     ;$no++;
     } 
     $output .= '</table>
     </div> Nb : <br>

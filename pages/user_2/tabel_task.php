@@ -18,15 +18,9 @@
   $query = "SELECT * FROM tabel_task 
             INNER JOIN tabel_pj 
             ON tabel_task.id_task = tabel_pj.id_task 
-            WHERE tabel_pj.nip='$_SESSION[nip]' 
-            --  AND tabel.task.status='0' 
+            WHERE tabel_pj.nip='$_SESSION[nip]' AND tabel_task.status='0' 
             ORDER BY tabel_task.id_task DESC";
   $result = mysqli_query($connect, $query);
-?>
-
-<?php 
-  $sql = mysqli_query($conn, "SELECT * FROM pegawai where nip='$_SESSION[nip]'");
-											$row = mysqli_fetch_array($sql);
 ?>
 <head>
   <!-- Font Awesome -->
@@ -63,11 +57,11 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <?php
+                <tbody>
+                <?php
                     while($row = mysqli_fetch_array($result))
                     {
                   ?>
-                <tbody>
                     <tr>
                       <td><?php echo $no ?></td>
                       <td><?php echo $row['id_task'] ?></td>
@@ -83,10 +77,10 @@
                         <input type="button" name="add" value="Tambah" id="<?php echo $row["id_task"]; ?>" class="btn btn-warning btn-xs tambah_data" />
                       </td>
                     </tr>
-                  </tbody>
                     <?php $no++;
                     }
                   ?>
+                  </tbody> 
           </table>
       </div>
   </div>

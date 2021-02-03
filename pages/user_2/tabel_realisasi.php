@@ -55,32 +55,32 @@
               <th width=20%   >  Bukti      </th>
               <th width=15%   >  Kendala    </th>
           </tr>
-          </thead>
+          </thead>       
+            <tbody>
             <?php
               while($row = mysqli_fetch_array($result))
               {
             ?>
-            <tbody>
-            <tr>
-                  <td><?php echo $no ?></td>
-                  <td><?php echo $row['id_plan'] ?></td>
-                  <td><?php echo $row['id_task'] ?></td>
-                  <td><?php echo $row['date'] ?></td>
-                  <td><?php echo $row['plan'] ?></td>
-                  <td>
-                      <?php if($row['status']=='1') 
-                          {
-                        ?>
-                            <a>Sudah Dikerjakan</a>
-                        <?php }?>
-                  </td>
-                  <td><img src="<?php echo "file/".$row['bukti']; ?>"></td>
-                  <td><?php echo $row['kendala'] ?></td>
-            </tr>
-            </tbody>
-              <?php $no++;
+              <tr>
+                    <td><?php echo $no ?></td>
+                    <td><?php echo $row['id_plan'] ?></td>
+                    <td><?php echo $row['id_task'] ?></td>
+                    <td><?php echo $row['date'] ?></td>
+                    <td><?php echo $row['plan'] ?></td>
+                    <td>
+                        <?php if($row['status']=='1') 
+                            {
+                          ?>
+                              <a>Sudah Dikerjakan</a>
+                          <?php }?>
+                    </td>
+                    <td><img src="<?php echo "file/".$row['bukti']; ?>"></td>
+                    <td><?php echo $row['kendala'] ?></td>
+              </tr>
+            <?php $no++;
                 }
               ?>
+            </tbody>
           </table>
       </div>
   </div>

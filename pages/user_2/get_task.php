@@ -33,7 +33,7 @@
 
     mysqli_select_db($con,"magang_pal");
     $sql="SELECT * FROM tabel_task WHERE id_task = '".$q."'";
-    $lqs="SELECT * FROM tabel_plan WHERE id_task = '".$q."' AND status='0'";
+    $lqs="SELECT * FROM tabel_plan WHERE id_task = '".$q."'";
     
     $result = mysqli_query($con,$sql);
     $hasil = mysqli_query($con,$lqs);
@@ -56,8 +56,7 @@
                 echo "</tr>";
             }
     echo "</table></br></br>";
-    echo "Nb : <br>";
-    echo "Kolom Status 0 = Belum Dikerjakan <br>";
+    
     echo "<table>
                 <tr>
                     <th>id_plan</th>
@@ -65,12 +64,16 @@
                     <th>plan</th>
                     <th>status</th>
                 </tr>";
-            while($row = mysqli_fetch_array($hasil)) {
+            while($row2 = mysqli_fetch_array($hasil)) {
                 echo "<tr>";
-                    echo "<td>" . $row['id_plan'] . "</td>";
-                    echo "<td>" . $row['date'] . "</td>";
-                    echo "<td>" . $row['plan'] . "</td>";
-                    echo "<td>" . $row['status'] . "</td>";
+                    echo "<td>" . $row2['id_plan'] . "</td>";
+                    echo "<td>" . $row2['date'] . "</td>";
+                    echo "<td>" . $row2['plan'] . "</td>";
+                    if( $row2['status'] =='1'){
+                        echo "<td>Sudah</td>";
+                    } else {
+                        echo "<td>Belum</td>";
+                    }
                 echo "</tr>";
             }
     echo "</table>";

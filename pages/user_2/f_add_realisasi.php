@@ -18,17 +18,16 @@
         $status = $_POST["status"];
         $kendala = $_POST["kendala"];
         
-        $query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
-                    VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
-							'1','','$kendala')");
-		$query = "INSERT INTO tabel_realisasi SET id_plan= '', id_task = '$id_task', date ='$date', plan='$plan'"
+		$query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
+		VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
+				'1','','$kendala')");
 
-        $query2=("UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'");
+        $query2="UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'";
 
-        if(mysqli_query($conn, $query)){ 
-            if(mysqli_query($conn, $query2)){ 
-				
-			}
-		}
+        if(mysqli_query($conn, $query)){  
+			mysqli_query($conn, $query2)?>
+			<script type="text/javascript"> alert("Task berhasil ditambahkan !"); </script>
+        	<?php echo"<script>document.location='index.php?plan'</script>"; ?>
+		<?php }
     }
 ?>

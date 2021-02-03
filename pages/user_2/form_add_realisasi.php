@@ -12,7 +12,7 @@ $('#add_form').on("submit", function(event){
     method:"POST",  
     data:$('#add_form').serialize(),  
     beforeSend:function(){  
-     $('#add').val("merealilasikan");  
+     $('#add').val("merealisasikan");  
     },  
     success:function(data){  
      $('#add_form')[0].reset();  
@@ -33,44 +33,28 @@ if(isset($_POST["id_plan"]))
 	$row = mysqli_fetch_array($result);
      $output .= '
         <form method="post" id="add_form" enctype="multipart/form-data">
-            <div>
             <label>ID Plan</label>
-            <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/>
-            </div>
+            <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/></br>
 
-            <div>
             <label class="hide">ID Task</label>
-            <input type="text" name="id_task" id="id_task" value="'.$row['id_task'].'" class="form-control hide" readonly/>
-            </div>
+            <input type="text" name="id_task" id="id_task" value="'.$row['id_task'].'" class="form-control hide"/>
 
-            <div>
             <label class="hide">Tanggal</label>
-            <input type="date" name="date" id="date" class="form-control hide"  value="'.$row['date'].'" readonly/>
-            </div><br/>
+            <input type="date" name="date" id="date" class="form-control hide"  value="'.$row['date'].'"/>
 
-            <div>
-            <label>Plan</label>
-            <textarea name="plan" id="plan" class="form-control" readonly>'.$row['plan'].'</textarea>
-            </div><br/>
+            <label class="hide">Plan</label>
+            <textarea name="plan" id="plan" class="form-control hide">'.$row['plan'].'</textarea>
 
-            <div>
             <label>Status *</label>
-            <input type="text" name="status" id="status" class="form-control"  value="Sudah Dikerjakan" readonly/>
-            </div><br/>
+            <input type="text" name="status" id="status" class="form-control"  value="Sudah Dikerjakan" readonly/></br>
 
-            <div>
             <label>Bukti Penyelesaian *</label>
-            <td><input type="file" id="id-input-file-2" name="upload_image" class="form-control"></td>
-            </div><br/>
+            <td><input type="file" id="id-input-file-2" name="upload_image" class="form-control"></td></br>
 
-            <div>
             <label>Kendala</label>
-            <td><input type="text" name="kendala" id="kendala" class="form-control"></td>
-            </div><br/>
-            
-            <div>
+            <td><input type="text" name="kendala" id="kendala" class="form-control"></td></br>
+
             <input type="submit" name="add" id="add" value="Realisasi" class="btn btn-success" />
-            </div>
         </form>
      ';
     echo $output;
