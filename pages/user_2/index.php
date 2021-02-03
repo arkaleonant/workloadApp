@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="../../plugins/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="shortcut icon" href="../../img/logopal.ico">
+  <!-- datatabels -->
+  <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap4.min.css">
 
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -135,31 +137,30 @@
     <!-- /.sidebar -->
   </aside>
     <!-- Main content -->
-  <div class="content-wrapper">
-    <div class="content">
-    <?php
-			if(isset($_REQUEST['home'])){
-				include("home.php");
-			}else if(isset($_REQUEST['task'])){
-				include("tabel_task.php");
-			}else if(isset($_REQUEST['plan'])){
-        include("tabel_plan.php");
-      }else if(isset($_REQUEST['realisasi'])){
-        include("tabel_realisasi.php");
-      }?>
-    </div>
-  </div>
-
+  <body>
+    <section>
+      <div class="content-wrapper">
+        <div class="content">
+        <?php
+          if(isset($_REQUEST['home'])){
+            include("home.php");
+          }else if(isset($_REQUEST['task'])){
+            include("tabel_task.php");
+          }else if(isset($_REQUEST['plan'])){
+            include("tabel_plan.php");
+          }else if(isset($_REQUEST['realisasi'])){
+            include("tabel_realisasi.php");
+          }?>
+        </div>
+      </div>
+    </section>
+  </body>
   
-  <!-- /.content-wrapper -->
   <footer class="main-footer bg-dark-gradient">
-    <strong>Copyright &copy; 2020 <a href="https://pal.co.id">PT. PAL Indonesia</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="https://pal.co.id"> PT. PAL Indonesia</a>.</strong>
     All rights reserved.
   </footer>
-
-  <!-- /.control-sidebar -->
 </div>
-<!-- ./wrapper -->
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -198,6 +199,23 @@
 <script src="../../dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
+<!-- page script -->
+
 </body>
 </html>
 
