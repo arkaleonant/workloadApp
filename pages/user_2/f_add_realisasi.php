@@ -17,10 +17,52 @@
         $plan = $_POST["plan"];
         $status = $_POST["status"];
         $kendala = $_POST["kendala"];
-        
-		$query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
-		VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
-				'1','','$kendala')");
+        $nmgambar = "";
+
+        if (!empty($_FILES)) {
+			if ($_FILES['upload_image']['name'] != "") {
+				if(is_array($_FILES)) {
+					$fileName = $_FILES['upload_image']['tmp_name'];
+					$sourceProperties = getimagesize($fileName);
+					$resizeFileName = time();
+					$uploadPath = "../../bukti/";
+					$fileExt = pathinfo($_FILES['upload_image']['name'], PATHINFO_EXTENSION);
+					$uploadImageType = $sourceProperties[2];
+					$sourceImageWidth = $sourceProperties[0];
+					$sourceImageHeight = $sourceProperties[1];
+					switch ($uploadImageType) {
+						case IMAGETYPE_JPEG:
+						$resourceType = imagecreatefromjpeg($fileName); 
+						$imageLayer = resizeImage($resourceType,$sourceImageWidth,$sourceImageHeight,450,450);
+						imagejpeg($imageLayer,$uploadPath."pal_".$resizeFileName.'.'. $fileExt);
+						break;
+
+						case IMAGETYPE_GIF:
+						$resourceType = imagecreatefromgif($fileName); 
+						$imageLayer = resizeImage($resourceType,$sourceImageWidth,$sourceImageHeight,450,450);
+						imagegif($imageLayer,$uploadPath."pal_".$resizeFileName.'.'. $fileExt);
+						break;
+
+						case IMAGETYPE_PNG:
+						$resourceType = imagecreatefrompng($fileName); 
+						$imageLayer = resizeImage($resourceType,$sourceImageWidth,$sourceImageHeight,450,450);
+						imagepng($imageLayer,$uploadPath."pal_".$resizeFileName.'.'. $fileExt);
+						break;
+
+						default:
+						$imageProcess = 0;
+						break;
+					}
+				}
+				$nmgambar="pal_".$resizeFileName.'.'. $fileExt;
+			}
+		}	
+
+        $query2=("UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'");
+
+        $query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
+							VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
+									'1','','".$kendala."')");
 
         $query2="UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'";
 
