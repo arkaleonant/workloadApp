@@ -132,10 +132,10 @@
 				include("home.php");
 			}else if(isset($_REQUEST['task'])){
 				include("daftar_task.php");
-			}else if(isset($_REQUEST['tambah_pj'])){
-				include("tambah_pj.php");
-			}else if(isset($_REQUEST['task'])){
-				include("daftar_task.php");
+			}else if(isset($_REQUEST['form_add_pj'])){
+				include("form_add_pj.php");
+			}else if(isset($_REQUEST['laporan'])){
+				include("form_cetak_laporan.php");
 			}?>
       </div>
     </div>

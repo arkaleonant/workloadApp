@@ -22,8 +22,9 @@
 ?>
 
 <br>
-<button type="button" name="age" id="age" data-toggle="modal" data-target="#create_task_modal"
+<button type="button" name="addtask" id="addtask" data-toggle="modal" data-target="#create_task_modal"
   class="btn btn-success">Tambah Task</button>
+  <a class="btn btn-info btn-xs" href="dashboard_1.php?laporan" target="_blank">Cetak Laporan</a>  
 <br><br>
 <h2>Daftar Task</h2>
 <div class="panel panel-flat">
@@ -225,6 +226,7 @@
       }
     });
   });
+
 </script>
 
 </form>
