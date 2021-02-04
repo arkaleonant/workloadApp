@@ -56,10 +56,7 @@
 				}
 				$nmgambar="pal_".$resizeFileName.'.'. $fileExt;
 			}
-		}	
-
-        $query2=("UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'");
-
+		}
         $query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
 							VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
 									'1','','".$kendala."')");

@@ -37,7 +37,7 @@ if ($cek>0){
         <?php }else if ($row['hak_akses']=="0"){ ?>
                 <script language="JavaScript">
                     alert('Admin Login Berhasil !');
-                    document.location='../hint.php';
+                    document.location='../pages/admin/index.php?home';
                 </script>
         <?php }
 }
