@@ -57,17 +57,17 @@
 				$nmgambar="pal_".$resizeFileName.'.'. $fileExt;
 			}
 		}
-        $query = ("INSERT INTO tabel_realisasi(id_plan,id_task,date,plan,status,bukti,kendala)
-							VALUES ('".$id_plan."', '".$id_task."','".$date."','".$plan."',
-									'1','$nmgambar','".$kendala."')");
+        $query = (" INSERT INTO tabel_realisasi (id_plan,id_task,date,plan,status,bukti,kendala)
+							VALUES ('".$id_plan."', '".$id_task."','".$date."',
+									'".$plan."', '1','".$nmgambar."','".$kendala."') ");
 
-        $query2="UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'";
+        $query2=" UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."' ";
 
-        if(mysqli_query($connect, $query))
-    	{ ?>
-			<script type="text/javascript"> alert("Pegawai berhasil diupdate !"); </script>
-			<?php echo"<script>document.location='index.php?plan'</script>"; ?>
-			<?php mysqli_query($connect, $query2);
-		}
+        if(mysqli_query($conn, $query))
+    	{ 
+			mysqli_query($conn, $query2); ?>
+			<script type="text/javascript"> alert("Realisasi Sukses !"); </script>
+			<?php echo"<script>document.location='index.php?plan'</script>"; ?> 
+<?php	}
 	}
 ?>

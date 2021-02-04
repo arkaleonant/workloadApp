@@ -15,7 +15,7 @@ if(!empty($_POST))
     $hak_akses = $_POST["hak_akses"];
 
     $query = "UPDATE pegawai set nama = '".$nama."', email = '".$email."', password ='".$password."', 
-                                  jabatan = '$jabatan', hak_akses = '".$hak_akses."' where nip = '".$_POST[nip]."'";
+                                  jabatan = '".$jabatan."', hak_akses = '".$hak_akses."' where nip = '".$_POST[nip]."'";
 	
     if(mysqli_query($connect, $query))
     { ?>
