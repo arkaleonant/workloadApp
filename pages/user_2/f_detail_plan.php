@@ -10,7 +10,7 @@ if(isset($_POST["id_task"]))
       <div class="table-responsive">  
            <table class="table table-bordered">
                 <tr style="text-align:center;">
-                    <th><label>No</label></th>
+                    <th width="5%"><label>No</label></th>
                     <th><label>Tanggal</label></th>  
                     <th><label>Plan</label></th>
                     <th><label>Status</label></th>  
@@ -18,9 +18,9 @@ if(isset($_POST["id_task"]))
     while($row = mysqli_fetch_array($result))
     { 
     $output .= '  <tr style="text-align:center;"> 
-                        <td width="30%">'.$no.'</td> 
+                        <td width="5%">'.$no.'</td> 
                         <td width="30%">'.$row["date"].'</td>
-                        <td width="30%">'.$row["plan"].'</td>';
+                        <td width="40%">'.$row["plan"].'</td>';
                         if($row["status"]=='1'){
                             $output .= '<td>Sudah</td>';
                         } else {
@@ -29,9 +29,7 @@ if(isset($_POST["id_task"]))
     $output .= '    </tr>';
      ;$no++;
     } 
-    $output .= '</table>
-    </div> Nb : <br>
-    Kolom Status 0 = Belum Dikerjakan <br>';
+    $output .= '</table>';
     echo $output;
 }
 ?>
