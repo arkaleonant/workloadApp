@@ -44,9 +44,11 @@
 </head>
 <body>
 <br>
+<button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-primary">Tambah Data Pegawai</button>
+<br><br>
 <div class="panel panel-flat">
     <div class="card-header">
-    <button type="button" name="age" id="age" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-primary">Tambah Data Pegawai</button>
+        <h3 class="card-title">Daftar Pegawai</h3>
     </div>
         <div class="card-body">
             <table id="tabel_pegawai" class="table table-striped table-bordered" style="width:100%">

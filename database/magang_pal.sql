@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2021 at 03:33 PM
+-- Generation Time: Feb 04, 2021 at 10:41 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -47,7 +47,8 @@ INSERT INTO `pegawai` (`nip`, `nama`, `email`, `password`, `divisi`, `jabatan`, 
 (2222, 'Achmad Satya Pradana', 'satya@gmail.com', 'satyapal', 'TEKNOLOGI', 'Staff', 2),
 (3333, 'Arka Arifiandi Leonanta', 'arka@gmail.com', 'arkapal', 'TEKNOLOGI', 'Kepala Divisi', 1),
 (4444, 'Bambang Dwi Nur Rizal', 'bambang@gmail.com', 'bambangpal', 'TEKNOLOGI', 'Staff', 2),
-(5555, 'Alif M Sultan', 'alif@gmail.com', 'alifpal', 'TEKNOLOGI', 'Kepala Departemen', 2);
+(5555, 'Ajrina Yumna', 'ajrina@gmail.com', 'ajrinapal', 'TEKNOLOGI', 'Kepala Departemen', 2),
+(9999, 'admin', 'admin@gmail.com', 'admin', 'admin', 'admin', 0);
 
 -- --------------------------------------------------------
 
@@ -59,6 +60,18 @@ CREATE TABLE `tabel_pj` (
   `id_task` int(11) NOT NULL,
   `nip` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_pj`
+--
+
+INSERT INTO `tabel_pj` (`id_task`, `nip`) VALUES
+(1, 1111),
+(1, 2222),
+(2, 1111),
+(3, 1111),
+(3, 4444),
+(3, 2222);
 
 -- --------------------------------------------------------
 
@@ -73,6 +86,30 @@ CREATE TABLE `tabel_plan` (
   `plan` varchar(255) NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_plan`
+--
+
+INSERT INTO `tabel_plan` (`id_plan`, `id_task`, `date`, `plan`, `status`) VALUES
+(1, 1, '2021-02-03', 'Analisa Kebutuhan', 1),
+(2, 1, '2021-02-06', 'Rancangan Database', 1),
+(3, 1, '2021-02-17', 'Pembuatan UI Website', 1),
+(4, 1, '2021-02-23', 'pengujian aplikasi dengan blackbox', 1),
+(5, 3, '2021-02-03', 'Pengujian Aplikasi dengan whitebox', 0),
+(6, 3, '2021-02-04', 'pengujian aplikasi menggunakan blackbox', 1),
+(7, 3, '2021-02-05', 'implementasi aplikasi pada karyawan', 0),
+(8, 3, '2021-02-06', 'pembuatan manual book', 0),
+(9, 3, '2021-02-09', 'maintenance', 0),
+(10, 3, '2021-02-17', 'maintenance 2', 0),
+(11, 3, '2021-02-28', 'maintenance 4', 1),
+(12, 2, '2021-02-03', 'deesign database', 1),
+(13, 3, '2021-03-03', 'manual book', 1),
+(14, 3, '2021-03-06', 'video penggunaan aplikasi', 1),
+(15, 3, '2021-03-08', 'pengurusan HAKI', 0),
+(16, 3, '2021-03-10', 'maintenance 7', 0),
+(17, 3, '2021-03-14', 'maintenance 8', 0),
+(18, 3, '2021-02-21', 'maintenance 9', 0);
 
 -- --------------------------------------------------------
 
@@ -90,6 +127,21 @@ CREATE TABLE `tabel_realisasi` (
   `kendala` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tabel_realisasi`
+--
+
+INSERT INTO `tabel_realisasi` (`id_plan`, `id_task`, `date`, `plan`, `status`, `bukti`, `kendala`) VALUES
+(1, 1, '2021-02-03', 'Analisa Kebutuhan', 1, '', 'membuat design sedikit sulit karena fitur banyak'),
+(2, 1, '2021-02-06', 'Rancangan Database', 1, '', 'rancangan atabse sudah terkoneksi semua'),
+(3, 1, '2021-02-17', 'Pembuatan UI Website', 1, '', 'pekerjaan selesai'),
+(4, 1, '2021-02-23', 'pengujian aplikasi dengan blackbox', 1, '', 'pengerjaan molor karena terhambat aplikasi'),
+(6, 3, '2021-02-04', 'pengujian aplikasi menggunakan blackbox', 1, '', 'alur ada yg salah'),
+(11, 3, '2021-02-28', 'maintenance 4', 1, '', ''),
+(13, 3, '2021-03-03', 'manual book', 1, '', 'membuat design sedikit sulit karena fitur banyak'),
+(14, 3, '2021-03-06', 'video penggunaan aplikasi', 1, '', ''),
+(12, 2, '2021-02-03', 'deesign database', 1, '', 'membuat design sedikit sulit karena fitur banyak');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +157,15 @@ CREATE TABLE `tabel_task` (
   `end_date` date NOT NULL,
   `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tabel_task`
+--
+
+INSERT INTO `tabel_task` (`id_task`, `divisi`, `task`, `detail_task`, `start_date`, `end_date`, `status`) VALUES
+(1, 'TEKNOLOGI', 'Membuat Aplikasi Tabungan Pensiunan Karyawan PT.PAL', 'Aplikasi Ini berupa website tabungan pensiunan karyawan PT.PAL', '2021-02-03', '2021-03-03', 1),
+(2, 'TEKNOLOGI', 'Membuat Aplikasi Tabungan Pensiunan Karyawan PT.PELNI', 'asdf', '2021-12-12', '2022-12-12', 0),
+(3, 'TEKNOLOGI', 'Membuat Aplikasi Tabungan Pensiunan Karyawan PT.PELINDO', '                asdf', '2021-03-12', '2021-12-12', 0);
 
 --
 -- Indexes for dumped tables
@@ -152,13 +213,13 @@ ALTER TABLE `tabel_task`
 -- AUTO_INCREMENT for table `tabel_plan`
 --
 ALTER TABLE `tabel_plan`
-  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_plan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tabel_task`
 --
 ALTER TABLE `tabel_task`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
