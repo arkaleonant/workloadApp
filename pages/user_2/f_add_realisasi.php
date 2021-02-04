@@ -67,7 +67,7 @@
     	{ 
 			mysqli_query($conn, $query2); ?>
 			<script type="text/javascript"> alert("Realisasi Sukses !"); </script>
-			<?php echo"<script>document.location='index.php?plan'</script>"; ?> 
+			<?php echo"<script>document.location='index.php?home'</script>"; ?> 
 <?php	}
 	}
 ?>
