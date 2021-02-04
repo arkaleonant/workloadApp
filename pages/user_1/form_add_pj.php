@@ -21,30 +21,26 @@
 
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap4/3.3.6/css/bootstrap.min.css">
+
 </head>
 
 <body>
   <br>
   <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Tambah Penanggung Jawab</h3>
+      <h3 class="card-title">Tambah Penanggung Jawab</h3>
     </div>
-      <div class="card-body">
+    <div class="card-body">
         <!-- membuat form  -->
         <!-- gunakan tanda [] untuk menampung array  -->
         <form action="f_create_pj.php" method="POST">
           <div class="control-group after-add-more">
             <label>Id Task</label>
             <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>"
-              style="width: 30%; height: 40px" disabled>
-            <br>
-            <label>Task</label>
-            <input type="text" name="task" class="form-control" value="<?php echo $row['task'] ?>"
-              style="width: 30%; height: 40px" disabled>
+              style="width: 30%; height: 40px" readonly>
             <br>
             <label>NIP</label>
-            <select id="nip" name="nip[]" class="form-control" style="width: 30%; height:40px; border:2px; color:black" required>
+            <select id="nip" name="nip[]" class="form-control" style="width: 30%; height:40px; border:2px; color:black">
               <option value="none">- Pilih Penanggung Jawab -</option>
               <?php     
                 $con = mysqli_connect("localhost","root","","magang_pal");
@@ -76,11 +72,7 @@
           <div class="control-group">
             <label>Id Task</label>
             <input type="text" name="id_task[]" class="form-control" value="<?php echo $row['id_task'] ?>"
-              style="width: 30%; height: 40px" disabled>
-            <br>
-            <label>Task</label>
-            <input type="text" name="task" class="form-control" value="<?php echo $row['task'] ?>"
-              style="width: 30%; height: 40px" disabled>
+              style="width: 30%; height: 40px" >
             <br>
             <label>NIP</label>
             <select id="nip" name="nip[]" class="form-control" style="width: 30%; height:40px; border:2px; color:black">
@@ -96,7 +88,7 @@
             <br>
             <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i>
               Remove</button>
-            <br><br>
+            <hr>
           </div>
         </div>
       </div>
