@@ -14,10 +14,15 @@ $('#add_form').on("submit", function(event){
     beforeSend:function(){  
      $('#add').val("merealisasikan");  
     },  
-    success:function(data){  
+    success:function(data){ 
+ 
      $('#add_form')[0].reset();  
      $('#addModal').modal('hide');  
-     $('#tabel_task').html(data);  
+     $('#tabel_task').html(data); 
+     $("#plan_page").load("index.php?plan", function(){
+        window.location.reload();
+     });
+     
     }  
    });  
   }  
@@ -32,6 +37,7 @@ if(isset($_POST["id_plan"]))
  $result = mysqli_query($connect, $query);
 	$row = mysqli_fetch_array($result);
      $output .= '
+     <div id=page>
         <form method="post" id="add_form" enctype="multipart/form-data">
             <label>ID Plan</label>
             <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/></br>
@@ -56,6 +62,7 @@ if(isset($_POST["id_plan"]))
 
             <input type="submit" name="add" id="add" value="Realisasi" class="btn btn-success" />
         </form>
+        </div>
      ';
     echo $output;
 }
