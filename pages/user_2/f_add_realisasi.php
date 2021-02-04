@@ -63,10 +63,11 @@
 
         $query2="UPDATE tabel_plan SET status = '1' WHERE id_plan = '".$id_plan."'";
 
-        if(mysqli_query($conn, $query)){  
-			mysqli_query($conn, $query2)?>
-			<script type="text/javascript"> alert("Task berhasil ditambahkan !"); </script>
-        	<?php echo"<script>document.location='index.php?plan'</script>"; ?>
-		<?php }
-    }
+        if(mysqli_query($connect, $query))
+    	{ ?>
+			<script type="text/javascript"> alert("Pegawai berhasil diupdate !"); </script>
+			<?php echo"<script>document.location='index.php?plan'</script>"; ?>
+			<?php mysqli_query($connect, $query2);
+		}
+	}
 ?>
