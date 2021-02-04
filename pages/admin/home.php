@@ -133,15 +133,15 @@
                     <br />
 
                     <label>Email</label>
-                    <input type="email" name="email" id="email" class="form-control" />
+                    <input type="text" name="email" id="email" class="form-control" />
                     <br />
                     
                     <label>Password</label>
-                    <input type="password" name="password" id="password" class="form-control" />
+                    <input type="text" name="password" id="password" class="form-control" />
                     <br />
                     
                     <label>Divisi</label>
-                    <input type="text" name="divisi" id="divisi" class="form-control" value="TEKNOLOGI" readonly/>
+                    <input type="text" name="divisi" id="divisi" class="form-control"/>
                     <br />
 
                     <label>Jabatan</label>
