@@ -28,6 +28,7 @@ $('#add_form').on("submit", function(event){
   }  
  });
 </script>
+
 <?php 
 if(isset($_POST["id_plan"]))
 {
