@@ -125,23 +125,23 @@
                 <form method="post" id="insert_form">
                 
                     <label>NIP</label>
-                    <input type="number" name="nip" id="nip" class="form-control" />
+                    <input type="number" name="nip" id="nip" placeholder="Masukkan NIP" class="form-control" />
                     <br />
 
                     <label>Nama</label>
-                    <input type="text" name="nama" id="nama" class="form-control" />
+                    <input type="text" name="nama" id="nama" placeholder="Masukkan Nama" class="form-control" />
                     <br />
 
                     <label>Email</label>
-                    <input type="email" name="email" id="email" class="form-control" />
+                    <input type="text" name="email" id="email" placeholder="Masukkan Email" class="form-control" />
                     <br />
                     
                     <label>Password</label>
-                    <input type="password" name="password" id="password" class="form-control" />
+                    <input type="text" name="password" id="password" placeholder="Masukkan Password" class="form-control" />
                     <br />
                     
                     <label>Divisi</label>
-                    <input type="text" name="divisi" id="divisi" class="form-control" value="TEKNOLOGI" readonly/>
+                    <input type="text" name="divisi" id="divisi" placeholder="Masukkan Divisi" class="form-control"/>
                     <br />
 
                     <label>Jabatan</label>

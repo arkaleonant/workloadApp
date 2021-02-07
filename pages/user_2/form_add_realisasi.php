@@ -14,10 +14,15 @@ $('#add_form').on("submit", function(event){
     beforeSend:function(){  
      $('#add').val("merealisasikan");  
     },  
-    success:function(data){  
+    success:function(data){ 
+ 
      $('#add_form')[0].reset();  
      $('#addModal').modal('hide');  
-     $('#tabel_task').html(data);  
+     $('#tabel_task').html(data); 
+     $("#plan_page").load("index.php?plan", function(){
+        window.location.reload();
+     });
+     
     }  
    });  
   }  

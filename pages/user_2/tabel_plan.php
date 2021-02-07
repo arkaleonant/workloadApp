@@ -38,6 +38,7 @@
 </head>
 
 <body>
+<div id=plan_page></div>
   <div class="card">
     <div class="card-header">
         <h3 class="card-title">Daftar Plan</h3>
@@ -83,6 +84,7 @@
                   </tbody>
           </table>
       </div>
+  </div>
   </div>
 
 
