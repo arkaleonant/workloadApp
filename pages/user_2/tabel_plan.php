@@ -22,12 +22,7 @@
             ORDER BY tabel_plan.id_task DESC";
   $result = mysqli_query($connect, $query);
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <!-- Ionicons -->
@@ -40,10 +35,6 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-  
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.23/af-2.3.5/b-1.6.5/b-html5-1.6.5/r-2.2.7/sb-1.0.1/sl-1.3.1/datatables.min.css"/>
- 
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.23/af-2.3.5/b-1.6.5/b-html5-1.6.5/r-2.2.7/sb-1.0.1/sl-1.3.1/datatables.min.js"></script>
 </head>
 
 <body>
@@ -52,19 +43,18 @@
         <h3 class="card-title">Daftar Plan</h3>
     </div>
       <div class="card-body">
-          <table id="tabel_plan" class="table table-striped table-bordered" style="width:100%"">
-                  <thead>
+          <table id="tabel_plan" class="table table-striped table-bordered" style="width:100%">
+                <thead>
                     <tr>
-                      <th>No.</th>
-                      <th>ID Plan</th>
-                      <th>Id Task</th>
-                      <th>Date</th>
-                      <th>Plan</th>
-                      <th>Status</th>
-                      <th>Realisasi</th>
+                        <th>No.</th>
+                        <th>ID Plan</th>
+                        <th>Id Task</th>
+                        <th>Date</th>
+                        <th>Plan</th>
+                        <th>Status</th>
+                        <th>Realisasi</th>
                     </tr>
-                  </thead>
-                 
+                </thead>
                 <tbody>
                 <?php
                     while($row = mysqli_fetch_array($result))
@@ -90,10 +80,11 @@
                     <?php $no++;
                     }
                   ?>
-                  </tbody>   
+                  </tbody>
           </table>
       </div>
   </div>
+
 
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -110,9 +101,9 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script href="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script href="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script href="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -120,7 +111,7 @@ $(document).ready(function() {
 } );
 </script>
 </body>
-</html>
+
 
 <div id="dataModal" class="modal fade">
   <div class="modal-dialog">
@@ -136,7 +127,7 @@ $(document).ready(function() {
     </div>
   </div>
 </div>
- 
+
 <div id="addModal" class="modal fade">
  <div class="modal-dialog">
   <div class="modal-content">
@@ -153,7 +144,7 @@ $(document).ready(function() {
  </div>
 </div>
 
-<script>
+<script>  
   $(document).on('click', '.tambah_data', function(){
   var id_plan = $(this).attr("id");
   $.ajax({
@@ -167,7 +158,7 @@ $(document).ready(function() {
   });
  });
 
-$(document).on('click', '.view_data', function(){
+ $(document).on('click', '.view_data', function(){
   var id_task = $(this).attr("id");
   $.ajax({
    url:"detail_plan.php",
@@ -179,8 +170,7 @@ $(document).on('click', '.view_data', function(){
    }
   });
  });
- </script>
-
+</script>
 
 
 

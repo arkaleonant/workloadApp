@@ -52,7 +52,6 @@
               <th width=15%   >  Tanggal    </th>
               <th width=30%   >  Plan       </th>
               <th width=5%    >  Status     </th>
-              <th width=20%   >  Bukti      </th>
               <th width=15%   >  Kendala    </th>
           </tr>
           </thead>       
@@ -74,7 +73,6 @@
                               <a>Sudah Dikerjakan</a>
                           <?php }?>
                     </td>
-                    <td><img src="<?php echo "file/".$row['bukti']; ?>"></td>
                     <td><?php echo $row['kendala'] ?></td>
               </tr>
             <?php $no++;

@@ -32,7 +32,7 @@ if(isset($_POST["id_plan"]))
  $result = mysqli_query($connect, $query);
 	$row = mysqli_fetch_array($result);
      $output .= '
-        <form method="post" id="add_form" enctype="multipart/form-data">
+        <form method="post" id="add_form">
             <label>ID Plan</label>
             <input type="text" name="id_plan" id="id_plan" value="'.$_POST["id_plan"].'" class="form-control"  readonly/></br>
 
@@ -47,9 +47,6 @@ if(isset($_POST["id_plan"]))
 
             <label>Status *</label>
             <input type="text" name="status" id="status" class="form-control"  value="Sudah Dikerjakan" readonly/></br>
-
-            <label>Bukti Penyelesaian *</label>
-            <td><input type="file" id="id-input-file-2" name="upload_image" class="form-control"></td></br>
 
             <label>Kendala</label>
             <td><input type="text" name="kendala" id="kendala" class="form-control"></td></br>
